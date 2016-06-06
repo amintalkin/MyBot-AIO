@@ -21,6 +21,7 @@ Func ZoomOut() ;Zooms out
 EndFunc   ;==>ZoomOut
 
 Func ZoomOutBlueStacks() ;Zooms out
+   ;Return DefaultZoomOut()
    Return ZoomOutCtrlClick(True, False, False, False)
 EndFunc
 
@@ -83,7 +84,8 @@ Func DefaultZoomOut($ZoomOutKey = "{DOWN}", $tryCtrlWheelScrollAfterCycles = 40)
 EndFunc   ;==>ZoomOut
 
 Func ZoomOutBlueStacks2()
-   Return DefaultZoomOut()
+   ;Return DefaultZoomOut()
+   Return ZoomOutCtrlClick(True, False, False, False)
 EndFunc
 
 Func ZoomOutMEmu()

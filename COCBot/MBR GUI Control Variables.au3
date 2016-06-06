@@ -17,6 +17,10 @@ Global $Style_GUI
 Global $groupSearchDB=$grpDBFilter&"#"&$cmbDBMeetGE&"#"&$txtDBMinGold&"#"&$picDBMinGold&"#"&$txtDBMinElixir&"#"&$picDBMinElixir&"#"&$txtDBMinGoldPlusElixir&"#"&$picDBMinGPEGold&"#"&$chkDBMeetDE&"#"&$txtDBMinDarkElixir&"#"&$picDBMinDarkElixir&"#"&$chkDBMeetTrophy&"#"&$txtDBMinTrophy&"#"&$picDBMinTrophies&"#"&$chkDBMeetTH&"#"&$cmbDBTH&"#"&$picDBMaxTH10&"#"&$chkDBMeetTHO&"#"&$chkDBWeakBase&"#"&$chkDBMeetOne&"#"&$cmbDBWeakMortar&"#"&$picDBWeakMortar&"#"&$cmbDBWeakWizTower&"#"&$picDBWeakWizTower
 Global $groupHerosDB=$picDBHeroesWait&"#"&$txtDBHeroesWait&"#"&$chkDBKingWait&"#"&$chkDBQueenWait&"#"&$chkDBWardenWait&"#"&$IMGchkDBKingWait&"#"&$IMGchkDBQueenWait&"#"&$IMGchkDBWardenWait
 
+;mikemikemikecoc - Wait For Spells
+Global $groupMiscDB=$chkDBSpellsWait
+Global $groupMiscAB=$chkABSpellsWait
+
 Global $groupSearchAB=$grpABFilter&"#"&$cmbABMeetGE&"#"&$txtABMinGold&"#"&$picABMinGold&"#"&$txtABMinElixir&"#"&$picABMinElixir&"#"&$txtABMinGoldPlusElixir&"#"&$picABMinGPEGold&"#"&$chkABMeetDE&"#"&$txtABMinDarkElixir&"#"&$picABMinDarkElixir&"#"&$chkABMeetTrophy&"#"&$txtABMinTrophy&"#"&$picABMinTrophies&"#"&$chkABMeetTH&"#"&$cmbABTH&"#"&$picABMaxTH10&"#"&$chkABMeetTHO&"#"&$chkABWeakBase&"#"&$chkABMeetOne&"#"&$cmbABWeakMortar&"#"&$picABWeakMortar&"#"&$cmbABWeakWizTower&"#"&$picABWeakWizTower
 Global $groupHerosAB=$picABHeroesWait&"#"&$txtABHeroesWait&"#"&$chkABKingWait&"#"&$chkABQueenWait&"#"&$chkABWardenWait&"#"&$IMGchkABKingWait&"#"&$IMGchkABQueenWait&"#"&$IMGchkABWardenWait
 

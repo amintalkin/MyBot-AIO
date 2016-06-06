@@ -52,13 +52,18 @@ $grpDebug = GUICtrlCreateGroup(GetTranslated(636,34, "Debug"), $x - 20, $y - 20,
 		GUICtrlSetOnEvent(-1, "chkdebugTrain")
 
 Local $x = 300, $y = 25
-	$btnTestTrain = GUICtrlCreateButton(GetTranslated(636,88, "Test Train"), $x  , $y , 90, 30)
+	$btnTestTrain = GUICtrlCreateButton(GetTranslated(636,88, "Test Train"), $x  , $y , 120, 30)
 	GUICtrlSetOnEvent(-1, "btnTestTrain")
 
 	$y += 50
 
-	$btnTestDonateCC = GUICtrlCreateButton(GetTranslated(636,89, "Test Donate"), $x  , $y , 90, 30)
+	$btnTestDonateCC = GUICtrlCreateButton(GetTranslated(636,89, "Test Donate"), $x  , $y , 120, 30)
 	GUICtrlSetOnEvent(-1, "btnTestDonateCC")
+
+	$y += 50
+
+	$btnTestAttackBar = GUICtrlCreateButton(GetTranslated(636,90, "Test Attack Bar"), $x  , $y , 120, 30)
+	GUICtrlSetOnEvent(-1, "btnTestAtttackBar")
 
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 

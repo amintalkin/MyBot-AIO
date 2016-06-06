@@ -124,23 +124,23 @@ $tabMilkingFilters = GUICtrlCreateTabItem(GetTranslated(600,45,"B - Conditions")
 Local $x = 14, $y = 45
 	$grpIfFoundElixir = GUICtrlCreateGroup(GetTranslated(631,56, "Structures to Attack"), $x - 5, $y, 260, 100)
 	$y += 22
-		$chkAtkElixirExtractors = GUICtrlCreateCheckbox(GetTranslated(631,13, "Attack"), $x, $y, 45, 18)
+		$chkAtkElixirExtractors = GUICtrlCreateCheckbox(GetTranslated(631,13, "Attack"), $x, $y, -1, 18)
 			GUICtrlSetState(-1, $GUI_CHECKED)
-		$picAtkElixirCollectors = GUICtrlCreateIcon($pIconLib, $eIcnCollector, $x + 55, $y - 6, 24, 24)
+		$picAtkElixirCollectors = GUICtrlCreateIcon($pIconLib, $eIcnCollector, $x + 60, $y - 6, 24, 24)
 		$y += 26
-		$chkAtkGoldMines = GUICtrlCreateCheckbox(GetTranslated(631,13, -1), $x, $y, 45, 18)
+		$chkAtkGoldMines = GUICtrlCreateCheckbox(GetTranslated(631,13, -1), $x, $y, -1, 18)
 			GUICtrlSetState(-1, $GUI_CHECKED)
 			GUICtrlSetOnEvent(-1, "chkAtkGoldMines")
-		$picAtkGoldMines = GUICtrlCreateIcon($pIconLib, $eIcnMine, $x + 55, $y - 6, 24, 24)
-		$lblAtkGoldMines = GUICtrlCreateLabel(GetTranslated(631,14, "Which have a Level") & " " & ChrW(8805), $x + 85, $y + 2, 115, 18, $SS_RIGHT)
+		$picAtkGoldMines = GUICtrlCreateIcon($pIconLib, $eIcnMine, $x + 60, $y - 6, 24, 24)
+		$lblAtkGoldMines = GUICtrlCreateLabel(GetTranslated(631,14, "Which have a Level") & " " & ChrW(8805), $x + 70, $y + 2, 115, 18, $SS_RIGHT)
 		$cmbAtkGoldMinesLevel = GUICtrlCreateCombo("", $x + 200, $y - 2, 50, 20, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1,"1-4|5|6|7|8|9|10|11","5")
 		$y += 26
-		$chkAtkDarkDrills = GUICtrlCreateCheckbox(GetTranslated(631,13, -1), $x, $y, 45, 18)
+		$chkAtkDarkDrills = GUICtrlCreateCheckbox(GetTranslated(631,13, -1), $x, $y, -1, 18)
 			GUICtrlSetOnEvent(-1, "chkAtkDarkDrills")
 			GUICtrlSetState(-1, $GUI_CHECKED)
-		$picAtkDarkDrills = GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x + 55, $y - 6, 24, 24)
-		$lblAtkDarkDrills = GUICtrlCreateLabel(GetTranslated(631,14, -1) & " " & ChrW(8805), $x + 85, $y + 2, 115, 18, $SS_RIGHT)
+		$picAtkDarkDrills = GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x + 60, $y - 6, 24, 24)
+		$lblAtkDarkDrills = GUICtrlCreateLabel(GetTranslated(631,14, -1) & " " & ChrW(8805), $x + 70, $y + 2, 115, 18, $SS_RIGHT)
 		$cmbAtkDarkDrillsLevel = GUICtrlCreateCombo("", $x + 200, $y - 2, 50, 20, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1,"1|2|3|4|5|6","1")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
@@ -185,7 +185,7 @@ $tabMilkingDrop = GUICtrlCreateTabItem(GetTranslated(600,46,"C - Attack"))
 		$y +=20
 		$lblMaxWave = GUICtrlCreateLabel(GetTranslated(631,23, "- Max Waves:"),$x, $y)
 		$txtMaxWaves = GUICtrlCreateInput("3", 180-10, $y-7, 37,21)
-			GUICtrlSetTip(-1, "Choose the maximum number of waves of troops to drop at each collector."&@CRLF&"If the collector gets destroyed, then no more waves will be dropped at it.")
+			GUICtrlSetTip(-1,  GetTranslated(631,85,"Choose the maximum number of waves of troops to drop at each collector.")&@CRLF& GetTranslated(631,86,"If the collector gets destroyed, then no more waves will be dropped at it."))
 		$y +=20
 		$lblDelayBtwnWaves = GUICtrlCreateLabel(GetTranslated(631,24, "- Delay Between Waves (ms):"),$x, $y)
 		$txtLowerDelayWaves = GUICtrlCreateInput("3000", 180-10, $y-7, 37,21)
@@ -229,7 +229,7 @@ $tabMilkingDrop = GUICtrlCreateTabItem(GetTranslated(600,46,"C - Attack"))
 	 	$y+=15
 
 
-		$chkMilkAfterAttackTHSnipe = GUICtrlCreateCheckbox("Enable TH Snipe", $x, $y, -1, -1)
+		$chkMilkAfterAttackTHSnipe = GUICtrlCreateCheckbox(GetTranslated(631,82,"Enable TH Snipe"), $x, $y, -1, -1)
 				GUICtrlSetTip(-1, $txtTip)
 				GUICtrlSetOnEvent(-1, "chkMilkAfterAttackTHSnipe")
 		$y+=21
@@ -254,9 +254,9 @@ $tabMilkingDrop = GUICtrlCreateTabItem(GetTranslated(600,46,"C - Attack"))
 		$x =9
 		$y += 85
 			Local $textnum = "", $groupText = "", $mode = $DB
-		$grpDeploy = GUICtrlCreateGroup("5b. Continue With An Scripted Attack", $x , $y - 20, 260, 70)
+		$grpDeploy = GUICtrlCreateGroup(GetTranslated(631,84,"5b. Continue With An Scripted Attack"), $x , $y - 20, 260, 70)
 		$x+=15
-		$chkMilkAfterAttackScripted = GUICtrlCreateCheckbox("Enable Scripted Attack", $x, $y, -1, -1)
+		$chkMilkAfterAttackScripted = GUICtrlCreateCheckbox(GetTranslated(631,83,"Enable Scripted Attack"), $x, $y, -1, -1)
 				GUICtrlSetTip(-1, $txtTip)
 				;GUICtrlSetOnEvent(-1, "chkMilkAfterAttackStandard")
 		$y+=21

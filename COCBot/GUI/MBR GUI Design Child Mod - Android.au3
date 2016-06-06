@@ -1,9 +1,8 @@
 ; #FUNCTION# ====================================================================================================================
-; Name ..........: DisableBS
-; Description ...:
-; Syntax ........: DisableBS($HWnD, $iButton)
-; Parameters ....: $HWnD                - window handle
-;                  $iButton             -
+; Name ..........: MBR GUI Design
+; Description ...: This file Includes GUI Design
+; Syntax ........:
+; Parameters ....: None
 ; Return values .: None
 ; Author ........:
 ; Modified ......:
@@ -13,9 +12,11 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-Func DisableBS($HWnD, $iButton)
-	ConsoleWrite('+ Window Handle: ' & $HWnD & @CRLF)
-	$hSysMenu = _GUICtrlMenu_GetSystemMenu($HWnD, 0)
-	_GUICtrlMenu_RemoveMenu($hSysMenu, $iButton, False)
-	_GUICtrlMenu_DrawMenuBar($HWnD)
-EndFunc   ;==>DisableBS
+$hGUI_ModAndroid = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_MOD)
+;GUISetBkColor($COLOR_WHITE, $hGUI_BotOptions)
+
+GUISwitch($hGUI_ModAndroid)
+Local $x = 375, $y = 0
+$btnResetSddtats = GUICtrlCreateButton("sss", $x, $y, 60, 20)
+GUICtrlSetOnEvent(-1, "btnResetStats")
+GUICtrlSetState(-1, $GUI_DISABLE)

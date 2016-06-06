@@ -166,7 +166,14 @@ Func getOcrSpaceCastleDonate($x_start, $y_start);  -> Get the number of troops d
 EndFunc   ;==>getOcrSpaceCastleDonate
 
 Func getOcrDonationTroopsDetection($x_start, $y_start);  -> Get the type of troop from the donate window
-	Return getOcrAndCapture("coc-donationtroop", $x_start, $y_start, 45, 30, True)
+	Local $result = getOcrAndCapture("coc-donationtroop", $x_start, $y_start, 45, 30, True)
+	Local $PositionSpecialCaracter = 0 ; search position of § into result, if no found return 0
+	$PositionSpecialCaracter = StringInStr($result, "§")
+	If $PositionSpecialCaracter > 0 Then
+		Return StringLeft($result, $PositionSpecialCaracter - 1)
+	Else
+		Return $result
+	EndIf
 EndFunc   ;==>getOcrDonationTroopsDetection
 
 Func getOcrOverAllDamage($x_start, $y_start);  -> Get the Overall Damage %

@@ -32,19 +32,19 @@ Local $x = 25, $y = 40
 		$lblABSelectSpecialTroop=GUICtrlCreateLabel(GetTranslated(624,19, -1) & ":",$x, $y, 135, 18, $SS_LEFT)
 		$y += 18
 		$IMGchkABKingAttack=GUICtrlCreateIcon($pIconLib, $eIcnKing, $x , $y, 24, 24)
-			$txtTip = GetTranslated(624,20, -1)
+			$txtTip = GetTranslated(624,20, -1) & @CRLF & GetTranslated(624, 41, -1)
 			GUICtrlSetTip(-1, $txtTip)
 		$chkABKingAttack = GUICtrlCreateCheckbox("", $x + 27, $y, 17, 17)
 			GUICtrlSetTip(-1, $txtTip)
 		$x += 46
 		$IMGchkABQueenAttack=GUICtrlCreateIcon($pIconLib, $eIcnQueen, $x, $y, 24, 24)
-			$txtTip = GetTranslated(624,21, -1)
+			$txtTip = GetTranslated(624,21, -1) & @CRLF & GetTranslated(624, 42, -1)
 			GUICtrlSetTip(-1, $txtTip)
 		$chkABQueenAttack = GUICtrlCreateCheckbox("", $x + 27, $y, 17, 17)
 			GUICtrlSetTip(-1, $txtTip)
 		$x +=46
 		$IMGchkABWardenAttack=GUICtrlCreateIcon($pIconLib, $eIcnWarden, $x, $y, 24, 24)
-			$txtTip = GetTranslated(624,22, -1)
+			$txtTip = GetTranslated(624,22, -1) & @CRLF & GetTranslated(624, 43, -1)
 			GUICtrlSetTip(-1, $txtTip)
 		$chkABWardenAttack = GUICtrlCreateCheckbox("", $x + 27, $y, 17, 17)
 			GUICtrlSetTip(-1, $txtTip)

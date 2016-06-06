@@ -949,21 +949,17 @@ Func saveConfig() ;Saves the controls settings to the config
 	SetDebugLog("Save Config " & $config)
 
 	; collectors gui -> variables --------------------------------------------------
-	IniWriteS($config, "collectors", "lvl6Enabled", $chkLvl6Enabled)
-	IniWriteS($config, "collectors", "lvl7Enabled", $chkLvl7Enabled)
-	IniWriteS($config, "collectors", "lvl8Enabled", $chkLvl8Enabled)
-	IniWriteS($config, "collectors", "lvl9Enabled", $chkLvl9Enabled)
-	IniWriteS($config, "collectors", "lvl10Enabled", $chkLvl10Enabled)
-	IniWriteS($config, "collectors", "lvl11Enabled", $chkLvl11Enabled)
-	IniWriteS($config, "collectors", "lvl12Enabled", $chkLvl12Enabled)
-	IniWriteS($config, "collectors", "lvl6fill", $cmbLvl6Fill)
-	IniWriteS($config, "collectors", "lvl7fill", $cmbLvl7Fill)
-	IniWriteS($config, "collectors", "lvl8fill", $cmbLvl8Fill)
-	IniWriteS($config, "collectors", "lvl9fill", $cmbLvl9Fill)
-	IniWriteS($config, "collectors", "lvl10fill", $cmbLvl10Fill)
-	IniWriteS($config, "collectors", "lvl11fill", $cmbLvl11Fill)
-	IniWriteS($config, "collectors", "lvl12fill", $cmbLvl12Fill)
-	IniWriteS($config, "collectors", "tolerance", $toleranceOffset)
+
+	For $collectorLevel = 6 To 12
+		If GUICtrlRead(Eval("chkLvl"&$collectorLevel)) = $GUI_CHECKED Then
+			Assign("chkLvl"&$collectorLevel&"Enabled", 1)
+		Else
+			Assign("chkLvl"&$collectorLevel&"Enabled", 0)
+		EndIf
+
+		Assign("cmbLvl"&$collectorLevel&"Fill", _GUICtrlComboBox_GetCurSel(Eval("cmbLvl"&$collectorLevel)))
+	Next
+	IniWriteS($config, "collectors", "tolerance", GUICtrlRead($sldCollectorTolerance))
 
 	; replayshare GUI -> variables -------------------------------------------------
 	$iShareminGold = GUICtrlRead($txtShareMinGold)
@@ -2239,6 +2235,19 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWriteS($config, "android", "adb.clicks.troop.deploy.size", $AndroidAdbClicksTroopDeploySize)
 
 	If $hFile <> -1 Then FileClose($hFile)
+	
+	;mikemikemikecoc - Wait For Spells
+	If GUICtrlRead($chkDBSpellsWait) = $GUI_CHECKED Then
+		IniWriteS($config, "search", "ChkDBSpellsWait", 1)
+	Else
+		IniWriteS($config, "search", "ChkDBSpellsWait", 0)
+	EndIf
+
+	If GUICtrlRead($chkABSpellsWait) = $GUI_CHECKED Then
+		IniWriteS($config, "search", "ChkABSpellsWait", 1)
+	Else
+		IniWriteS($config, "search", "ChkABSpellsWait", 0)
+	EndIf
 
 EndFunc   ;==>saveConfig
 

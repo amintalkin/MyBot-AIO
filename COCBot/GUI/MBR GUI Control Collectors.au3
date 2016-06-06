@@ -28,18 +28,25 @@ Global $cmbLvl10Fill
 Global $cmbLvl11Fill
 Global $cmbLvl12Fill
 Global $toleranceOffset
-Func checkCollectors()
+Func checkCollectors($log = False, $showLabel = True)
 	Local $anyCollectorsEnabled = 0
 	For $i = 6 To 12
-		If GUICtrlRead(Eval("chkLvl"&$i)) = $GUI_CHECKED Then
+		If Eval("chkLvl"&$i&"Enabled") = "1" Then
 			$anyCollectorsEnabled = 1
 			ExitLoop
 		EndIf
 	Next
 	If Not $anyCollectorsEnabled Then
-		GUICtrlSetState($lblCollectorWarning, $GUI_SHOW)
+		If $showLabel Then GUICtrlSetState($lblCollectorWarning, $GUI_SHOW)
+		If $log Then
+			SetLog("Warning: Dead base is enabled, but no collectors are selected!", $COLOR_RED)
+			SetLog("Dead base will never be found!", $COLOR_RED)
+			SetLog("Select some in Attack Plan-Search&Attack-DeadBase-Collectors", $COLOR_RED)
+			Return False
+		EndIf
 	Else
-		GUICtrlSetState($lblCollectorWarning, $GUI_HIDE)
+		If $showLabel Then GUICtrlSetState($lblCollectorWarning, $GUI_HIDE)
+		Return True
 	EndIf
 EndFunc
 Func chkLvl6()

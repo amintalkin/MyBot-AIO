@@ -59,7 +59,7 @@ $y += 15
 			$txtTip = GetTranslated(608,20, -1) & @CRLF & GetTranslated(608,21, -1) & @CRLF & GetTranslated(608,22, -1)
 			GUICtrlSetTip(-1, $txtTip)
 		$cmbSmartDeployAB = GUICtrlCreateCombo("", $x + 55, $y, 120, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			GUICtrlSetData(-1, GetTranslated(608,23, -1) & "|" & GetTranslated(608,24, -1) , GetTranslated(608,25, -1))
+			GUICtrlSetData(-1, GetTranslated(608,23, -1) & "|" & GetTranslated(608,24, -1) , GetTranslated(608,23, -1))
 			GUICtrlSetTip(-1, $txtTip)
 		$y += 26
 		$chkAttackNearGoldMineAB = GUICtrlCreateCheckbox("", $x + 20, $y, 17, 17)
