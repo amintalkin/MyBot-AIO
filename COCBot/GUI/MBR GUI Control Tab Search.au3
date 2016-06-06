@@ -234,10 +234,15 @@ Func EnableSearchPanels($mode)
 	;_GUI_Value_STATE("HIDE", $groupAttackDBSpell&"#"&$groupIMGAttackDBSpell&"#"&$groupAttackABSpell&"#"&$groupIMGAttackABSpell)
 	Switch $mode
 		Case $DB
-			If GUICtrlRead($chkDBActivateSearches) = $GUI_CHECKED Or GUICtrlRead($chkDBActivateTropies) = $GUI_CHECKED Or GUICtrlRead($chkDBActivateCamps) = $GUI_CHECKED Or GUICtrlRead($chkDBKingWait) = $GUI_CHECKED Or GUICtrlRead($chkDBQueenWait) = $GUI_CHECKED Or GUICtrlRead($chkDBWardenWait) = $GUI_CHECKED Then
+			;mikemikemikecoc - Wait For Spells
+			If GUICtrlRead($chkDBActivateSearches) = $GUI_CHECKED Or GUICtrlRead($chkDBActivateTropies) = $GUI_CHECKED Or GUICtrlRead($chkDBActivateCamps) = $GUI_CHECKED Or GUICtrlRead($chkDBKingWait) = $GUI_CHECKED Or GUICtrlRead($chkDBQueenWait) = $GUI_CHECKED Or GUICtrlRead($chkDBWardenWait) = $GUI_CHECKED Or GUICtrlRead($chkDBSpellsWait) = $GUI_CHECKED Then;If GUICtrlRead($chkDBActivateSearches) = $GUI_CHECKED Or GUICtrlRead($chkDBActivateTropies) = $GUI_CHECKED Or GUICtrlRead($chkDBActivateCamps) = $GUI_CHECKED Or GUICtrlRead($chkDBKingWait) = $GUI_CHECKED Or GUICtrlRead($chkDBQueenWait) = $GUI_CHECKED Or GUICtrlRead($chkDBWardenWait) = $GUI_CHECKED Then
 				_GUI_Value_STATE("SHOW", $groupHerosDB)
 				;search
 				_GUI_Value_STATE("SHOW", $groupSearchDB)
+				
+				;mikemikemikecoc - Wait For Spells
+				_GUI_Value_STATE("SHOW", $groupMiscDB)
+				
 				cmbDBGoldElixir()
 				;attack
 				;_GUI_Value_STATE("SHOW", $groupAttackDB)
@@ -250,16 +255,25 @@ Func EnableSearchPanels($mode)
 				;search
 				_GUI_Value_STATE("HIDE", $groupSearchDB)
 				;attack
+				
+				;mikemikemikecoc - Wait For Spells
+				_GUI_Value_STATE("HIDE", $groupMiscDB)
+				
 				;_GUI_Value_STATE("HIDE", $groupAttackDB)
 				;_GUI_Value_STATE("HIDE", $groupIMGAttackDB)
 				;end battle
 				;_GUI_Value_STATE("HIDE", $groupEndBattkeDB)
 			EndIf
 		Case $LB
-			If GUICtrlRead($chkABActivateSearches) = $GUI_CHECKED Or GUICtrlRead($chkABActivateTropies) = $GUI_CHECKED Or GUICtrlRead($chkABActivateCamps) = $GUI_CHECKED Or GUICtrlRead($chkABKingWait) = $GUI_CHECKED Or GUICtrlRead($chkABQueenWait) = $GUI_CHECKED Or GUICtrlRead($chkABWardenWait) = $GUI_CHECKED Then
+			;mikemikemikecoc - Wait For Spells
+			If GUICtrlRead($chkABActivateSearches) = $GUI_CHECKED Or GUICtrlRead($chkABActivateTropies) = $GUI_CHECKED Or GUICtrlRead($chkABActivateCamps) = $GUI_CHECKED Or GUICtrlRead($chkABKingWait) = $GUI_CHECKED Or GUICtrlRead($chkABQueenWait) = $GUI_CHECKED Or GUICtrlRead($chkABWardenWait) = $GUI_CHECKED Or GUICtrlRead($chkABSpellsWait) = $GUI_CHECKED Then;If GUICtrlRead($chkABActivateSearches) = $GUI_CHECKED Or GUICtrlRead($chkABActivateTropies) = $GUI_CHECKED Or GUICtrlRead($chkABActivateCamps) = $GUI_CHECKED Or GUICtrlRead($chkABKingWait) = $GUI_CHECKED Or GUICtrlRead($chkABQueenWait) = $GUI_CHECKED Or GUICtrlRead($chkABWardenWait) = $GUI_CHECKED Then
 				_GUI_Value_STATE("SHOW", $groupHerosAB)
 				;search
 				_GUI_Value_STATE("SHOW", $groupSearchAB)
+				
+				;mikemikemikecoc - Wait For Spells
+				_GUI_Value_STATE("SHOW", $groupMiscAB)
+				
 				cmbABGoldElixir()
 				;attack
 				;_GUI_Value_STATE("SHOW", $groupAttackAB)
@@ -272,6 +286,10 @@ Func EnableSearchPanels($mode)
 				;search
 				_GUI_Value_STATE("HIDE", $groupSearchAB)
 				;attack
+				
+				;mikemikemikecoc - Wait For Spells
+				_GUI_Value_STATE("HIDE", $groupMiscAB)
+				
 				;_GUI_Value_STATE("HIDE", $groupAttackAB)
 				;_GUI_Value_STATE("HIDE", $groupIMGAttackAB)
 				;end battle

@@ -94,6 +94,11 @@ Local $x = 25, $y = 45
 		$IMGchkDBWardenSleepWait=GUICtrlCreateIcon($pIconLib, $eIcnSleepingWarden, $x - 18, $y + 4, 48, 48)
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_HIDE)
+			
+	;mikemikemikecoc - Wait For Spells
+	$y += 80
+	$x = 10
+	    $chkDBSpellsWait = GUICtrlCreateCheckbox("Wait for Spells to be Ready", $x, $y, -1, -1)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 220, $y = 45

@@ -41,6 +41,9 @@ Func getArmySpellCount($bOpenArmyWindow = False, $bCloseArmyWindow = False, $tes
 		$CurEarthSpell = 0
 
 		$CurTotalSpell = True
+		
+		;mikemikemikecoc - Wait For Spells
+		$iTotalSpellSpace = 0
 
 		For $i = 0 To 4 ; 5 visible slots in ArmyoverView window
 			If $debugsetlogTrain = 1 Then Setlog(" Slot : " & $i + 1, $COLOR_PURPLE)
@@ -52,40 +55,51 @@ Func getArmySpellCount($bOpenArmyWindow = False, $bCloseArmyWindow = False, $tes
 			If $FullTemp = "Lightning" Then
 				$CurLightningSpell = $SpellQ
 				Setlog(" - No. of Lightning Spells: " & $SpellQ)
+				$iTotalSpellSpace += (2 * $SpellQ) ;mikemikemikecoc - Wait For Spells
 			EndIf
 			If $FullTemp = "Heal" Then
 				$CurHealSpell = $SpellQ
 				Setlog(" - No. of Heal Spells: " & $SpellQ)
+				$iTotalSpellSpace += (2 * $SpellQ) ;mikemikemikecoc - Wait For Spells
 			EndIf
 			If $FullTemp = "Rage" Then
 				$CurRageSpell = $SpellQ
 				Setlog(" - No. of Rage Spells: " & $SpellQ)
+				$iTotalSpellSpace += (2 * $SpellQ) ;mikemikemikecoc - Wait For Spells
 			EndIf
 			If $FullTemp = "Jump" Then
 				$CurJumpSpell = $SpellQ
 				Setlog(" - No. of Jump Spells: " & $SpellQ)
+				$iTotalSpellSpace += (2 * $SpellQ) ;mikemikemikecoc - Wait For Spells
 			EndIf
 			If $FullTemp = "Freeze" Then
 				$CurFreezeSpell = $SpellQ
 				Setlog(" - No. of Freeze Spells: " & $SpellQ)
+				$iTotalSpellSpace += (2 * $SpellQ) ;mikemikemikecoc - Wait For Spells
 			EndIf
 			If $FullTemp = "Poison" Then
 				$CurPoisonSpell = $SpellQ
 				Setlog(" - No. of Poison Spells: " & $SpellQ)
+				$iTotalSpellSpace += $SpellQ ;mikemikemikecoc - Wait For Spells
 			EndIf
 			If $FullTemp = "Haste" Then
 				$CurHasteSpell = $SpellQ
 				Setlog(" - No. of Haste Spells: " & $SpellQ)
+				$iTotalSpellSpace += $SpellQ ;mikemikemikecoc - Wait For Spells
 			EndIf
 			If $FullTemp = "Earth" Then
 				$CurEarthSpell = $SpellQ
 				Setlog(" - No. of Earthquake Spells: " & $SpellQ)
+				$iTotalSpellSpace += $SpellQ ;mikemikemikecoc - Wait For Spells
 			EndIf
 			If $FullTemp = "" And $debugsetlogTrain = 1 Then
 				Setlog(" - was not detected anything in slot: " & $i + 1, $COLOR_PURPLE)
 			EndIf
 		Next
 	EndIf
+	
+	;mikemikemikecoc - Wait For Spells
+	$bFullArmySpells = $iTotalSpellSpace >= $iTotalCountSpell
 
 	If $bCloseArmyWindow = True Then
 		ClickP($aAway, 1, 0, "#0000") ;Click Away

@@ -2363,5 +2363,22 @@ _GUICtrlComboBox_SetCurSel($cmbTHSnipeBeforeLBScript, _GUICtrlComboBox_FindStrin
 
 	; Reenabling window redraw
 	If $bRedrawAtExit Then SetRedrawBotWindow(True)
+	
+	
+
+
+   ;mikemikemikecoc - Wait For Spells
+   If $iEnableSpellsWait[$DB] = 1 Then
+		 GUICtrlSetState($chkDBSpellsWait, $GUI_CHECKED)
+	  Else
+		 GUICtrlSetState($chkDBSpellsWait, $GUI_UNCHECKED)
+   EndIf
+   If $iEnableSpellsWait[$LB] = 1 Then
+		 GUICtrlSetState($chkABSpellsWait, $GUI_CHECKED)
+	  Else
+		 GUICtrlSetState($chkABSpellsWait, $GUI_UNCHECKED)
+   EndIf 
+   
+   
 
 EndFunc   ;==>applyConfig

@@ -33,7 +33,7 @@ Global $aTxtBlacklistControlsSpell[3] = [$txtBlacklistPoisonSpells, $txtBlacklis
 Global $aLblBtnControls[17] = [$lblBtnBarbarians, $lblBtnArchers, $lblBtnGiants, $lblBtnGoblins, $lblBtnWallBreakers, $lblBtnBalloons, $lblBtnWizards, $lblBtnHealers, $lblBtnDragons, $lblBtnPekkas, $lblBtnMinions, $lblBtnHogRiders, $lblBtnValkyries, $lblBtnGolems, $lblBtnWitches, $lblBtnLavaHounds, $lblBtnCustom]
 Global $aLblBtnControlsSpell[3] = [$lblBtnPoisonSpells, $lblBtnEarthQuakeSpells, $lblBtnHasteSpells]
 
-Global $aMainTabItems[7] = [$tabMain, $tabGeneral, $tabVillage, $tabAttack, $tabBot, $tabAboutUs]
+Global $aMainTabItems[8] = [$tabMain, $tabGeneral, $tabVillage, $tabAttack, $tabBot, $tabMod, $tabAboutUs]
 
 Global $aTabControlsVillage[6] = [$hGUI_VILLAGE_TAB, $hGUI_VILLAGE_TAB_ITEM1, $hGUI_VILLAGE_TAB_ITEM2, $hGUI_VILLAGE_TAB_ITEM3, $hGUI_VILLAGE_TAB_ITEM4, $hGUI_VILLAGE_TAB_ITEM5]
 Global $aTabControlsDonate[4] = [$hGUI_DONATE_TAB, $hGUI_DONATE_TAB_ITEM1, $hGUI_DONATE_TAB_ITEM2, $hGUI_DONATE_TAB_ITEM3]
@@ -50,6 +50,7 @@ Global $aTabControlsAttackOptions[5] = [$hGUI_AttackOption_TAB, $hGUI_AttackOpti
 Global $aTabControlsStrategies[3] = [$hGUI_STRATEGIES_TAB, $hGUI_STRATEGIES_TAB_ITEM1, $hGUI_STRATEGIES_TAB_ITEM2]
 
 Global $aTabControlsBot[5] = [$hGUI_BOT_TAB, $hGUI_BOT_TAB_ITEM1, $hGUI_BOT_TAB_ITEM4, $hGUI_BOT_TAB_ITEM2, $hGUI_BOT_TAB_ITEM3]
+Global $aTabControlsMod[3] = [$hGUI_MOD_TAB, $hGUI_MOD_TAB_ITEM1, $hGUI_MOD_TAB_ITEM2]
 Global $aTabControlsStats[4] = [$hGUI_STATS_TAB, $hGUI_STATS_TAB_ITEM1, $hGUI_STATS_TAB_ITEM2, $hGUI_STATS_TAB_ITEM3]
 
 Func IsTab($controlID)
@@ -67,6 +68,7 @@ Func IsTab($controlID)
 			_ArraySearch($aTabControlsAttackOptions, $controlID) <> -1 Or _
 			_ArraySearch($aTabControlsStrategies, $controlID) <> -1 Or _
 			_ArraySearch($aTabControlsBot, $controlID) <> -1 Or _
+			_ArraySearch($aTabControlsMod, $controlID) <> -1 Or _
 			_ArraySearch($aTabControlsStats, $controlID) <> -1 Then
 		Return True
 	EndIf
@@ -138,6 +140,8 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 					tabTHSnipe()
 				Case $hGUI_BOT_TAB
 					tabBot()
+				Case $hGUI_MOD_TAB
+					tabMod()
 			EndSwitch
 		Case $WM_COMMAND ; 273
 			CheckRedrawBotWindow()
@@ -384,12 +388,14 @@ Func tabMain()
 				GUISetState(@SW_HIDE, $hGUI_VILLAGE)
 				GUISetState(@SW_HIDE, $hGUI_ATTACK)
 				GUISetState(@SW_HIDE, $hGUI_BOT)
+				GUISetState(@SW_HIDE, $hGUI_MOD)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_LOG)
 
 			Case $tabidx = 1 ; Village
 				GUISetState(@SW_HIDE, $hGUI_LOG)
 				GUISetState(@SW_HIDE, $hGUI_ATTACK)
 				GUISetState(@SW_HIDE, $hGUI_BOT)
+				GUISetState(@SW_HIDE, $hGUI_MOD)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_VILLAGE)
 				tabVillage()
 
@@ -397,6 +403,7 @@ Func tabMain()
 				GUISetState(@SW_HIDE, $hGUI_LOG)
 				GUISetState(@SW_HIDE, $hGUI_VILLAGE)
 				GUISetState(@SW_HIDE, $hGUI_BOT)
+				GUISetState(@SW_HIDE, $hGUI_MOD)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ATTACK)
 				tabAttack()
 
@@ -404,13 +411,22 @@ Func tabMain()
 				GUISetState(@SW_HIDE, $hGUI_LOG)
 				GUISetState(@SW_HIDE, $hGUI_VILLAGE)
 				GUISetState(@SW_HIDE, $hGUI_ATTACK)
+				GUISetState(@SW_HIDE, $hGUI_MOD)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_BOT)
 				tabBot()
+			Case $tabidx = 4 ; Options
+				GUISetState(@SW_HIDE, $hGUI_LOG)
+				GUISetState(@SW_HIDE, $hGUI_VILLAGE)
+				GUISetState(@SW_HIDE, $hGUI_ATTACK)
+				GUISetState(@SW_HIDE, $hGUI_BOT)
+				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_MOD)
+				tabMod()
 			Case ELSE
 				GUISetState(@SW_HIDE, $hGUI_LOG)
 				GUISetState(@SW_HIDE, $hGUI_VILLAGE)
 				GUISetState(@SW_HIDE, $hGUI_ATTACK)
 				GUISetState(@SW_HIDE, $hGUI_BOT)
+				GUISetState(@SW_HIDE, $hGUI_MOD)
 		EndSelect
 
 EndFunc   ;==>tabMain
@@ -588,6 +604,18 @@ Func tabBot()
 		EndSelect
 EndFunc   ;==>tabBot
 
+Func tabMod()
+	$tabidx = GUICtrlRead($hGUI_MOD_TAB)
+		Select
+			Case $tabidx = 0 ; Strategies tab
+				GUISetState(@SW_HIDE, $hGUI_STATS)
+				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ModAndroid)
+			Case $tabidx = 1 ; Stats tab
+				GUISetState(@SW_HIDE, $hGUI_ModAndroid)
+				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_STATS)
+		EndSelect
+EndFunc   ;==>tabMod
+
 Func tabDeadbase()
 	$tabidx = GUICtrlRead($hGUI_DEADBASE_TAB)
 		Select
@@ -642,7 +670,8 @@ EndFunc   ;==>tabTHSnipe
 
 Func dbCheck()
 	If $iBotLaunchTime > 0 Then _GUICtrlTab_SetCurFocus($hGUI_SEARCH_TAB, 0) ; activate deadbase tab
-	If BitAND(GUICtrlRead($chkDBActivateSearches), GUICtrlRead($chkDBActivateTropies), GUICtrlRead($chkDBActivateCamps)) = $GUI_UNCHECKED Then
+	;mikemikemikecoc - Wait For Spells
+	If BitAND(GUICtrlRead($chkDBActivateSearches), GUICtrlRead($chkDBActivateTropies), GUICtrlRead($chkDBActivateCamps), GUICtrlRead($chkDBSpellsWait)) = $GUI_UNCHECKED Then;If BitAND(GUICtrlRead($chkDBActivateSearches), GUICtrlRead($chkDBActivateTropies), GUICtrlRead($chkDBActivateCamps)) = $GUI_UNCHECKED Then
 		GUICtrlSetState($chkDBActivateSearches, $GUI_CHECKED)
 		chkDBActivateSearches() ; this includes a call to dbCheckall() -> tabSEARCH()
 	Else
@@ -651,7 +680,8 @@ Func dbCheck()
 EndFunc
 
 Func dbCheckAll()
-	If BitAND(GUICtrlRead($chkDBActivateSearches), GUICtrlRead($chkDBActivateTropies), GUICtrlRead($chkDBActivateCamps)) = $GUI_UNCHECKED Then
+		;mikemikemikecoc - Wait For Spells
+		If BitAND(GUICtrlRead($chkDBActivateSearches), GUICtrlRead($chkDBActivateTropies), GUICtrlRead($chkDBActivateCamps), GUICtrlRead($chkDBSpellsWait)) = $GUI_UNCHECKED Then;If BitAND(GUICtrlRead($chkDBActivateSearches), GUICtrlRead($chkDBActivateTropies), GUICtrlRead($chkDBActivateCamps)) = $GUI_UNCHECKED Then
 		GUICtrlSetState($DBcheck, $GUI_UNCHECKED)
 	Else
 		GUICtrlSetState($DBcheck, $GUI_CHECKED)
@@ -661,7 +691,8 @@ EndFunc
 
 Func abCheck()
 	If $iBotLaunchTime > 0 Then _GUICtrlTab_SetCurFocus($hGUI_SEARCH_TAB, 1)
-	If BitAND(GUICtrlRead($chkABActivateSearches), GUICtrlRead($chkABActivateTropies), GUICtrlRead($chkABActivateCamps)) = $GUI_UNCHECKED Then
+	;mikemikemikecoc - Wait For Spells
+	If BitAND(GUICtrlRead($chkABActivateSearches), GUICtrlRead($chkABActivateTropies), GUICtrlRead($chkABActivateCamps), GUICtrlRead($chkABSpellsWait)) = $GUI_UNCHECKED Then;If BitAND(GUICtrlRead($chkABActivateSearches), GUICtrlRead($chkABActivateTropies), GUICtrlRead($chkABActivateCamps)) = $GUI_UNCHECKED Then
 		GUICtrlSetState($chkABActivateSearches, $GUI_CHECKED)
 		chkABActivateSearches() ; this includes a call to abCheckall() -> tabSEARCH()
 	Else
@@ -670,7 +701,8 @@ Func abCheck()
 EndFunc
 
 Func abCheckAll()
-	If BitAND(GUICtrlRead($chkABActivateSearches), GUICtrlRead($chkABActivateTropies), GUICtrlRead($chkABActivateCamps)) = $GUI_UNCHECKED Then
+	;mikemikemikecoc - Wait For Spells
+	If BitAND(GUICtrlRead($chkABActivateSearches), GUICtrlRead($chkABActivateTropies), GUICtrlRead($chkABActivateCamps), GUICtrlRead($chkABSpellsWait)) = $GUI_UNCHECKED Then;If BitAND(GUICtrlRead($chkABActivateSearches), GUICtrlRead($chkABActivateTropies), GUICtrlRead($chkABActivateCamps)) = $GUI_UNCHECKED Then
 		GUICtrlSetState($ABcheck, $GUI_UNCHECKED)
 	Else
 		GUICtrlSetState($ABcheck, $GUI_CHECKED)
@@ -821,7 +853,7 @@ Func Bind_ImageList($nCtrl)
 	Switch $nCtrl
 		Case $tabMain
 			; the icons for main tab
-			Local $aIconIndex[5] = [$eIcnHourGlass, $eIcnTH11, $eIcnCamp, $eIcnGUI, $eIcnInfo]
+			Local $aIconIndex[6] = [$eIcnHourGlass, $eIcnTH11, $eIcnCamp, $eIcnGUI, $eIcnDevo, $eIcnInfo]
 
 		Case $hGUI_VILLAGE_TAB
 			; the icons for village tab
