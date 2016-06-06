@@ -5,7 +5,7 @@
 ; Parameters ....: $debug               - [optional]
 ; Return values .: None
 ; Author ........: Sardo (2016)
-; Modified ......:
+; Modified ......: mikemikemikecoc (2016)
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2016
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:
@@ -18,6 +18,13 @@ Func ParseAttackCSV($debug = False)
 	Global $ATTACKVECTOR_M, $ATTACKVECTOR_N, $ATTACKVECTOR_O, $ATTACKVECTOR_P, $ATTACKVECTOR_Q, $ATTACKVECTOR_R
 	Global $ATTACKVECTOR_S, $ATTACKVECTOR_T, $ATTACKVECTOR_U, $ATTACKVECTOR_V, $ATTACKVECTOR_W, $ATTACKVECTOR_X
 	Global $ATTACKVECTOR_Y, $ATTACKVECTOR_Z
+	
+	;AwesomeGamer CSV Mod
+	For $i = 0 to Ubound($atkTroops) - 1
+		$remainingTroops[$i][0] = $atkTroops[$i][0]
+		$remainingTroops[$i][1] = $atkTroops[$i][1]
+	Next
+	$TroopDropNumber = 0
 
 	Local $rownum = 0
 
@@ -93,7 +100,35 @@ Func ParseAttackCSV($debug = False)
 								EndSwitch
 							EndIf
 							If CheckCsvValues("MAKE", 1, $value1) And CheckCsvValues("MAKE", 5, $value5) Then
-								Assign("ATTACKVECTOR_" & $value1, MakeDropPoints(Eval($sidex), $value3, $value4, $value5, $value6, $value7))
+								;AwesomeGamer CSV Mod
+								If $value3 = "ALL" Then
+									Switch Eval($sidex)
+										Case "TOP-LEFT-DOWN"
+											Local $Vector = $PixelTopLeftDOWNDropLine
+										Case "TOP-LEFT-UP"
+											Local $Vector = $PixelTopLeftUPDropLine
+										Case "TOP-RIGHT-DOWN"
+											Local $Vector = $PixelTopRightDOWNDropLine
+										Case "TOP-RIGHT-UP"
+											Local $Vector = $PixelTopRightUPDropLine
+										Case "BOTTOM-LEFT-UP"
+											Local $Vector = $PixelBottomLeftUPDropLine
+										Case "BOTTOM-LEFT-DOWN"
+											Local $Vector = $PixelBottomLeftDOWNDropLine
+										Case "BOTTOM-RIGHT-UP"
+											Local $Vector = $PixelBottomRightUPDropLine
+										Case "BOTTOM-RIGHT-DOWN"
+											Local $Vector = $PixelBottomRightDOWNDropLine
+										Case Else
+									EndSwitch
+									Switch Eval($sidex) & "|" & $value5
+										Case "TOP-LEFT-DOWN|INT-EXT", "TOP-LEFT-UP|EXT-INT", "TOP-RIGHT-DOWN|EXT-INT", "TOP-RIGHT-UP|INT-EXT", "BOTTOM-LEFT-DOWN|EXT-INT", "BOTTOM-LEFT-UP|INT-EXT", "BOTTOM-RIGHT-DOWN|INT-EXT", "BOTTOM-RIGHT-UP|EXT-INT"
+											_ArrayReverse($Vector) ;reverse array
+									EndSwitch
+									Assign("ATTACKVECTOR_" & $value1, $Vector)
+								Else
+									Assign("ATTACKVECTOR_" & $value1, MakeDropPoints(Eval($sidex), $value3, $value4, $value5, $value6, $value7))
+								EndIf
 								For $i = 0 To UBound(Execute("$ATTACKVECTOR_" & $value1)) - 1
 									$pixel = Execute("$ATTACKVECTOR_" & $value1 & "[" & $i & "]")
 									debugAttackCSV($i & " - " & $pixel[0] & "," & $pixel[1])
@@ -109,53 +144,82 @@ Func ParseAttackCSV($debug = False)
 					Case "DROP"
 						KeepClicks()
 						;index...
-						Local $index1, $index2, $indexArray, $indexvect
+						Local $index1, $index2, $indexArray, $indexvect, $isIndexPercent
 						$indexvect = StringSplit($value2, "-", 2)
-						If UBound($indexvect) > 1 Then
+						
+						;AwesomeGamer CSV Mod
+						If StringInStr($value2, "%") > 0 Then
 							$indexArray = 0
-							If Int($indexvect[0]) > 0 And Int($indexvect[1]) > 0 Then
-								$index1 = Int($indexvect[0])
-								$index2 = Int($indexvect[1])
+							$isIndexPercent = 1
+							$index1 = Number(StringReplace($indexvect[0], "%", ""), 3)
+							If UBound($indexvect) > 1 Then
+								$index2 = Number(StringReplace($indexvect[1], "%", ""), 3)
 							Else
-								$index1 = 1
-								$index2 = 1
+								$index2 = $index1
 							EndIf
 						Else
-							$indexArray = StringSplit($value2, ",", 2)
-							If UBound($indexArray) > 1 Then
-								$index1 = 0
-								$index2 = UBound($indexArray) - 1
-							Else
+							$isIndexPercent = 0
+							If UBound($indexvect) > 1 Then
 								$indexArray = 0
-								If Int($value2) > 0 Then
-									$index1 = Int($value2)
-									$index2 = Int($value2)
+								If Int($indexvect[0]) > 0 And Int($indexvect[1]) > 0 Then
+									$index1 = Int($indexvect[0])
+									$index2 = Int($indexvect[1])
 								Else
 									$index1 = 1
 									$index2 = 1
 								EndIf
+							Else
+								$indexArray = StringSplit($value2, ",", 2)
+								If UBound($indexArray) > 1 Then
+									$index1 = 0
+									$index2 = UBound($indexArray) - 1
+								Else
+									$indexArray = 0
+									If Int($value2) > 0 Then
+										$index1 = Int($value2)
+										$index2 = Int($value2)
+									Else
+										$index1 = 1
+										$index2 = 1
+									EndIf
+								EndIf
 							EndIf
 						EndIf
+						
 						;qty...
-						Local $qty1, $qty2, $qtyvect
+						Local $qty1, $qty2, $qtyvect, $isQtyPercent
 						$qtyvect = StringSplit($value3, "-", 2)
-						If UBound($qtyvect) > 1 Then
-							If Int($qtyvect[0]) > 0 And Int($qtyvect[1]) > 0 Then
-								$qty1 = Int($qtyvect[0])
-								$qty2 = Int($qtyvect[1])
+						
+						;AwesomeGamer CSV Mod
+						If StringInStr($value3, "%") > 0 Then
+							$isQtyPercent = 1
+							$qty1 = Number(StringReplace($qtyvect[0], "%", ""), 3)
+							If UBound($qtyvect) > 1 Then
+								$qty2 = Number(StringReplace($qtyvect[1], "%", ""), 3)
 							Else
-								$index1 = 1
-								$qty2 = 1
+								$qty2 = $qty1
 							EndIf
 						Else
-							If Int($value3) > 0 Then
-								$qty1 = Int($value3)
-								$qty2 = Int($value3)
+							$isQtyPercent = 0
+							If UBound($qtyvect) > 1 Then
+								If Int($qtyvect[0]) > 0 And Int($qtyvect[1]) > 0 Then
+									$qty1 = Int($qtyvect[0])
+									$qty2 = Int($qtyvect[1])
+								Else
+									$index1 = 1
+									$qty2 = 1
+								EndIf
 							Else
-								$qty1 = 1
-								$qty2 = 1
+								If Int($value3) > 0 Then
+									$qty1 = Int($value3)
+									$qty2 = Int($value3)
+								Else
+									$qty1 = 1
+									$qty2 = 1
+								EndIf
 							EndIf
 						EndIf
+						
 						;delay between points
 						Local $delaypoints1, $delaypoints2, $delaypointsvect
 						$delaypointsvect = StringSplit($value5, "-", 2)
@@ -216,7 +280,7 @@ Func ParseAttackCSV($debug = False)
 								$sleepdrop2 = 1
 							EndIf
 						EndIf
-						DropTroopFromINI($value1, $index1, $index2, $indexArray, $qty1, $qty2, $value4, $delaypoints1, $delaypoints2, $delaydrop1, $delaydrop2, $sleepdrop1, $sleepdrop2, $debug)
+						DropTroopFromINI($value1, $index1, $index2, $indexArray, $qty1, $qty2, $value4, $delaypoints1, $delaypoints2, $delaydrop1, $delaydrop2, $sleepdrop1, $sleepdrop2, $isQtyPercent, $isIndexPercent, $debug)
 						ReleaseClicks($AndroidAdbClicksTroopDeploySize)
 					Case "WAIT"
 						ReleaseClicks()

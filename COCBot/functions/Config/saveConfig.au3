@@ -2156,6 +2156,10 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWriteS($config, "attack", "ScriptDB", $scmbDBScriptName)
 
 	IniWriteS($config, "attack", "ScriptAB", $scmbABScriptName)
+	
+	; CSV Deployment Speed Mod
+	IniWriteS($config, "attack", "CSVSpeedDB", $isldSelectedCSVSpeed[$DB])
+	IniWriteS($config, "attack", "CSVSpeedAB", $isldSelectedCSVSpeed[$LB])
 
 	;MilkingAttack Options
 	IniWriteS($config, "MilkingAttack", "LocateMine", $MilkFarmLocateMine)

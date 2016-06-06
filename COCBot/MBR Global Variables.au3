@@ -1493,3 +1493,29 @@ Global Const $drillLevelSteal[6] = [59, _
 Global $sAndroid = "<No Emulators>"
 Global $sAndroidInstance = ""
 Global $ichkHideTaskBar = 0
+
+;AwesomeGamer CSV Mod
+Global $attackcsv_use_red_line = 1
+Global $TroopDropNumber = 0
+Global $remainingTroops[12][2]
+
+;CSV Deployment Speed Mod
+Global $isldSelectedCSVSpeed[$iModeCount], $iCSVSpeeds[16]
+$isldSelectedCSVSpeed[$DB] = 3
+$isldSelectedCSVSpeed[$LB] = 3
+$iCSVSpeeds[0] = .25
+$iCSVSpeeds[1] = .5
+$iCSVSpeeds[2] = .75
+$iCSVSpeeds[3] = 1
+$iCSVSpeeds[4] = 1.25
+$iCSVSpeeds[5] = 1.5
+$iCSVSpeeds[6] = 1.75
+$iCSVSpeeds[7] = 2
+$iCSVSpeeds[8] = 2.25
+$iCSVSpeeds[9] = 2.5
+$iCSVSpeeds[10] = 2.75
+$iCSVSpeeds[11] = 3
+$iCSVSpeeds[12] = 3.25
+$iCSVSpeeds[13] = 3.5
+$iCSVSpeeds[14] = 3.75
+$iCSVSpeeds[15] = 4
