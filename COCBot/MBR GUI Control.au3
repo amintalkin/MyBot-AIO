@@ -53,6 +53,8 @@ Global $aTabControlsBot[5] = [$hGUI_BOT_TAB, $hGUI_BOT_TAB_ITEM1, $hGUI_BOT_TAB_
 Global $aTabControlsMod[3] = [$hGUI_MOD_TAB, $hGUI_MOD_TAB_ITEM1, $hGUI_MOD_TAB_ITEM2]
 Global $aTabControlsStats[4] = [$hGUI_STATS_TAB, $hGUI_STATS_TAB_ITEM1, $hGUI_STATS_TAB_ITEM2, $hGUI_STATS_TAB_ITEM3]
 
+Global $aDebugControlItems[10] = [$chkDebugClick, $chkDebugSetlog, $chkDebugOcr, $chkDebugImageSave, $chkdebugBuildingPos, $chkdebugTrain, $chkdebugOCRDonate,$btnTestTrain, $btnTestDonateCC, $btnTestAttackBar]
+
 Func IsTab($controlID)
 	If _ArraySearch($aMainTabItems, $controlID) <> -1 Or _
 			_ArraySearch($aTabControlsVillage, $controlID) <> -1 Or _
@@ -74,6 +76,14 @@ Func IsTab($controlID)
 	EndIf
 	Return False
 EndFunc   ;==>IsTab
+
+Func IsDebugControl($controlID)
+	If _ArraySearch($aDebugControlItems, $controlID) <> -1 Then
+		Return True
+	EndIf
+	Return False
+EndFunc   ;==>IsDebugControl
+
 _GDIPlus_Startup()
 
 Global $Initiate = 0
@@ -203,6 +213,28 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 					btnVillageStat()
 				Case $arrowleft, $arrowright
 					btnVillageStat()
+
+				; debug checkboxes and buttons
+				Case $chkDebugClick
+					chkDebugClick()
+				Case $chkDebugSetlog
+					chkDebugSetlog()
+				Case $chkDebugOcr
+					chkDebugOcr()
+				Case $chkDebugImageSave
+					chkDebugImageSave()
+				Case $chkdebugBuildingPos
+					chkDebugBuildingPos()
+				Case $chkDebugTrain
+					chkDebugTrain()
+				Case $chkdebugOCRDonate
+					chkdebugOCRDonate()
+				Case $btnTestTrain
+					btnTestTrain()
+				Case $btnTestDonateCC
+					btnTestDonateCC()
+				Case $btnTestAttackBar
+					btnTestAttackBar()
 			EndSwitch
 		Case $WM_SYSCOMMAND ; 274
 			If $__TEST_ERROR = True Then SetDebugLog("Bot WM_SYSCOMMAND: " & Hex($wParam, 4))
@@ -997,6 +1029,7 @@ If $devmode = 1 Then
 	GUICtrlSetState($chkDebugImageSave, $GUI_SHOW + $GUI_ENABLE)
 	GUICtrlSetState($chkdebugBuildingPos, $GUI_SHOW + $GUI_ENABLE)
 	GUICtrlSetState($chkdebugTrain, $GUI_SHOW + $GUI_ENABLE)
+	GUICtrlSetState($chkdebugOCRDonate, $GUI_SHOW + $GUI_ENABLE)
 EndIf
 GUIRegisterMsg($WM_COMMAND, "GUIControl")
 GUIRegisterMsg($WM_SYSCOMMAND, "GUIControl")

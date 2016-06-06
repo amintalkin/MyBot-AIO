@@ -1770,7 +1770,11 @@ EndIf
 	Else
 		GUICtrlSetState($chkdebugTrain, $GUI_UNCHECKED)
 	EndIf
-
+	If $debugOCRdonate = 1 Then
+		GUICtrlSetState($chkdebugOCRDonate, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkdebugOCRDonate, $GUI_UNCHECKED)
+	EndIf
 
 	;forced Total Camp values
 	If $ichkTotalCampForced = 1 Then
@@ -1965,7 +1969,7 @@ EndIf
 		GUICtrlSetState($chkAtkDarkDrills, $GUI_UNCHECKED)
 	EndIf
 
-	_GUICtrlComboBox_SetCurSel($cmbAtkDarkDrillsLevel, $MilkFarmAttackDarkDrills - 1)
+	_GUICtrlComboBox_SetCurSel($cmbAtkDarkDrillsLevel, $MilkFarmDrillParam - 1)
 
 	;3 Only attack If
 	_GUICtrlComboBox_SetCurSel($cmbRedlineResDistance, $MilkFarmResMaxTilesFromBorder)
@@ -2076,15 +2080,15 @@ EndIf
 	EndIf
 
 	If $MilkingAttackCheckStructureDestroyedBeforeAttack = 1 Then
-		_GUICtrlComboBox_SetCurSel($chkStructureDestroyedBeforeAttack,1)
+		GUICtrlSetState($chkStructureDestroyedBeforeAttack,$GUI_CHECKED)
 	Else
-		_GUICtrlComboBox_SetCurSel($chkStructureDestroyedBeforeAttack,0)
+		GUICtrlSetState($chkStructureDestroyedBeforeAttack, $GUI_UNCHECKED)
 	EndIf
 
 	If $MilkingAttackCheckStructureDestroyedAfterAttack = 1 Then
-		_GUICtrlComboBox_SetCurSel($chkStructureDestroyedAfterAttack,1)
+		GUICtrlSetState($chkStructureDestroyedAfterAttack,$GUI_CHECKED)
 	Else
-		_GUICtrlComboBox_SetCurSel($chkStructureDestroyedAfterAttack,0)
+		GUICtrlSetState($chkStructureDestroyedAfterAttack,$GUI_UNCHECKED)
 	EndIf
 
 	If $MilkingAttackDropGoblinAlgorithm = 1 Then

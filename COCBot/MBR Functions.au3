@@ -114,7 +114,7 @@
 #include "functions\CreateArmy\TrainClick.au3"
 #include "functions\CreateArmy\Train.au3"
 #include "functions\CreateArmy\TrainIt.au3"
-#include "functions\CreateArmy\RemainTimeTrain.au3"
+
 
 #include "functions\Image Search\ImageSearch.au3"
 #include "functions\Image Search\checkDeadBase.au3"

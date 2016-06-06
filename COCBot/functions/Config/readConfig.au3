@@ -636,6 +636,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 			$debugresourcesoffset = BitOR($debugresourcesoffset, IniRead($config, "debug", "debugresourcesoffset", "0"))
 			$continuesearchelixirdebug = BitOR($continuesearchelixirdebug, IniRead($config, "debug", "continuesearchelixirdebug", "0"))
 			$debugMilkingIMGmake =  BitOR($debugMilkingIMGmake, IniRead($config, "debug", "debugMilkingIMGmake", "0"))
+			$debugOCRdonate = BitOr ($debugOCRdonate,  IniRead($config, "debug", "debugOCRDonate", "0"))
 			;InireadS(xxxx,$config, "attack", "xxxx", "0")
 			;InireadS(xxxx,$config, "attack", "xxxx", "0")
 			;InireadS(xxxx,$config, "attack", "xxxx", "0")

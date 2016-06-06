@@ -578,12 +578,11 @@ Func saveConfig() ;Saves the controls settings to the config
 		Else
 			$debugsetlogTrain = 0
 		EndIf
-	Else
-		$DebugSetlog = 0
-		$debugOcr = 0
-		$DebugImageSave = 0
-		$debugBuildingPos = 0
-		$debugsetlogTrain = 0
+		If GUICtrlRead($chkdebugOCRDonate) = $GUI_CHECKED Then
+			$debugOCRdonate = 1
+		Else
+			$debugOCRdonate = 0
+		EndIf
 	EndIf
 
 	If GUICtrlRead($chkTotalCampForced) = $GUI_CHECKED Then
@@ -737,7 +736,7 @@ Func saveConfig() ;Saves the controls settings to the config
 		$MilkFarmLocateDrill = 0
 	EndIf
 
-	$MilkFarmAttackDarkDrills = _GUICtrlComboBox_GetCurSel($cmbAtkDarkDrillsLevel) + 1
+	$MilkFarmDrillParam = _GUICtrlComboBox_GetCurSel($cmbAtkDarkDrillsLevel) + 1
 
 	;3. Only Attack If
 	$MilkFarmResMaxTilesFromBorder = _GUICtrlComboBox_GetCurSel($cmbRedlineResDistance)
@@ -2118,7 +2117,7 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWriteS($config, "debug", "debugresourcesoffset", $debugresourcesoffset)
 		IniWriteS($config, "debug", "continuesearchelixirdebug", $continuesearchelixirdebug)
 		IniWriteS($config, "debug", "debugMilkingIMGmake", $debugMilkingIMGmake)
-
+		IniWriteS($config, "debug", "debugOCRDonate", $debugOCRdonate)
 	Else
 		IniDelete($config, "debug", "debugocr")
 		IniDelete($config, "debug", "debugsetlog")
@@ -2127,6 +2126,7 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniDelete($config, "debug", "debugtrain")
 		IniDelete($config, "debug", "debugresourcesoffset")
 		IniDelete($config, "debug", "continuesearchelixirdebug")
+		IniDelete($config, "debug", "debugOCRDonate")
 	EndIf
 
 	;forced Total Camp values

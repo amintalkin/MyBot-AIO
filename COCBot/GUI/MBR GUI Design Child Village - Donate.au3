@@ -166,37 +166,11 @@ Global $picDonateCustom1, $picDonateCustom2, $picDonateCustom3, $picDonateCustom
 ;~ Language Variables used a lot
 ;~ -------------------------------------------------------------
 
-$sTxtBarbarians = GetTranslated(604,1, "Barbarians")
-$sTxtArchers = GetTranslated(604,2, "Archers")
-$sTxtGiants = GetTranslated(604,3, "Giants")
-$sTxtGoblins = GetTranslated(604,4, "Goblins")
-$sTxtWallBreakers = GetTranslated(604,5, "Wall Breakers")
-$sTxtWallBreakersShort = GetTranslated(604,6, "W.Breakers")
-
-$sTxtBalloons = GetTranslated(604,7, "Balloons")
-$sTxtWizards = GetTranslated(604,8, "Wizards")
-$sTxtHealers = GetTranslated(604,9, "Healers")
-$sTxtDragons = GetTranslated(604,10, "Dragons")
-$sTxtPekkas = GetTranslated(604,11, "Pekkas")
-$sTxtPekkasLong = GetTranslated(604,12, "P.E.K.K.A.s")
-
-$sTxtMinions = GetTranslated(604,13, "Minions")
-$sTxtHogRiders = GetTranslated(604,14, "Hog Riders")
-$sTxtValkyries = GetTranslated(604,15, "Valkyries")
-$sTxtGolems = GetTranslated(604,16, "Golems")
-$sTxtWitches = GetTranslated(604,17, "Witches")
-$sTxtLavaHounds = GetTranslated(604,18, "Lava Hounds")
-; $sTxtBowler = GetTranslated(604, 19, "Bowlers")
-
 $sTxtBlacklist1 = GetTranslated(612,23, "Blacklist")
 
 $sDonateTxtCustom = GetTranslated(612,24, "Custom Troops")
 
 $sTxtNothing = GetTranslated(603,1, "Nothing")
-
-$sTxtPoisonSpells = GetTranslated(605,9, "Poison")
-$sTxtEarthquakeSpells = GetTranslated(605,10, "EarthQuake")
-$sTxtHasteSpells = GetTranslated(605,11, "Haste")
 
 $sTxtDonate = GetTranslated(612,27, "Donate")
 $sTxtDonateTip = GetTranslated(612,28, "Check this to donate")
@@ -636,25 +610,25 @@ $x += $Offx
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	$x = 25
-	$grpPekkas = GUICtrlCreateGroup($sTxtPekkasLong, $x - 20, $y - 20, 430, 190)
+	$grpPekkas = GUICtrlCreateGroup($sTxtPekkas, $x - 20, $y - 20, 430, 190)
 		$x -= 10
 		GUICtrlSetState(-1, $GUI_HIDE)
 		$picDonatePekkas = GUICtrlCreateIcon($pIconLib, $eIcnDonPekka, $x + 215, $y, 64, 64, $BS_ICON)
 			GUICtrlSetState(-1, $GUI_HIDE)
-		$chkDonatePekkas = GUICtrlCreateCheckbox($sTxtDonate & " " & $sTxtPekkasLong, $x + 285, $y + 10, -1, -1)
+		$chkDonatePekkas = GUICtrlCreateCheckbox($sTxtDonate & " " & $sTxtPekkas, $x + 285, $y + 10, -1, -1)
 			GUICtrlSetState(-1, $GUI_HIDE)
-			GUICtrlSetTip(-1, $sTxtDonateTip & " " & $sTxtPekkasLong & " " & $sTxtDonateTipTroop)
+			GUICtrlSetTip(-1, $sTxtDonateTip & " " & $sTxtPekkas & " " & $sTxtDonateTipTroop)
 			GUICtrlSetOnEvent(-1, "chkDonatePekkas")
 		$chkDonateAllPekkas = GUICtrlCreateCheckbox($sTxtDonateAll, $x + 285, $y + 30, -1, -1)
 			GUICtrlSetState(-1, $GUI_HIDE)
-			GUICtrlSetTip(-1, $sTxtDonateTip & " " & $sTxtPekkasLong & " " & $sTxtDonateTipAll & @CRLF & $sTxtIgnoreAll)
+			GUICtrlSetTip(-1, $sTxtDonateTip & " " & $sTxtPekkas & " " & $sTxtDonateTipAll & @CRLF & $sTxtIgnoreAll)
 			GUICtrlSetOnEvent(-1, "chkDonateAllPekkas")
-		$lblDonatePekkas = 	GUICtrlCreateLabel($sTxtKeywords & " " & $sTxtPekkasLong & ":", $x - 5, $y + 5, -1, -1)
+		$lblDonatePekkas = 	GUICtrlCreateLabel($sTxtKeywords & " " & $sTxtPekkas & ":", $x - 5, $y + 5, -1, -1)
 			GUICtrlSetState(-1, $GUI_HIDE)
 		$txtDonatePekkas = GUICtrlCreateEdit("", $x - 5, $y + 20, 205, 135, BitOR($ES_WANTRETURN, $ES_CENTER, $ES_AUTOVSCROLL))
 			GUICtrlSetState(-1, $GUI_HIDE)
 			GUICtrlSetData(-1, StringFormat(GetTranslated(612,53, "PEKKA\r\npekka")))
-			GUICtrlSetTip(-1, $sTxtKeywords & " " & $sTxtPekkasLong)
+			GUICtrlSetTip(-1, $sTxtKeywords & " " & $sTxtPekkas)
 		$lblBlacklistPekkas = GUICtrlCreateLabel($sTxtKeywordsNo & ":", $x + 215, $y + 70, -1, -1)
 			GUICtrlSetState(-1, $GUI_HIDE)
 		$txtBlacklistPekkas = GUICtrlCreateEdit("", $x + 215, $y + 85, 200, 70, BitOR($ES_WANTRETURN, $ES_CENTER, $ES_AUTOVSCROLL))
@@ -662,7 +636,7 @@ $x += $Offx
 			GUICtrlSetBkColor ( -1, 0x505050)
 			GUICtrlSetColor ( -1, $COLOR_WHITE)
 			GUICtrlSetData(-1, StringFormat(GetTranslated(612,54, "no PEKKA\r\npekka no")))
-			GUICtrlSetTip(-1, $sTxtKeywordsNoTip & " " & $sTxtPekkasLong)
+			GUICtrlSetTip(-1, $sTxtKeywordsNoTip & " " & $sTxtPekkas)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	$x = 25

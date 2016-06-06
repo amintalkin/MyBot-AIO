@@ -156,12 +156,22 @@ Func txtSinglePBTimeForced()
 	EndSwitch
 EndFunc   ;==>txtSinglePBTimeForced
 
+Func chkDebugClick()
+	If GUICtrlRead($chkDebugClick) = $GUI_CHECKED Then
+		$debugClick = 1
+	Else
+		$debugClick = 0
+	EndIf
+	SetDebugLog("DebugClick " & ($debugClick = 1 ? "enabled" : "disabled"))
+EndFunc   ;==>chkDebugClick
+
 Func chkDebugSetlog()
 	If GUICtrlRead($chkDebugSetlog) = $GUI_CHECKED Then
 		$DebugSetlog = 1
 	Else
 		$DebugSetlog = 0
 	EndIf
+	SetDebugLog("DebugSetlog " & ($DebugSetlog = 1 ? "enabled" : "disabled"))
 EndFunc   ;==>chkDebugSetlog
 
 Func chkDebugOcr()
@@ -170,6 +180,7 @@ Func chkDebugOcr()
 	Else
 		$debugOcr = 0
 	EndIf
+	SetDebugLog("DebugOcr " & ($debugOcr = 1 ? "enabled" : "disabled"))
 EndFunc   ;==>chkDebugOcr
 
 Func chkDebugImageSave()
@@ -178,23 +189,35 @@ Func chkDebugImageSave()
 	Else
 		$DebugImageSave = 0
 	EndIf
+	SetDebugLog("DebugImageSave " & ($DebugImageSave = 1 ? "enabled" : "disabled"))
 EndFunc   ;==>chkDebugImageSave
 
-Func chkdebugBuildingPos()
+Func chkDebugBuildingPos()
 	If GUICtrlRead($chkdebugBuildingPos) = $GUI_CHECKED Then
 		$debugBuildingPos = 1
 	Else
 		$debugBuildingPos = 0
 	EndIf
+	SetDebugLog("DebugBuildingPos " & ($debugBuildingPos = 1 ? "enabled" : "disabled"))
 EndFunc   ;==>chkdebugBuildingPos
 
-Func chkdebugTrain()
+Func chkDebugTrain()
 	If GUICtrlRead($chkdebugTrain) = $GUI_CHECKED Then
 		$debugsetlogTrain = 1
 	Else
 		$debugsetlogTrain = 0
 	EndIf
+	SetDebugLog("chkDebugTrain " & ($debugsetlogTrain = 1 ? "enabled" : "disabled"))
 EndFunc   ;==>chkdebugTrain
+
+Func chkdebugOCRDonate()
+	If GUICtrlRead($chkdebugOCRDonate) = $GUI_CHECKED Then
+		$debugOCRdonate = 1
+	Else
+		$debugOCRdonate = 0
+	EndIf
+	SetDebugLog("chkdebugOCRDonate " & ($debugOCRdonate = 1 ? "enabled" : "disabled"))
+EndFunc   ;==>chkdebugOCRDonate
 
 Func sldMaxVSDelay()
 	$iMaxVSDelay = GUICtrlRead($sldMaxVSDelay)
@@ -252,6 +275,7 @@ EndFunc   ;==>sldTrainITDelay
 Func btnTestTrain()
 		Local $currentOCR = $debugOcr
 		Local $currentRunState = $RunState
+		_GUICtrlTab_ClickTab($tabMain, 0)
 		$debugOcr = 1
 		$RunState = 1
  		ForceCaptureRegion()
@@ -271,6 +295,7 @@ Func btnTestDonateCC()
 		Local $currentOCR = $debugOcr
 		Local $currentRunState = $RunState
 		Local $currentSetlog = $debugsetlog
+		_GUICtrlTab_ClickTab($tabMain, 0)
 		$debugOcr = 1
 		$RunState = 1
 		$debugsetlog = 1
@@ -290,7 +315,9 @@ Func btnTestDonateCC()
 			SetLog("Could not find the Donate Window :(", $COLOR_RED)
 			Return False
 		EndIf
+		Setlog("Detecting Troops...")
 		DetectSlotTroop($eLava)
+		Setlog("Detecting Spells...")
 		DetectSlotTroop($eHaSpell)
 		SetLog(_PadStringCenter(" Test DonateCC end ", 54, "="), $COLOR_BLUE)
 
@@ -299,9 +326,10 @@ Func btnTestDonateCC()
 		$debugsetlog = $currentSetlog
 EndFunc
 
-Func btnTestAtttackBar()
+Func btnTestAttackBar()
 		Local $currentOCR = $debugOcr
 		Local $currentRunState = $RunState
+		_GUICtrlTab_ClickTab($tabMain, 0)
 
 		$debugOcr = 1
 		$RunState = 1
@@ -322,6 +350,7 @@ Func btnTestAtttackBar()
 ;~ 				$aTemp[Number($troopData[1])][0] = $troopData[0]
 ;~ 				$aTemp[Number($troopData[1])][1] = Number($troopData[2])
 ;~ 				Setlog("-" & NameOfTroop( $aTemp[$i][0]) & " pos  " & $aTemp[$i][0] & " qty " & $aTemp[$i][2])
+				If $troopData[0] = 17 or $troopData[0] = 18 or $troopData[0] = 19 or $troopData[0] = 20 then $troopData[2] = 1
 				Setlog("position: " & $troopData[1] & " | troop code: " & $troopData[0] & " troop name:" & NameOfTroop($troopData[0]) & " | qty: " & $troopData[2])
  			Next
  		EndIf

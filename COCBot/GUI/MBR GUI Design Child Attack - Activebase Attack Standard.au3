@@ -22,8 +22,8 @@ $grpDeployAB = GUICtrlCreateGroup(GetTranslated(608,1, -1), $x - 20, $y - 20, 27
    $lblABmode = GUICtrlCreateLabel(GetTranslated(608,2, -1),$x, $y, 143,18,$SS_LEFT)
 $y += 15
 	$cmbStandardAlgorithmAB = GUICtrlCreateCombo("", $x, $y, 150, Default, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			GUICtrlSetData(-1, "Default(All Troops)|Barch/BAM/BAG|GiBarch", "Barch/BAM/BAG")
-			GUICtrlSetTip(-1, "Select a preset troop drop order. "&@CRLF&"Each option deploys troops in a different order and in different waves"&@CRLF&"Only the troops selected in the ""Only drop these troops"" option will be dropped")
+			GUICtrlSetData(-1, GetTranslated(608,25, -1)&"|Barch/BAM/BAG|GiBarch", GetTranslated(608,25, -1))
+			GUICtrlSetTip(-1, GetTranslated(608,33, -1)&@CRLF&GetTranslated(608,34, -1))
 	$y += 25
 	;95)
 		$lblDeployAB = GUICtrlCreateLabel(GetTranslated(608,3, "Attack on")&":", $x, $y + 5, -1, -1)

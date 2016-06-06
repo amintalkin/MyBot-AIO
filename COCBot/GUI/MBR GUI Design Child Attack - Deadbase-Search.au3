@@ -106,7 +106,7 @@ Local $x = 220, $y = 45
 		$x -= 15
 		$cmbDBMeetGE = GUICtrlCreateCombo("", $x , $y + 10, 65, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			$txtTip = GetTranslated(625,15, "Search for a base that meets the values set for Gold And/Or/Plus Elixir.") & @CRLF & GetTranslated(625,16, "AND: Both conditions must meet, Gold and Elixir.") & @CRLF & GetTranslated(625,17, "OR: One condition must meet, Gold or Elixir.") & @CRLF & GetTranslated(625,18, "+ (PLUS): Total amount of Gold + Elixir must meet.")
-			GUICtrlSetData(-1, GetTranslated(625,19, "G And E") &"|" & GetTranslated(625,20, "G Or E") & "|" & GetTranslated(625,21, "G + E"), GetTranslated(625,22, "G And E"))
+			GUICtrlSetData(-1, GetTranslated(625,19, "G And E") &"|" & GetTranslated(625,20, "G Or E") & "|" & GetTranslated(625,21, "G + E"), GetTranslated(625,19, -1))
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "cmbDBGoldElixir")
 		$txtDBMinGold = GUICtrlCreateInput("80000", $x + 85, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
