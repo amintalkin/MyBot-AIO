@@ -2360,6 +2360,52 @@ _GUICtrlComboBox_SetCurSel($cmbTHSnipeBeforeDBScript, _GUICtrlComboBox_FindStrin
 LoadABSnipeAttacks() ; recreate combo box values
 _GUICtrlComboBox_SetCurSel($cmbTHSnipeBeforeLBScript, _GUICtrlComboBox_FindStringExact($cmbTHSnipeBeforeLBScript, $THSnipeBeforeLBScript))
 
+	; SmartZap Settings - Added by LunaEclipse
+	If $ichkSmartZap = 1 Then
+		GUICtrlSetState($chkSmartLightSpell, $GUI_CHECKED)
+		GUICtrlSetState($chkSmartZapDB, $GUI_ENABLE)
+		GUICtrlSetState($chkSmartZapSaveHeroes, $GUI_ENABLE)
+		GUICtrlSetState($txtMinDark, $GUI_ENABLE)
+	Else
+		GUICtrlSetState($chkSmartZapDB, $GUI_DISABLE)
+		GUICtrlSetState($chkSmartZapSaveHeroes, $GUI_DISABLE)
+		GUICtrlSetState($txtMinDark, $GUI_DISABLE)
+		GUICtrlSetState($chkSmartLightSpell, $GUI_UNCHECKED)
+	EndIf
+	If $ichkSmartZapDB = 1 Then
+		GUICtrlSetState($chkSmartZapDB, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSmartZapDB, $GUI_UNCHECKED)
+	EndIf
+	If $ichkSmartZapSaveHeroes = 1 Then
+		GUICtrlSetState($chkSmartZapSaveHeroes, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSmartZapSaveHeroes, $GUI_UNCHECKED)
+	EndIf
+	GUICtrlSetData($txtMinDark, $itxtMinDE)
+
+	; Android Settings - Added by LunaEclipse
+	If _GUICtrlComboBox_FindStringExact($cmbAndroid, String($sAndroid)) <> -1 Then
+		_GUICtrlComboBox_SelectString($cmbAndroid, String($sAndroid))
+	Else
+		_GUICtrlComboBox_SetCurSel($cmbAndroid, 0)
+	EndIf
+	GUICtrlSetData($txtAndroidInstance, $sAndroidInstance)
+	If $ichkHideTaskBar = 1 Then
+		GUICtrlSetState($chkHideTaskBar, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkHideTaskBar, $GUI_UNCHECKED)
+	EndIf
+	modifyAndroid()
+
+	; Misc Battle Settings - Added by LunaEclipse
+	If $AndroidAdbClicksEnabled = 1 Then
+		GUICtrlSetState($chkFastADBClicks, $GUI_CHECKED)
+		$AndroidAdbClicksEnabled = True
+	Else
+		GUICtrlSetState($chkFastADBClicks, $GUI_UNCHECKED)
+		$AndroidAdbClicksEnabled = False
+	EndIf
 
 	; Reenabling window redraw
 	If $bRedrawAtExit Then SetRedrawBotWindow(True)

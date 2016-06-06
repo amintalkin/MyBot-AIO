@@ -1045,6 +1045,21 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		$nextSleepEnd = IniRead($config, "Simulate Sleep", "SleepEnd", "-999")
 		checkSleep()
 
+
+		; SmartZap Settings - Added by LunaEclipse
+		$ichkSmartZap = IniRead($config, "SmartZap", "UseSmartZap", "1")
+		$ichkSmartZapDB = IniRead($config, "SmartZap", "ZapDBOnly", "1")
+        $ichkSmartZapSaveHeroes = IniRead($config, "SmartZap", "THSnipeSaveHeroes", "1")
+		$itxtMinDE = IniRead($config, "SmartZap", "MinDE", "250")
+
+		; Android Settings - Added by LunaEclipse
+		$sAndroid = IniRead($config, "Android", "Emulator", "<No Emulators>")
+		$sAndroidInstance = IniRead($config, "Android", "Instance", "")
+		$ichkHideTaskBar = IniRead($config, "Android", "HideTaskBarIcon", "0")
+
+		; Misc Battle Settings - Added by LunaEclipse
+		$AndroidAdbClicksEnabled = IniRead($config, "Fast Clicks", "UseADBFastClicks", "0")
+
 	Else
 		Return False
 	EndIf
