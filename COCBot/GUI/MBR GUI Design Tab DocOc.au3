@@ -137,5 +137,3 @@ GUISwitch($hGUI_ModDocOc)
 			GUICtrlSetOnEvent(-1, "sldAttacksMax")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 ;GUICtrlCreateTabItem("")
-Global $LastControlToHideModAIO = GUICtrlCreateDummy()
-Global $iPrevState[$LastControlToHideModAIO + 1]

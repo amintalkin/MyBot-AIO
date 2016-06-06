@@ -195,6 +195,12 @@ Func GUIControl($hWind, $iMsg, $wParam, $lParam)
 					btnAttackNowTS()
 				Case $idMENU_DONATE_SUPPORT
 					ShellExecute("https://mybot.run/forums/index.php?/donate/make-donation/")
+				Case $CheckVersionConfig
+					If CheckMODVersion() Then MsgBox(0, "", "You Are Using The Latest Version Of Mod All In One")
+				Case $DownloadLatestConfig
+					ShellExecute("https://github.com/" & $sGitHubModOwner & "/" & $sGitHubModRepo & "/archive/master.zip")
+				Case $ModSupportConfig
+					ShellExecute($sModSupportUrl)
 				Case $btnDeletePBMessages
 					If $RunState Then
 						btnDeletePBMessages() ; call with flag when bot is running to execute on _sleep() idle

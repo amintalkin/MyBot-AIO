@@ -6,7 +6,7 @@
 ;                  $Remaining           - [optional] Flag for when checking remaining troops. Default is False.
 ; Return values .: None
 ; Author ........:
-; Modified ......:
+; Modified ......: mikemikemikecoc (2016)
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015-2016
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:
@@ -82,6 +82,10 @@ Func PrepareAttack($pMatchMode, $Remaining = False) ;Assigns troops
 			If $troopKind <> -1 Then SetLog("-*-" & $atkTroops[$i][0] & " " & NameOfTroop($atkTroops[$i][0]) & " " & $atkTroops[$i][1], $COLOR_GREEN)
 		EndIf
     Next
+	
+	;AwesomeGamer CSV mod
+	$remainingTroops = $atkTroops
+	$TroopDropNumber = 0
 
     ;ResumeAndroid()
 

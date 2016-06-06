@@ -258,4 +258,6 @@ $y += 30
 		$picProfileTrophy = GUICtrlCreatePic(@ScriptDir & "\Images\TrophyLeague.jpg", $x + 350, $y - 40, 60, 60)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 		setupProfileComboBoxswitch()
-GUICtrlCreateTabItem("")
+;GUICtrlCreateTabItem("")
+Global $LastControlToHideModAIO = GUICtrlCreateDummy()
+Global $iPrevState[$LastControlToHideModAIO + 1]

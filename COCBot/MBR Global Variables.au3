@@ -1441,7 +1441,7 @@ Global $LeaveCoCOpen = 0
 Global $CloseCoCGame = 1
 Global $RandomCoCOpen = 0
 Global $RandomCloseTraining = 0
-Global $RandomCloseTraining2 = 0 
+Global $RandomCloseTraining2 = 0
 
 ; Sleep at night variables
 Global $ichkCloseNight = 1
@@ -1493,3 +1493,21 @@ Global Const $drillLevelSteal[6] = [59, _
 Global $sAndroid = "<No Emulators>"
 Global $sAndroidInstance = ""
 Global $ichkHideTaskBar = 0
+
+;AwesomeGamer CSV Mod
+Global $attackcsv_use_red_line = 1
+Global $TroopDropNumber = 0
+Global $remainingTroops[12][2]
+
+;CSV Deployment Speed Mod
+Global $isldSelectedCSVSpeed[$iModeCount], $iCSVSpeeds[8]
+$isldSelectedCSVSpeed[$DB] = 3
+$isldSelectedCSVSpeed[$LB] = 3
+$iCSVSpeeds[0] = .25
+$iCSVSpeeds[1] = .5
+$iCSVSpeeds[2] = .75
+$iCSVSpeeds[3] = 1
+$iCSVSpeeds[4] = 1.25
+$iCSVSpeeds[5] = 1.5
+$iCSVSpeeds[6] = 1.75
+$iCSVSpeeds[7] = 2

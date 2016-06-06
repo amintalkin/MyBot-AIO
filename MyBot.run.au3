@@ -47,11 +47,15 @@ EndIf
 #include "COCBot\MBR Global Variables.au3"
 #include "COCBot\functions\Config\ScreenCoordinates.au3"
 
+Global $sGitHubModOwner = "amintalkin"
+Global $sGitHubModRepo = "MyBot-AIO"
+Global $sGitHubModLatestReleaseTag = "v2.0.5"
+Global $sModSupportUrl = "https://mybot.run/forums/index.php?/topic/19937-new-merged-mybot-6121-all-mods-in-one-v204-05-06-16/"
+
 $sBotVersion = "v6.1.2.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
-$sBotTitle = "Merged My Bot " & $sBotVersion & " All In One v2.0.4 " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
+$sBotTitle = "Merged My Bot " & $sBotVersion & " All In One " & $sGitHubModLatestReleaseTag & " " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
 
 Global $sBotTitleDefault = $sBotTitle
-
 
 Opt("WinTitleMatchMode", 3) ; Window Title exact match mode
 #include "COCBot\functions\Android\Android.au3"
