@@ -77,7 +77,10 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 			If $ichkEarthquakeSpell[$iMatchMode] = 0 Then $usespell = False
 		Case $eHaSpell
 			If $ichkHasteSpell[$iMatchMode] = 0 Then $usespell = False
-	EndSwitch
+			EndSwitch
+
+   If $delayPointmin = 0 Then $delayPointmin = 100
+   If $delayPointmax = 0 Then $delayPointmax = 500
 
 	If $troopPosition = -1 Or $usespell = False Then
 		If $usespell = True Then
@@ -223,13 +226,11 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 					   If $remainingTroopsDrop = 0 Then
 						  ExitLoop
 					   EndIf
-					   
+
 						If $qty2 > $remainingTroopsDrop Then
 							$qty2 = $remainingTroopsDrop
 						EndIf
 					 EndIf
-
-					 SetLog("$qty2: " & $qty2)
 
 					;delay time between 2 drops in same point
 					If $delayPointmin <> $delayPointmax Then

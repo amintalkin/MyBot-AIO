@@ -1441,7 +1441,7 @@ Global $LeaveCoCOpen = 0
 Global $CloseCoCGame = 1
 Global $RandomCoCOpen = 0
 Global $RandomCloseTraining = 0
-Global $RandomCloseTraining2 = 0 
+Global $RandomCloseTraining2 = 0
 
 ; Sleep at night variables
 Global $ichkCloseNight = 1
@@ -1500,7 +1500,7 @@ Global $TroopDropNumber = 0
 Global $remainingTroops[12][2]
 
 ;CSV Deployment Speed Mod
-Global $isldSelectedCSVSpeed[$iModeCount], $iCSVSpeeds[16]
+Global $isldSelectedCSVSpeed[$iModeCount], $iCSVSpeeds[8]
 $isldSelectedCSVSpeed[$DB] = 3
 $isldSelectedCSVSpeed[$LB] = 3
 $iCSVSpeeds[0] = .25
@@ -1511,11 +1511,3 @@ $iCSVSpeeds[4] = 1.25
 $iCSVSpeeds[5] = 1.5
 $iCSVSpeeds[6] = 1.75
 $iCSVSpeeds[7] = 2
-$iCSVSpeeds[8] = 2.25
-$iCSVSpeeds[9] = 2.5
-$iCSVSpeeds[10] = 2.75
-$iCSVSpeeds[11] = 3
-$iCSVSpeeds[12] = 3.25
-$iCSVSpeeds[13] = 3.5
-$iCSVSpeeds[14] = 3.75
-$iCSVSpeeds[15] = 4
