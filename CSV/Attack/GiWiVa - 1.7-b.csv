@@ -1,0 +1,55 @@
+NOTE  |Author: mikemikemikecoc - ver. 1.7-b - 15.05.2016
+NOTE  |
+NOTE  |Attack: GiWiVa w/ brute force heroes
+NOTE  |Make these Troops: 12 Giants, 8 WB, 11 Wiz, 10 Valks, 2 Rage
+NOTE  |Will drop giants, wiz then rage then pepper wb's to break into core with valks to wreck
+
+
+      |-----------------------------------------------------------------------------------------------|
+      |                                                                                               |
+      |                                                                                               |
+
+      |EXTR. GOLD |EXTR.ELIXIR|EXTR. DARK |DEPO. GOLD |DEPO.ELIXIR|DEPO. DARK |TOWNHALL   |FORCED SIDE|
+SIDE  |0          |0          |0          |0          |0          |0          |10         |           |
+
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE VECTOR FOR FRONT SIDE ATTACK: GIANTS, WIZ, VALKS, ARCH...
+MAKE  |A          |FRONT-LEFT |10         |1          |INT-EXT    |0          |2          |           |vector for giant front left 
+MAKE  |B          |FRONT-RIGHT|10         |1          |INT-EXT    |0          |2          |           |vector for giant front right
+MAKE  |C          |FRONT-LEFT |10         |3          |INT-EXT    |0          |3          |           |vector for wiz and archers front left
+MAKE  |D          |FRONT-RIGHT|10         |3          |INT-EXT    |0          |3          |           |vector for wiz and archers front right
+MAKE  |E          |FRONT-LEFT |10         |3          |INT-EXT    |0          |3          |           |vector for valks front left
+MAKE  |F          |FRONT-LEFT |10         |1          |INT-EXT    |0          |1          |           |vector for wall breakers front left
+MAKE  |G          |FRONT-RIGHT|10         |1          |INT-EXT    |0          |1          |           |vector for wall breakers front right
+MAKE  |H          |FRONT-LEFT |60         |-7         |INT-EXT    |0          |1          |           |vector for rage spell
+MAKE  |I          |FRONT-LEFT |60         |-12        |INT-EXT    |0          |1          |           |vector for 2nd rage spell
+MAKE  |J          |FRONT-LEFT |60         |-14        |INT-EXT    |0          |1          |           |vector for quakes, freeze and heal spells
+
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |J          |1          |4          |Espell     |0          |0          |500-600    |           |drop quake(s)
+DROP  |J          |1          |4          |Espell     |0          |0          |50         |           |drop quake(s) if error
+DROP  |A-B        |1-8        |10         |giant      |0          |0          |3000       |           |launch 20 giants
+DROP  |C-D        |2-10       |10         |wiza       |0          |0          |100-300    |           |launch 20 wizards
+DROP  |C-D        |1-6        |20         |arch       |0          |0          |100-300    |           |launch barbarians
+DROP  |H          |1          |1          |RSpell     |0          |0          |0          |           |drop rage spell
+DROP  |F          |1          |2          |wall       |500        |0          |0          |           |launch 2 wall breakers into rage
+DROP  |F-G        |1          |2          |wall       |0          |0          |0          |           |launch 4 wall breakers
+DROP  |F          |1          |2          |wall       |500        |0          |100        |           |launch 2 wall breakers into rage
+DROP  |F          |1          |2          |wall       |500        |0          |100        |           |launch 2 wall breakers into rage
+DROP  |F          |1          |2          |wall       |500        |0          |100        |           |launch 2 wall breakers into rage
+DROP  |F          |1          |2          |wall       |0          |0          |100        |           |launch 2 wall breakers into rage
+DROP  |J          |1          |1          |FSpell     |0          |0          |0          |           |drop freeze spell
+DROP  |A          |1          |1          |king       |0          |0          |100-300    |           |launch king   
+DROP  |A          |1          |1          |queen      |0          |0          |100-300    |           |launch queen  
+DROP  |E          |1          |20         |valk       |800        |0          |100-300    |           |launch all valks
+DROP  |A          |1          |1          |castle     |0          |0          |100-300    |           |launch castle  
+DROP  |A          |1          |1          |warden     |0          |0          |500        |           |launch warden
+DROP  |I          |1          |1          |RSpell     |0          |0          |3000       |           |drop rage spell
+DROP  |J          |1          |1          |HSpell     |0          |0          |0          |           |Heal Spell at -14 tiles from redarea
+DROP  |C-D        |1-6        |20         |barb       |0          |0          |100-300    |           |launch archers
+WAIT  |5000       |           |           |           |           |           |           |           |
+DROP  |Q          |1          |1          |warden     |0          |0          |0          |           |Activate warden
+WAIT  |10000      |           |           |           |           |           |           |           |
+DROP  |R          |3          |1          |king       |0          |0          |100-500    |           |Activate King 
+DROP  |S          |3          |1          |queen      |0          |0          |100-500    |           |Activate Queen

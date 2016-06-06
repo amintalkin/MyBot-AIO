@@ -321,6 +321,7 @@ Func reHide()
 	Return 0
 EndFunc   ;==>reHide
 
+; Modified by LunaEclipse
 Func btnHide()
 	ResumeAndroid()
 	WinGetAndroidHandle()
@@ -329,6 +330,8 @@ Func btnHide()
 
 	If $Hide = False Then
 		GUICtrlSetData($btnHide, GetTranslated(602, 25, "Show"))
+		; Hide the taskbar icon now as Bluestacks has been moved off the screen
+		hideTaskBarIcon($HWnD)
 		Local $a = WinGetPos($HWnD)
 		$botPos[0] = $a[0]
 		$botPos[1] = $a[1]
@@ -336,7 +339,8 @@ Func btnHide()
 		$Hide = True
 	Else
 		GUICtrlSetData($btnHide, GetTranslated(602, 11, "Hide"))
-
+		; Show the taskbar icon now while Bluestack is still off the screen
+		showTaskBarIcon($HWnD)
 		If $botPos[0] = -32000 Then
 			WinMove2($HWnD, "", 0, 0)
 		Else

@@ -222,6 +222,7 @@ Global $lblWallCost, $cmbWalls, $UseGold, $UseElixir, $UseElixirGold, $txtWallMi
 			GUICtrlSetTip(-1, GetTranslated(617,4, "No. of Positions to test and find walls. Higher is better but slower."))
 			_GUICtrlSlider_SetTipSide(-1, $TBTS_BOTTOM)
 			_GUICtrlSlider_SetTicFreq(-1, 1)
+						GUICtrlSetBkColor(-1, $COLOR_WHITE)
 			GUICtrlSetLimit(-1, 8, 1)
 			GUICtrlSetData(-1, 4)
 			;GUICtrlSetOnEvent(-1, "SlidemaxNbWall")

@@ -27,7 +27,7 @@ $hGUI_BOT = GUICreate("", $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, $_GUI_
 #include "MBR GUI Design Child Bot - Options.au3"
 #include "MBR GUI Design Child Bot - Debug.au3"
 ;#include "MBR GUI Design Child Bot - Profiles.au3"
-#include "MBR GUI Design Tab Profiles.au3"
+;#include "MBR GUI Design Tab Profiles.au3"
 #include "MBR GUI Design Child Bot - Stats.au3"
 
 GUISwitch($hGUI_BOT)
@@ -35,10 +35,10 @@ GUISwitch($hGUI_BOT)
 $hGUI_BOT_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
 $hGUI_BOT_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,35,"Options"))
 ; this tab will be empty because it is only used to display a child GUI
-$hGUI_BOT_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600,51,"Debug"))
+$hGUI_BOT_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,51,"Debug"))
 ; this tab will be empty because it is only used to display a child GUI
-$hGUI_BOT_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,36,"Profiles"))
+;$hGUI_BOT_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,36,"Profiles"))
 ; this tab will be empty because it is only used to display a child GUI
-$hGUI_BOT_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,37, "Stats"))
+$hGUI_BOT_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,37, "Stats"))
 ; this tab will be empty because it is only used to display a child GUI
 GUICtrlCreateTabItem("")
