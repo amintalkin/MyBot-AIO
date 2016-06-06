@@ -1,0 +1,55 @@
+NOTE  |Army Comp:Preset: B.Arch
+NOTE  |
+NOTE  |Town Hall 8: 200 troops
+NOTE  |100 Barb and 100 Arch 
+NOTE  |Heroes and Castle if selected in GUI
+NOTE  |By rontimes
+NOTE  |Version 1.2
+NOTE  |Special thanks to @Rhinoceros for the inspiration and base code
+
+      |100 troops = 25 per side = 13 per slice
+      |drop points = 34 per side, 17 per slice
+      |drops from 3-32 on each side (leaving room for fingers to make realistic)
+
+      |Note2: This attack will only drop barbarians and archers (and selected heroes and castle).  
+      |Other available troops will not be dropped, and will just reduce the amount of archers
+      |and barbs that will be dropped in each attack.
+
+      |EXTR. GOLD |EXTR.ELIXIR|EXTR. DARK |DEPO. GOLD |DEPO.ELIXIR|DEPO. DARK |TOWNHALL   |FORCED SIDE |
+SIDE  |           |           |1          |           |           |2          |           |            |//BOTTOMRIGHT
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|____________|MAKE VECTORS FOR BARBS AND ARCHS
+MAKE  |A          |FRONT-RIGHT|17         |2          |INT-EXT    |5          |5          |            |
+MAKE  |B          |RIGHT-FRONT|17         |2          |INT-EXT    |5          |5          |            |
+MAKE  |C          |LEFT-BACK  |17         |2          |INT-EXT    |5          |5          |            |
+MAKE  |D          |BACK-LEFT  |17         |2          |INT-EXT    |5          |5          |            |
+MAKE  |E          |FRONT-LEFT |17         |2          |EXT-INT    |5          |5          |            |
+MAKE  |F          |RIGHT-BACK |17         |2          |EXT-INT    |5          |5          |            |
+MAKE  |G          |LEFT-FRONT |17         |2          |EXT-INT    |5          |5          |            |
+MAKE  |H          |BACK-RIGHT |17         |2          |EXT-INT    |5          |5          |            |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________|SEQUENCE 1 LAUNCH BARBS THEN ARCH
+DROP  |E-G-A-C    |4-16       |13         |barb       |0          |30         |0          |            | DONW SIDES BARBS
+WAIT  |900-1100   |           |           |           |           |           |           |            | Add a wait time
+DROP  |E-G-A-C    |4-16       |13         |arch       |0          |30         |0          |            | DOWN SIDES ARCHS
+
+WAIT  |1700-2200  |           |           |           |           |           |           |            | Add a wait time
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________|SEQUENCE 2 LAUNCH BARBS THEN ARCH
+DROP  |F-H-B-D    |4-16       |13         |barb       |0          |30         |0          |            | UP SIDES BARBS
+WAIT  |900-1100   |           |           |           |           |           |           |            | Add a wait time
+DROP  |F-H-B-D    |4-16       |13         |arch       |0          |30         |0          |            | UP SIDES ARCHS
+
+WAIT  |300        |           |           |           |           |           |           |            | Add a wait time
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|____________|MAKE VECTORS FOR HEROES,CC,AND LEFTOVER TROOPS
+MAKE  |W          |FRONT-RIGHT|10         |1          |EXT-INT    |2          |2          |            |
+MAKE  |X          |FRONT-LEFT |10         |1          |EXT-INT    |2          |2          |            |
+MAKE  |Y          |FRONT-RIGHT|10         |1          |INT-EXT    |2          |2          |            |
+MAKE  |Z          |FRONT-LEFT |10         |1          |INT-EXT    |2          |2          |            |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________|SEQUENCE 4 DROP HEROES,CC,AND SMALL FUNNEL
+DROP  |W-X        |3-7        |10         |barb       |50         |30         |400        |            | LEFTOVER BARBS
+DROP  |W          |10         |1          |king       |0          |0          |600-1000   |            | KING
+DROP  |W          |10         |1          |castle     |0          |30         |500        |            | CASTLE
+DROP  |Y-Z        |3-7        |10         |arch       |50         |30         |400        |            | LEFTOVER ARCH 
