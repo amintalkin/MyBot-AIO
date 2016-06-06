@@ -47,8 +47,8 @@ EndIf
 #include "COCBot\MBR Global Variables.au3"
 #include "COCBot\functions\Config\ScreenCoordinates.au3"
 
-$sBotVersion = "v6.1.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
-$sBotTitle = "Merged My Bot " & $sBotVersion & " All In One v2.0.1 " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
+$sBotVersion = "v6.1.2.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
+$sBotTitle = "Merged My Bot " & $sBotVersion & " All In One v2.0.2 " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
 
 Opt("WinTitleMatchMode", 3) ; Window Title exact match mode
 #include "COCBot\functions\Android\Android.au3"
@@ -98,6 +98,7 @@ $hMutex_MyBot = _Singleton("MyBot.run", 1)
 $OnlyInstance = $hMutex_MyBot <> 0 ; And False
 SetDebugLog("My Bot is " & ($OnlyInstance ? "" : "not ") & "the only running instance")
 
+#include "COCBot\MBR Global Variables Troops.au3"
 #include "COCBot\MBR GUI Design.au3"
 #include "COCBot\MBR GUI Control.au3"
 #include "COCBot\MBR Functions.au3"
@@ -182,10 +183,45 @@ BotClose()
 Func runBot() ;Bot that runs everything in order
 	$TotalTrainedTroops = 0
 	Local $Quickattack = False
+	Local $LeaveOrClose = 0
 	While 1
+		If checkSleep() And $RunState And $ichkCloseNight = 1 Then
+
+			If $debugSetLog = 1 Then SetLog("Sleep Start: " & $nextSleepStart & " - Sleep End: " & $nextSleepEnd, $COLOR_MAROON)
+			SetLog("Time to log out for sleep period...", $COLOR_GREEN)
+			CloseCOCAndWait(calculateTimeRemaining($nextSleepEnd), True)
+			; Set Collector counter to 11 so it collects immediately after attacking
+			;$iCollectCounter = 11
+			$RandomTimer = true
+			$FirstStart = true
+			;RandomAttack()
+		ElseIf $RunState And $ichkLimitAttacks = 1 And $dailyAttacks >= $dailyAttackLimit Then
+			If $debugSetLog = 1 Then SetLog("Attacks: " & $dailyAttacks & " - Limit: " & $dailyAttackLimit, $COLOR_MAROON)
+			SetLog("Already reached today's quota of attacks...", $COLOR_GREEN)
+			CloseCOCAndWait(calculateTimeRemaining($nextSleepEnd), True)
+			; Set Collector counter to 11 so it collects immediately after attacking
+			;$iCollectCounter = 11
+			$RandomTimer = true
+			$FirstStart = true
+			;RandomAttack()
+		ElseIf $RunState Then
+EndIf
 		$Restart = False
 		$fullArmy = False
 		$CommandStop = -1
+			
+			; each loop ( after each attack ) will determinate if close while train or not 
+			If $RandomCloseTraining = 1 then 
+				if $debugSetlog = 1 then Setlog("You chose the Random Close Or Leave train...", $COLOR_RED)
+				$RandomCloseTraining2 = Random(0,1,1)
+				If $RandomCloseTraining2 = 1 then $LeaveOrClose +=1 
+				If $LeaveOrClose = 3 then 
+					$RandomCloseTraining2 = 0
+					$LeaveOrClose = 0 
+				EndIf 
+				if $debugSetlog = 1 then Setlog("$RandomCloseTraining2: " & $RandomCloseTraining2)
+			EndIf
+			
 		If _Sleep($iDelayRunBot1) Then Return
 		checkMainScreen()
 		If $Restart = True Then ContinueLoop
@@ -344,6 +380,25 @@ Func Idle() ;Sequence that runs until Full Army
 
 	;mikemikemikecoc - Wait For Spells
 	While $fullArmy = False Or $bFullArmyHero = False Or $bFullArmySpells = False ;While $fullArmy = False Or $bFullArmyHero = False
+		If checkSleep() And $RunState And $ichkCloseNight = 1 Then
+			If $debugSetLog = 1 Then SetLog("Sleep Start: " & $nextSleepStart & " - Sleep End: " & $nextSleepEnd, $COLOR_MAROON)
+			SetLog("Time to log out for sleep period...", $COLOR_GREEN)
+			CloseCOCAndWait(calculateTimeRemaining($nextSleepEnd), True)
+			; Set Collector counter to 11 so it collects immediately after attacking
+			;$iCollectCounter = 11
+			$RandomTimer = true
+			$FirstStart = true
+			;RandomAttack()
+		ElseIf $RunState And $ichkLimitAttacks = 1 And $dailyAttacks >= $dailyAttackLimit Then
+			If $debugSetLog = 1 Then SetLog("Attacks: " & $dailyAttacks & " - Limit: " & $dailyAttackLimit, $COLOR_MAROON)
+			SetLog("Already reached today's quota of attacks...", $COLOR_GREEN)
+			CloseCOCAndWait(calculateTimeRemaining($nextSleepEnd), True)
+			; Set Collector counter to 11 so it collects immediately after attacking
+			;$iCollectCounter = 11
+			$RandomTimer = true
+			$FirstStart = true
+			;RandomAttack()
+		ElseIf $RunState Then
 		checkAndroidTimeLag()
 
 		If $RequestScreenshot = 1 Then PushMsg("RequestScreenshot")
@@ -397,6 +452,7 @@ Func Idle() ;Sequence that runs until Full Army
 		$iCollectCounter = $iCollectCounter + 1
 		If $CommandStop = -1 Then
 			Train()
+			checkRemainingTraining()
 				If $Restart = True Then ExitLoop
 				If _Sleep($iDelayIdle1) Then ExitLoop
 				checkMainScreen(False)
@@ -436,6 +492,7 @@ Func Idle() ;Sequence that runs until Full Army
 
 		If $OutOfGold = 1 Or $OutOfElixir = 1 Then Return  ; Halt mode due low resources, only 1 idle loop
 		If $iChkSnipeWhileTrain = 1 Then SnipeWhileTrain()  ;snipe while train
+		EndIf
 	WEnd
 EndFunc   ;==>Idle
 
@@ -471,6 +528,8 @@ Func AttackMain() ;Main control for attack functions
 			Attack()
 				If $Restart = True Then Return
 			ReturnHome($TakeLootSnapShot)
+		; Increase the counter for the number of attacks today
+		$dailyAttacks += 1
 				If _Sleep($iDelayAttackMain2) Then Return
 			Return True
 		Else

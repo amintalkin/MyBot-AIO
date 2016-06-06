@@ -105,7 +105,7 @@ Func PresetSaveConf()
 EndFunc   ;==>PresetSaveConf
 
 Func PresetDeleteConf()
-	Local $button = MsgBox($MB_ICONWARNING + $MB_OKCANCEL, GetTranslated(640, 70, "Delete Configuration"), GetTranslated(640, 71, 'Are you sure you want to delete the configuration "') & GUICtrlRead($cmbPresetList) & '"?' & @CRLF & _
+	Local $button = MsgBox($MB_ICONWARNING + $MB_OKCANCEL, GetTranslated(640, 70, "Delete Configuration"), GetTranslated(640, 71, 'Are you sure you want to delete the configuration ?') & GUICtrlRead($cmbPresetList) & '"?' & @CRLF & _
 			"This cannot be undone.")
 	If $button = $IDOK Then
 		FileDelete($sPreset & "\" & GUICtrlRead($cmbPresetList) & ".ini")
@@ -279,3 +279,7 @@ Func MakeSavePresetMessage()
 
 	GUICtrlSetData($txtSavePresetMessage, $message)
 EndFunc   ;==>MakeSavePresetMessage
+
+Func btnStrategyFolder()
+	ShellExecute("explorer",$sPreset)
+EndFunc

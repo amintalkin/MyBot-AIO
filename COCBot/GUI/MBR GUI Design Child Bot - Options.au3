@@ -102,7 +102,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 50
 $grpVSDelay = GUICtrlCreateGroup(GetTranslated(636,75, "Village Search Delay"), $x - 20, $y - 20, 210, 72)
 	$txtTip = GetTranslated(636,76, "Use this slider to change the time to wait between Next clicks when searching for a Village to Attack.") & @CRLF & GetTranslated(636,77, "This might compensate for Out of Sync errors on some PC's.") & @CRLF & GetTranslated(636,78, "NO GUARANTEES! This will not always have the same results!")
-	$lblVSDelay0 = GUICtrlCreateLabel(GetTranslated(636,79, "Min"), $x-14, $y-2, 19, 15, $SS_RIGHT)
+	$lblVSDelay0 = GUICtrlCreateLabel(GetTranslated(603,9, -1), $x-14, $y-2, 19, 15, $SS_RIGHT)
 		GUICtrlSetTip(-1, $txtTip)
 	$lblVSDelay = GUICtrlCreateLabel("0", $x+7, $y-2, 12, 15, $SS_RIGHT)
 		GUICtrlSetTip(-1, $txtTip)
@@ -153,9 +153,9 @@ $grpPhotoExpert = GUICtrlCreateGroup(GetTranslated(636,55, "Photo Screenshot Opt
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
    $y +=52
-$grpTiming = GUICtrlCreateGroup(GetTranslated(636,30, "Timing"), $x - 20, $y - 20, 225, 50)
+$grpTiming = GUICtrlCreateGroup(GetTranslated(636,30, "Timing"), $x - 20, $y - 20, 225, 55)
 	$lblTrainDelay = GUICtrlCreateLabel(GetTranslated(636,31, "Train Troops") & ":", $x, $y, -1, -1)
-	$lbltxtTrainITDelay = GUICtrlCreateLabel(GetTranslated(636,32, "delay"), $x + 70, $y - 5, 37, 50)
+	$lbltxtTrainITDelay = GUICtrlCreateLabel(GetTranslated(636,32, "delay"), $x + 65, $y - 5, 37, 30)
 		GUICtrlSetTip(-1, GetTranslated(636,33, "Increase the delay if your PC is slow"))
 	$sldTrainITDelay = GUICtrlCreateSlider($x + 105, $y - 5, 70, 25, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))
 		GUICtrlSetTip(-1, GetTranslated(636,33, "Increase the delay if your PC is slow"))
@@ -196,7 +196,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 		GUICtrlSetOnEvent(-1, "txtSinglePBTimeForced")
 		GUICtrlSetLimit(-1, 3)
 		GUICtrlSetState(-1, $GUI_DISABLE)
-	$lblSinglePBTimeForced = GUICtrlCreateLabel( GetTranslated(636,64, "Min"), $x+162, $y+2, 27, 15)
+	$lblSinglePBTimeForced = GUICtrlCreateLabel( GetTranslated(603,9, "Min"), $x+162, $y+2, 27, 15)
 	$y += 20
 	$lblPBTimeForcedExit = GUICtrlCreateLabel( GetTranslated(636,65, "Subtract time for early PB exit"), $x-10, $y+3)
 		$txtTip = GetTranslated(636,66, "Type in number of minutes to quit CoC early! Setting below 10 minutes may not function!")
@@ -206,7 +206,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 		GUICtrlSetOnEvent(-1, "txtSinglePBTimeForced")
 		GUICtrlSetLimit(-1, 3)
 		GUICtrlSetState(-1, $GUI_DISABLE)
-	$lblPBTimeForcedExit1 = GUICtrlCreateLabel( GetTranslated(636,64, -1), $x+162, $y+1, 27, 15)
+	$lblPBTimeForcedExit1 = GUICtrlCreateLabel( GetTranslated(603,9, -1), $x+162, $y+1, 27, 15)
 	$x = 234
 	$y +=30
 	$chkTotalCampForced = GUICtrlCreateCheckbox(GetTranslated(636,46, "Force Total Army Camp")&":", $x-5, $y-5, -1, -1)

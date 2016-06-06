@@ -253,12 +253,12 @@ Func btnResetBuilding()
 			_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 600)
 			Local $stext = @CRLF & GetTranslated(640, 63, "Click OK to Delete and Reset all Building info,") & @CRLF & @CRLF & _
 					GetTranslated(640, 64, "NOTE =>> Bot will exit and need to be restarted when complete") & @CRLF & @CRLF & GetTranslated(640, 65, "Or Click Cancel to exit") & @CRLF
-			Local $MsgBox = _ExtMsgBox(0, GetTranslated(640, 66, "Delete And Exit|Cancel"), GetTranslated(640, 67, "Delete Building Infomation?"), $stext, 120, $frmBot)
+			Local $MsgBox = _ExtMsgBox(0, GetTranslated(640, 66, "Delete And Exit|Cancel"), GetTranslated(640, 67, "Delete Building Infomation ?"), $stext, 120, $frmBot)
 			If $DebugSetlog = 1 Then Setlog("$MsgBox= " & $MsgBox, $COLOR_PURPLE)
 			If $MsgBox = 1 Then
-				Local $stext = @CRLF & GetTranslated(640, 68, "Are you 100% sure you want to delete Building information?") & @CRLF & @CRLF & _
+				Local $stext = @CRLF & GetTranslated(640, 68, "Are you 100% sure you want to delete Building information ?") & @CRLF & @CRLF & _
 						GetTranslated(640, 69, "Click OK to Delete and then restart the bot (manually)") & @CRLF & @CRLF & GetTranslated(640, 65, "Or Click Cancel to exit") & @CRLF
-				Local $MsgBox = _ExtMsgBox(0, GetTranslated(640, 66, "Delete And Exit|Cancel"), GetTranslated(640, 67, "Delete Building Infomation?"), $stext, 120, $frmBot)
+				Local $MsgBox = _ExtMsgBox(0, GetTranslated(640, 66, "Delete And Exit|Cancel"), GetTranslated(640, 67, "Delete Building Infomation ?"), $stext, 120, $frmBot)
 				If $DebugSetlog = 1 Then Setlog("$MsgBox= " & $MsgBox, $COLOR_PURPLE)
 				If $MsgBox = 1 Then
 					Local $Result = FileDelete($building)

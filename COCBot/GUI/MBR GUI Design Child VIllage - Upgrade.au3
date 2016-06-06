@@ -29,40 +29,10 @@ Global $txtUpgrMinGold, $txtUpgrMinElixir, $lblNextUpgrade
 
 $sTxtNothing = GetTranslated(603,0, "None")
 
-$sTxtBarbarians = GetTranslated(604,1, "Barbarians")
-$sTxtArchers = GetTranslated(604,2, "Archers")
-$sTxtGiants = GetTranslated(604,3, "Giants")
-$sTxtGoblins = GetTranslated(604,4, "Goblins")
-$sTxtWallBreakers = GetTranslated(604,5, "Wall Breakers")
-; $sTxtWallBreakersShort = GetTranslated(604,6, "W.Breakers")
-
-$sTxtBalloons = GetTranslated(604,7, "Balloons")
-$sTxtWizards = GetTranslated(604,8, "Wizards")
-$sTxtHealers = GetTranslated(604,9, "Healers")
-$sTxtDragons = GetTranslated(604,10, "Dragons")
-$sTxtPekkas = GetTranslated(604,11, "Pekkas")
-; $sTxtPekkasLong = GetTranslated(604,12, "P.E.K.K.A.s")
-
-$sTxtMinions = GetTranslated(604,13, "Minions")
-$sTxtHogRiders = GetTranslated(604,14, "Hog Riders")
-$sTxtValkyries = GetTranslated(604,15, "Valkyries")
-$sTxtGolems = GetTranslated(604,16, "Golems")
-$sTxtWitches = GetTranslated(604,17, "Witches")
-$sTxtLavaHounds = GetTranslated(604,18, "Lava Hounds")
-$sTxtBowler = GetTranslated(604, 19, "Bowlers")
-
-$sTxtLiSpell = GetTranslated(605,1, "Lightning Spell")
-$sTxtHeSpell = GetTranslated(605,2, "Healing Spell")
-$sTxtRaSpell = GetTranslated(605,3, "Rage Spell")
-$sTxtJuSPell = GetTranslated(605,4, "Jump Spell")
-$sTxtFrSpell = GetTranslated(605,5, "Freeze Spell")
-$sTxtPoSpell = GetTranslated(605,6, "Poison Spell")
-$sTxtEaSpell = GetTranslated(605,7, "EarthQuake Spell")
-$sTxtHaSpell = GetTranslated(605,8, "Haste Spell")
-
-
-
-$sTxtNames = $sTxtNothing & "|" & $sTxtBarbarians & "|" & $sTxtArchers & "|" & $sTxtGiants & "|" & $sTxtGoblins & "|" & $sTxtWallBreakers & "|" & $sTxtBalloons & "|" & $sTxtWizards & "|" & $sTxtHealers & "|" & $sTxtDragons & "|" & $sTxtPekkas & "|" &  $sTxtLiSpell & "|" & $sTxtHeSpell & "|" & $sTxtRaSpell & "|" & $sTxtJuSPell & "|" & $sTxtFrSpell & "|" & $sTxtPoSpell & "|" & $sTxtEaSpell & "|" & $sTxtHaSpell & "|" & $sTxtMinions & "|" & $sTxtHogRiders & "|" & $sTxtValkyries & "|" & $sTxtGolems & "|" & $sTxtWitches & "|" & $sTxtLavaHounds & "|" & $sTxtBowler
+$sTxtNames = $sTxtNothing & "|" & $sTxtBarbarians & "|" & $sTxtArchers & "|" & $sTxtGiants & "|" & $sTxtGoblins & "|" & $sTxtWallBreakers & "|" & _
+	$sTxtBalloons & "|" & $sTxtWizards & "|" & $sTxtHealers & "|" & $sTxtDragons & "|" & $sTxtPekkas & "|" &  $sTxtBDragons & "|" &  $sTxtMiners & "|" & _
+	$sTxtLiSpell & "|" & $sTxtHeSpell & "|" & $sTxtRaSpell & "|" & $sTxtJuSPell & "|" & $sTxtFrSpell & "|" &  $sTxtClSpell& "|" & $sTxtPoSpell & "|" & _
+	$sTxtEaSpell & "|" & $sTxtHaSpell & "|" &  $sTxtSkSpell & "|" & $sTxtMinions & "|" & $sTxtHogRiders & "|" & $sTxtValkyries & "|" & $sTxtGolems & "|" & $sTxtWitches & "|" & $sTxtLavaHounds & "|" & $sTxtBowlers
 
 ;$sTxtUpgrade = GetTranslated(8,43, "Upgrade")
 $sTxtCheckBox = GetTranslated(616,27, "Check box to Enable Upgrade")
@@ -88,7 +58,8 @@ $sTxtChkRepeat = GetTranslated(616, 35, "Check box to Enable Upgrade to repeat c
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$cmbLaboratory = GUICtrlCreateCombo("", $x + 135, $y + 35, 140, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, $sTxtNames, GetTranslated(603,0, "None"))
-			$txtTip = GetTranslated(614,5, "Select the troop type to upgrade with this pull down menu") & @CRLF & GetTranslated(614,6, "The troop icon will appear on the left.") & @CRLF & GetTranslated(614,7, "Any Dark Spell/Troop have priority over Upg Heroes!")
+			$txtTip = GetTranslated(614,5, "Select the troop type to upgrade with this pull down menu") & @CRLF & _
+				GetTranslated(614,6, "The troop icon will appear on the right.") & @CRLF & GetTranslated(614,7, "Any Dark Spell/Troop have priority over Upg Heroes!")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 			GUICtrlSetOnEvent(-1, "cmbLab")

@@ -1,16 +1,30 @@
+* **V6.1.2**
+ * Add taiwan language translation by @flowclouds
+ * Add turkish language translation by @LadyBluee
+ * Improved donate castle clan dark spell
+ * Fixed open donate chat
+ * Improved recognitions troops & spells train & donate window
+ * Fix PushBullet "Delete all Msg now" button
+ * Fix and Update Laboratory Upgrade feature for new troops & spells (Missing new icons, to be added later)
+ * Add French language translation by @Boju (Missing some translate, to be added later)
+ * Fix Wrong donation first troop when troop to donate do not fit in castle
+ * Add button open strategy folder
+ * Add persian language translation by Raad and Ali Faraji
+
+
 * **V6.1.1**
  * Improve BlueStacks2 zoom-out over waters, replaced ADB script with AutoIt click&drag and ctrl mouse-click (same as BlueStacks now)
- * Fixed donated troops not re-trained right before attack
- * Fixed bot language setting when running with command line parameters
- * Add italian language translation by davideroma94
- * Fixed attack bar troops detection
- * Fixed donate castle clan troops
+ * Fix donated troops not re-trained right before attack
+ * Fix bot language setting when running with command line parameters
+ * Add italian language translation by @davideroma94 and @terzo33
+ * Fix attack bar troops detection
+ * Fix donate castle clan troops
 
  * **V6.1**
- * Fixed deadbase collectors default value first start
+ * Fix deadbase collectors default value first start
  * Improved rage spell train window
- * Fixed queen detection train window
- * Fixed language translation available (at this moment only german translate it is avaiable)
+ * Fix queen detection train window
+ * Fix language translation available (at this moment only german translate it is avaiable)
 
 * **V6.0**
  * New GUI interface, more user friendly

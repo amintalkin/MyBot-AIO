@@ -1770,7 +1770,11 @@ EndIf
 	Else
 		GUICtrlSetState($chkdebugTrain, $GUI_UNCHECKED)
 	EndIf
-
+	If $debugOCRdonate = 1 Then
+		GUICtrlSetState($chkdebugOCRDonate, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkdebugOCRDonate, $GUI_UNCHECKED)
+	EndIf
 
 	;forced Total Camp values
 	If $ichkTotalCampForced = 1 Then
@@ -1965,7 +1969,7 @@ EndIf
 		GUICtrlSetState($chkAtkDarkDrills, $GUI_UNCHECKED)
 	EndIf
 
-	_GUICtrlComboBox_SetCurSel($cmbAtkDarkDrillsLevel, $MilkFarmAttackDarkDrills - 1)
+	_GUICtrlComboBox_SetCurSel($cmbAtkDarkDrillsLevel, $MilkFarmDrillParam - 1)
 
 	;3 Only attack If
 	_GUICtrlComboBox_SetCurSel($cmbRedlineResDistance, $MilkFarmResMaxTilesFromBorder)
@@ -2076,15 +2080,15 @@ EndIf
 	EndIf
 
 	If $MilkingAttackCheckStructureDestroyedBeforeAttack = 1 Then
-		_GUICtrlComboBox_SetCurSel($chkStructureDestroyedBeforeAttack,1)
+		GUICtrlSetState($chkStructureDestroyedBeforeAttack,$GUI_CHECKED)
 	Else
-		_GUICtrlComboBox_SetCurSel($chkStructureDestroyedBeforeAttack,0)
+		GUICtrlSetState($chkStructureDestroyedBeforeAttack, $GUI_UNCHECKED)
 	EndIf
 
 	If $MilkingAttackCheckStructureDestroyedAfterAttack = 1 Then
-		_GUICtrlComboBox_SetCurSel($chkStructureDestroyedAfterAttack,1)
+		GUICtrlSetState($chkStructureDestroyedAfterAttack,$GUI_CHECKED)
 	Else
-		_GUICtrlComboBox_SetCurSel($chkStructureDestroyedAfterAttack,0)
+		GUICtrlSetState($chkStructureDestroyedAfterAttack,$GUI_UNCHECKED)
 	EndIf
 
 	If $MilkingAttackDropGoblinAlgorithm = 1 Then
@@ -2380,5 +2384,64 @@ _GUICtrlComboBox_SetCurSel($cmbTHSnipeBeforeLBScript, _GUICtrlComboBox_FindStrin
    EndIf 
    
    
+
+	; Close When Training Settings
+	If $ichkCloseTraining = 1 Then
+		GUICtrlSetState($chkUseTrainingClose, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkUseTrainingClose, $GUI_UNCHECKED)
+	EndIf
+	chkUseTrainingClose()
+	GUICtrlSetData($sldExtraTimeMin, $minTrainAddition)
+	GUICtrlSetData($sldExtraTimeMax, $maxTrainAddition)
+	sldExtraTimeMin()
+	sldExtraTimeMax()
+
+	If $LeaveCoCOpen = 1 Then
+		GUICtrlSetState($radLeaveCoCOpen, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($radLeaveCoCOpen, $GUI_UNCHECKED)
+	EndIf
+
+	If $CloseCoCGame = 1 Then
+		GUICtrlSetState($radCloseCoCGame, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($radCloseCoCGame, $GUI_UNCHECKED)
+	EndIf
+
+	If $RandomCoCOpen = 1 Then
+		GUICtrlSetState($radRandomCoCOpen, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($radRandomCoCOpen, $GUI_UNCHECKED)
+	EndIf
+
+	If $RandomCloseTraining = 1 Then
+		GUICtrlSetState($chkRandomStayORClose, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkRandomStayORClose, $GUI_UNCHECKED)
+	EndIf
+
+	; Daily Settings
+	If $ichkLimitAttacks = 1 Then
+		GUICtrlSetState($chkUseAttackLimit, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkUseAttackLimit, $GUI_UNCHECKED)
+	EndIf
+	chkUseAttackLimit()
+	GUICtrlSetData($sldAttacksMin, $rangeAttacksStart)
+	GUICtrlSetData($sldAttacksMax, $rangeAttacksEnd)
+	sldAttacksMin()
+	sldAttacksMax()
+
+	; Simulate Sleep Settings
+	If $ichkCloseNight = 1 Then
+		GUICtrlSetState($chkUseSleep, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkUseSleep, $GUI_UNCHECKED)
+	EndIf
+	chkUseSleep()
+	_GUICtrlComboBox_SetCurSel($cmbStartSleep, $sleepStart)
+	_GUICtrlComboBox_SetCurSel($cmbEndSleep, $sleepEnd)
+	calculateSleepTime($sleepStart, $sleepEnd)
 
 EndFunc   ;==>applyConfig
