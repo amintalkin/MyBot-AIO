@@ -48,7 +48,7 @@ EndIf
 #include "COCBot\functions\Config\ScreenCoordinates.au3"
 
 $sBotVersion = "v6.1.2.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
-$sBotTitle = "Merged My Bot " & $sBotVersion & " All In One v2.0.2 " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
+$sBotTitle = "Merged My Bot " & $sBotVersion & " All In One v2.0.3 " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
 
 Opt("WinTitleMatchMode", 3) ; Window Title exact match mode
 #include "COCBot\functions\Android\Android.au3"
@@ -243,6 +243,8 @@ EndIf
 			If $RequestScreenshot = 1 Then PushMsg("RequestScreenshot")
 			If _Sleep($iDelayRunBot3) Then Return
 			VillageReport()
+			ProfileSwitch() ; Added for Switch profile
+			clanHop()  		    			; Added for Clan Hop mod
 			If $OutOfGold = 1 And (Number($iGoldCurrent) >= Number($itxtRestartGold)) Then ; check if enough gold to begin searching again
 				$OutOfGold = 0 ; reset out of gold flag
 				Setlog("Switching back to normal after no gold to search ...", $COLOR_RED)

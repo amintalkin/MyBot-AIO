@@ -26,7 +26,8 @@ $hGUI_BOT = GUICreate("", $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, $_GUI_
 
 #include "MBR GUI Design Child Bot - Options.au3"
 #include "MBR GUI Design Child Bot - Debug.au3"
-#include "MBR GUI Design Child Bot - Profiles.au3"
+;#include "MBR GUI Design Child Bot - Profiles.au3"
+#include "MBR GUI Design Tab Profiles.au3"
 #include "MBR GUI Design Child Bot - Stats.au3"
 
 GUISwitch($hGUI_BOT)
