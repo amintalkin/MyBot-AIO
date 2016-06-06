@@ -65,9 +65,10 @@ Local $x = 25, $y = 45
 	$y += 20
 	$x += 20
 		$chkDBKingWait = GUICtrlCreateCheckbox("", $x, $y + 55, 16, 16)
-			$txtTip = GetTranslated(625,10, "Wait for King to be ready before attacking...") & @CRLF & GetTranslated(625,50, "Wait for Hero option disabled when continuous Upgrade Hero selected!")
+			Local $sTxtKingWait = GetTranslated(625,50, "Wait for Hero option disabled when continuous Upgrade Hero selected!")
+			$txtTip = GetTranslated(625,10, "Wait for King to be ready before attacking...") & @CRLF & $sTxtKingWait & @CRLF & GetTranslated(625,51, "Enabled with TownHall 7 and higher")
 			GUICtrlSetTip(-1, $txtTip)
-			GUICtrlSetOnEvent(-1, "chkDBHeroWait")
+			GUICtrlSetOnEvent(-1, "chkDBKingWait")
 		$IMGchkDBKingWait=GUICtrlCreateIcon($pIconLib, $eIcnKing, $x - 18, $y + 4, 48, 48)
 			GUICtrlSetTip(-1, $txtTip)
 		$IMGchkDBKingSleepWait=GUICtrlCreateIcon($pIconLib, $eIcnSleepingKing, $x - 18, $y + 4, 48, 48)
@@ -75,9 +76,9 @@ Local $x = 25, $y = 45
 			GUICtrlSetState(-1,$GUI_HIDE)
 	$x += 55
 		$chkDBQueenWait = GUICtrlCreateCheckbox("", $x, $y + 55, 16, 16)
-			$txtTip = GetTranslated(625,12, "Wait for Queen to be ready before attacking...") & @CRLF & GetTranslated(625,50, -1)
+			$txtTip = GetTranslated(625,12, "Wait for Queen to be ready before attacking...") & @CRLF & $sTxtKingWait & @CRLF & GetTranslated(625,52, "Enabled with TownHall 9 and higher")
 			GUICtrlSetTip(-1, $txtTip)
- 			GUICtrlSetOnEvent(-1, "chkDBHeroWait")
+ 			GUICtrlSetOnEvent(-1, "chkDBQueenWait")
 		$IMGchkDBQueenWait=GUICtrlCreateIcon($pIconLib, $eIcnQueen, $x - 18, $y + 4, 48, 48)
 			GUICtrlSetTip(-1, $txtTip)
 		$IMGchkDBQueenSleepWait=GUICtrlCreateIcon($pIconLib, $eIcnSleepingQueen, $x - 18, $y + 4, 48, 48)
@@ -85,9 +86,9 @@ Local $x = 25, $y = 45
 			GUICtrlSetState(-1,$GUI_HIDE)
 	$x += 55
 		$chkDBWardenWait = GUICtrlCreateCheckbox("", $x, $y + 55, 16, 16)
- 			$txtTip = GetTranslated(625,13, "Wait for Warden to be ready before attacking...") & @CRLF & GetTranslated(625,50, -1)
+ 			$txtTip = GetTranslated(625,13, "Wait for Warden to be ready before attacking...") & @CRLF & $sTxtKingWait & @CRLF & GetTranslated(625,53, "Enabled with TownHall 11")
  			GUICtrlSetTip(-1, $txtTip)
- 			GUICtrlSetOnEvent(-1, "chkDBHeroWait")
+ 			GUICtrlSetOnEvent(-1, "chkDBWardenWait")
 		$IMGchkDBWardenWait=GUICtrlCreateIcon($pIconLib, $eIcnWarden, $x - 18, $y + 4, 48, 48)
  			GUICtrlSetTip(-1, $txtTip)
 		$IMGchkDBWardenSleepWait=GUICtrlCreateIcon($pIconLib, $eIcnSleepingWarden, $x - 18, $y + 4, 48, 48)

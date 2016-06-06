@@ -65,9 +65,9 @@ Local $x = 25, $y = 45
 	$y += 20
 	$x += 20
 		$chkABKingWait = GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
- 			$txtTip = GetTranslated(625,10, -1) & @CRLF & GetTranslated(625,11, -1)
+ 			$txtTip = GetTranslated(625,10, -1) & @CRLF & GetTranslated(625, 50, -1) & @CRLF & GetTranslated(625, 51, -1)
  			GUICtrlSetTip(-1, $txtTip)
- 			GUICtrlSetOnEvent(-1, "chkABHeroWait")
+ 			GUICtrlSetOnEvent(-1, "chkABKingWait")
 		$IMGchkABKingWait=GUICtrlCreateIcon($pIconLib, $eIcnKing, $x - 18, $y + 4, 48, 48)
  			GUICtrlSetTip(-1, $txtTip)
 		$IMGchkABKingSleepWait=GUICtrlCreateIcon($pIconLib, $eIcnSleepingKing, $x - 18, $y + 4, 48, 48)
@@ -75,9 +75,9 @@ Local $x = 25, $y = 45
 			GUICtrlSetState(-1,$GUI_HIDE)
 	$x += 55
 		$chkABQueenWait = GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
- 			$txtTip = GetTranslated(625,12, -1) & @CRLF & GetTranslated(625,11, -1)
+ 			$txtTip = GetTranslated(625,12, -1) & @CRLF & GetTranslated(625, 50, -1) & @CRLF & GetTranslated(625, 52, -1)
  			GUICtrlSetTip(-1, $txtTip)
- 			GUICtrlSetOnEvent(-1, "chkABHeroWait")
+ 			GUICtrlSetOnEvent(-1, "chkABQueenWait")
  		$IMGchkABQueenWait=GUICtrlCreateIcon($pIconLib, $eIcnQueen, $x - 18, $y + 4, 48, 48)
  			GUICtrlSetTip(-1, $txtTip)
 		$IMGchkABQueenSleepWait=GUICtrlCreateIcon($pIconLib, $eIcnSleepingQueen, $x - 18, $y + 4, 48, 48)
@@ -85,9 +85,9 @@ Local $x = 25, $y = 45
 			GUICtrlSetState(-1,$GUI_HIDE)
 	$x += 55
  		$chkABWardenWait = GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
- 			$txtTip = GetTranslated(625,13, -1) & @CRLF & GetTranslated(625,11, -1)
+ 			$txtTip = GetTranslated(625,13, -1) & @CRLF & GetTranslated(625, 50, -1) & @CRLF & GetTranslated(625, 53, -1)
  			GUICtrlSetTip(-1, $txtTip)
- 			GUICtrlSetOnEvent(-1, "chkABHeroWait")
+ 			GUICtrlSetOnEvent(-1, "chkABWardenWait")
  		$IMGchkABWardenWait=GUICtrlCreateIcon($pIconLib, $eIcnWarden, $x - 18, $y + 4, 48, 48)
  			GUICtrlSetTip(-1, $txtTip)
 		$IMGchkABWardenSleepWait=GUICtrlCreateIcon($pIconLib, $eIcnSleepingWarden, $x - 18, $y + 4, 48, 48)

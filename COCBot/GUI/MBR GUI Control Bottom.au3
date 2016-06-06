@@ -674,7 +674,8 @@ Func ButtonBoost()
 	SETLOG("MBRSearchImage TEST..................STOP")
 	$RunState = False
 
-EndFunc   ;==>ButtonBoost
+EndFunc
+
 
 Func arrows()
 	getArmyHeroCount()

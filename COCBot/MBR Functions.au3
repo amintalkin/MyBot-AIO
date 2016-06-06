@@ -133,7 +133,7 @@
 #include "functions\Main Screen\RemoveGhostTrayIcons.au3"
 #include "functions\Main Screen\waitMainScreen.au3"
 
-; Android support for MEmu, Droid4X, BlueStacks...
+; Android support for MEmu, Droid4X, Nox, BlueStacks...
 #include "functions\Android\AndroidMenuShortcuts.au3"
 #include "functions\Android\Close_OpenCoC.au3"
 #include "functions\Android\ZoomOut.au3"
@@ -144,6 +144,7 @@
 #include "functions\Android\CloseDroid4X.au3"
 #include "functions\Android\AndroidMEmu.au3"
 #include "functions\Android\AndroidNox.au3"
+#include "functions\Android\getBSPos.au3"
 
 #include "functions\Other\_NumberFormat.au3"
 #include "functions\Other\_PadStringCenter.au3"
@@ -161,7 +162,6 @@
 #include "functions\Other\DebugSaveDesktopImage.au3"
 #include "functions\Other\ExtendedErrorInfo.au3"
 #include "functions\Other\FindPos.au3"
-#include "functions\Other\getBSPos.au3"
 #include "functions\Other\ExtMsgBox.au3"
 #include "functions\Other\StringSize.au3"
 #include "functions\Other\SetLog.au3"

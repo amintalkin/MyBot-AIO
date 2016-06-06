@@ -300,6 +300,7 @@ Func SetRedrawBotWindow($bEnableRedraw, $bCheckRedrawBotWindow = True, $bForceRe
 	Return $bWasRedraw
 EndFunc   ;==>SetRedrawBotWindow
 
+
 Func SetRedrawBotWindowControls($bEnableRedraw, $RedrawControlIDs)
 	Return SetRedrawBotWindow($bEnableRedraw, True, False, $RedrawControlIDs)
 EndFunc   ;==>SetRedrawBotWindowControls

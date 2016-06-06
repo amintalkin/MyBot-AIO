@@ -151,82 +151,90 @@ Func ResetLabUpgradeTime()
 EndFunc   ;==>ResetLabUpgradeTime
 
 Func chkUpgradeKing()
-
-	If GUICtrlRead($chkUpgradeKing) = $GUI_CHECKED Then
-		$ichkUpgradeKing = 1
-		GUICtrlSetState($chkDBKingWait, $GUI_UNCHECKED)
-		GUICtrlSetState($chkABKingWait, $GUI_UNCHECKED)
-		GUICtrlSetState($chkDBKingWait, $GUI_DISABLE)
-		GUICtrlSetState($chkABKingWait, $GUI_DISABLE)
-		_GUI_Value_STATE("SHOW", $groupKingSleeping)
-	Else
-		$ichkUpgradeKing = 0
-		GUICtrlSetState($chkDBKingWait, $GUI_ENABLE)
-		GUICtrlSetState($chkABKingWait, $GUI_ENABLE)
-		_GUI_Value_STATE("HIDE", $groupKingSleeping)
-	EndIf
-
-	If GUICtrlRead($cmbBoostBarbarianKing) > 0 Then
-		GUICtrlSetState($chkUpgradeKing, $GUI_DISABLE)
-		GUICtrlSetState($chkUpgradeKing, $GUI_UNCHECKED)
-		$ichkUpgradeKing = 0
-	Else
+	If $iTownHallLevel > 6 Or $iTownHallLevel = 0 Then ; Must be TH7 or above to have King
 		GUICtrlSetState($chkUpgradeKing, $GUI_ENABLE)
-	EndIf
+		If GUICtrlRead($chkUpgradeKing) = $GUI_CHECKED Then
+			$ichkUpgradeKing = 1
+			GUICtrlSetState($chkDBKingWait, $GUI_UNCHECKED)
+			GUICtrlSetState($chkABKingWait, $GUI_UNCHECKED)
+			GUICtrlSetState($chkDBKingWait, $GUI_DISABLE)
+			GUICtrlSetState($chkABKingWait, $GUI_DISABLE)
+			_GUI_Value_STATE("SHOW", $groupKingSleeping)
+		Else
+			$ichkUpgradeKing = 0
+			GUICtrlSetState($chkDBKingWait, $GUI_ENABLE)
+			GUICtrlSetState($chkABKingWait, $GUI_ENABLE)
+			_GUI_Value_STATE("HIDE", $groupKingSleeping)
+		EndIf
 
+		If GUICtrlRead($cmbBoostBarbarianKing) > 0 Then
+			GUICtrlSetState($chkUpgradeKing, $GUI_DISABLE)
+			GUICtrlSetState($chkUpgradeKing, $GUI_UNCHECKED)
+			$ichkUpgradeKing = 0
+		Else
+			GUICtrlSetState($chkUpgradeKing, $GUI_ENABLE)
+		EndIf
+	Else
+		GUICtrlSetState($chkUpgradeKing, BitOR($GUI_DISABLE, $GUI_UNCHECKED))
+	EndIf
 EndFunc   ;==>chkUpgradeKing
 
 Func chkUpgradeQueen()
-
-	If GUICtrlRead($chkUpgradeQueen) = $GUI_CHECKED Then
-		$ichkUpgradeQueen = 1
-		GUICtrlSetState($chkDBQueenWait, $GUI_UNCHECKED)
-		GUICtrlSetState($chkABQueenWait, $GUI_UNCHECKED)
-		GUICtrlSetState($chkDBQueenWait, $GUI_DISABLE)
-		GUICtrlSetState($chkABQueenWait, $GUI_DISABLE)
-		_GUI_Value_STATE("SHOW", $groupQueenSleeping)
-	Else
-		$ichkUpgradeQueen = 0
-		GUICtrlSetState($chkDBQueenWait, $GUI_ENABLE)
-		GUICtrlSetState($chkABQueenWait, $GUI_ENABLE)
-		_GUI_Value_STATE("HIDE", $groupQueenSleeping)
-	EndIf
-
-	If GUICtrlRead($cmbBoostArcherQueen) > 0 Then
-		GUICtrlSetState($chkUpgradeQueen, $GUI_DISABLE)
-		GUICtrlSetState($chkUpgradeQueen, $GUI_UNCHECKED)
-		$ichkUpgradeQueen = 0
-	Else
+	If $iTownHallLevel > 8 Or $iTownHallLevel = 0 Then ; Must be TH9 or above to have Queen
 		GUICtrlSetState($chkUpgradeQueen, $GUI_ENABLE)
-	EndIf
+		If GUICtrlRead($chkUpgradeQueen) = $GUI_CHECKED Then
+			$ichkUpgradeQueen = 1
+			GUICtrlSetState($chkDBQueenWait, $GUI_UNCHECKED)
+			GUICtrlSetState($chkABQueenWait, $GUI_UNCHECKED)
+			GUICtrlSetState($chkDBQueenWait, $GUI_DISABLE)
+			GUICtrlSetState($chkABQueenWait, $GUI_DISABLE)
+			_GUI_Value_STATE("SHOW", $groupQueenSleeping)
+		Else
+			$ichkUpgradeQueen = 0
+			GUICtrlSetState($chkDBQueenWait, $GUI_ENABLE)
+			GUICtrlSetState($chkABQueenWait, $GUI_ENABLE)
+			_GUI_Value_STATE("HIDE", $groupQueenSleeping)
+		EndIf
 
+		If GUICtrlRead($cmbBoostArcherQueen) > 0 Then
+			GUICtrlSetState($chkUpgradeQueen, $GUI_DISABLE)
+			GUICtrlSetState($chkUpgradeQueen, $GUI_UNCHECKED)
+			$ichkUpgradeQueen = 0
+		Else
+			GUICtrlSetState($chkUpgradeQueen, $GUI_ENABLE)
+		EndIf
+	Else
+		GUICtrlSetState($chkUpgradeQueen, BitOR($GUI_DISABLE, $GUI_UNCHECKED))
+	EndIf
 EndFunc   ;==>chkUpgradeQueen
 
 Func chkUpgradeWarden()
-
-	If GUICtrlRead($chkUpgradeWarden) = $GUI_CHECKED Then
-		$ichkUpgradeWarden = 1
-		GUICtrlSetState($chkDBWardenWait, $GUI_UNCHECKED)
-		GUICtrlSetState($chkABWardenWait, $GUI_UNCHECKED)
-		GUICtrlSetState($chkDBWardenWait, $GUI_DISABLE)
-		GUICtrlSetState($chkABWardenWait, $GUI_DISABLE)
-		_GUI_Value_STATE("SHOW", $groupWardenSleeping)
-	Else
-		$ichkUpgradeWarden = 0
-		GUICtrlSetState($chkDBWardenWait, $GUI_ENABLE)
-		GUICtrlSetState($chkABWardenWait, $GUI_ENABLE)
-		_GUI_Value_STATE("HIDE", $groupWardenSleeping)
-	EndIf
-
-	If GUICtrlRead($cmbBoostWarden) > 0 Then
-		GUICtrlSetState($chkUpgradeWarden, $GUI_DISABLE)
-		GUICtrlSetState($chkUpgradeWarden, $GUI_UNCHECKED)
-		$ichkUpgradeWarden = 0
-	Else
+	If $iTownHallLevel > 10 Or $iTownHallLevel = 0 Then ; Must be TH11 to have warden
 		GUICtrlSetState($chkUpgradeWarden, $GUI_ENABLE)
-	EndIf
+		If GUICtrlRead($chkUpgradeWarden) = $GUI_CHECKED Then
+			$ichkUpgradeWarden = 1
+			GUICtrlSetState($chkDBWardenWait, $GUI_UNCHECKED)
+			GUICtrlSetState($chkABWardenWait, $GUI_UNCHECKED)
+			GUICtrlSetState($chkDBWardenWait, $GUI_DISABLE)
+			GUICtrlSetState($chkABWardenWait, $GUI_DISABLE)
+			_GUI_Value_STATE("SHOW", $groupWardenSleeping)
+		Else
+			$ichkUpgradeWarden = 0
+			GUICtrlSetState($chkDBWardenWait, $GUI_ENABLE)
+			GUICtrlSetState($chkABWardenWait, $GUI_ENABLE)
+			_GUI_Value_STATE("HIDE", $groupWardenSleeping)
+		EndIf
 
-	IniWrite($config, "upgrade", "UpgradeWarden", $ichkUpgradeWarden)
+		If GUICtrlRead($cmbBoostWarden) > 0 Then
+			GUICtrlSetState($chkUpgradeWarden, $GUI_DISABLE)
+			GUICtrlSetState($chkUpgradeWarden, $GUI_UNCHECKED)
+			$ichkUpgradeWarden = 0
+		Else
+			GUICtrlSetState($chkUpgradeWarden, $GUI_ENABLE)
+		EndIf
+	Else
+		GUICtrlSetState($chkUpgradeWarden, BitOR($GUI_DISABLE, $GUI_UNCHECKED))
+	EndIf
 EndFunc   ;==>chkUpgradeWarden
 
 Func chkWalls()

@@ -256,9 +256,11 @@ Func btnTestTrain()
 		$RunState = 1
  		ForceCaptureRegion()
 		DebugImageSave("train_")
+		SetLog(_PadStringCenter(" Test Train begin ", 54, "="), $COLOR_BLUE)
 		getArmyTroopCount(false,false,true)
 		getArmySpellCount(false,false,true)
 		getArmyHeroCount(false,false)
+		SetLog(_PadStringCenter(" Test Train end ", 54, "="), $COLOR_BLUE)
 		$debugOcr = $currentOCR
 		$RunState = $currentRunState
 EndFunc
@@ -268,30 +270,65 @@ EndFunc
 Func btnTestDonateCC()
 		Local $currentOCR = $debugOcr
 		Local $currentRunState = $RunState
+		Local $currentSetlog = $debugsetlog
 		$debugOcr = 1
 		$RunState = 1
+		$debugsetlog = 1
  		ForceCaptureRegion()
 		DebugImageSave("donateCC_")
-		$DonationWindowY = 0
 
+		SetLog(_PadStringCenter(" Test DonateCC begin ", 54, "="), $COLOR_BLUE)
+		$DonationWindowY = 0
 		Local $aDonWinOffColors[2][3] = [[0xFFFFFF, 0, 2], [0xc7c5bc, 0, 209]]
 		Local $aDonationWindow = _MultiPixelSearch(409, 0, 410, $DEFAULT_HEIGHT, 1, 1, Hex(0xFFFFFF, 6), $aDonWinOffColors, 10)
 
 		If IsArray($aDonationWindow) Then
 			$DonationWindowY = $aDonationWindow[1]
 			If _Sleep(250) Then Return
-			If $debugSetlog = 1 Then Setlog("$DonationWindowY: " & $DonationWindowY, $COLOR_PURPLE)
+			Setlog("$DonationWindowY: " & $DonationWindowY, $COLOR_PURPLE)
 		Else
 			SetLog("Could not find the Donate Window :(", $COLOR_RED)
 			Return False
 		EndIf
 		DetectSlotTroop($eLava)
 		DetectSlotTroop($eHaSpell)
-		getArmyTroopCount(false,false,true)
-		getArmySpellCount(false,false,true)
-		getArmyHeroCount(false,false)
+		SetLog(_PadStringCenter(" Test DonateCC end ", 54, "="), $COLOR_BLUE)
+
 		$debugOcr = $currentOCR
 		$RunState = $currentRunState
-
+		$debugsetlog = $currentSetlog
 EndFunc
+
+Func btnTestAtttackBar()
+		Local $currentOCR = $debugOcr
+		Local $currentRunState = $RunState
+
+		$debugOcr = 1
+		$RunState = 1
+ 		ForceCaptureRegion()
+		DebugImageSave("AttackBar_")
+		SetLog(_PadStringCenter(" Test Attack Bar begin ", 54, "="), $COLOR_BLUE)
+
+		$DonationWindowY = 0
+
+		_CaptureRegion2(0, 571 + $bottomOffsetY, 859, 671 + $bottomOffsetY)
+		Local $result = DllCall($hFuncLib, "str", "searchIdentifyTroop", "ptr", $hHBitmap2)
+		Setlog("DLL Troopsbar list: " & $result[0], $COLOR_PURPLE)
+		Local $aTroopDataList = StringSplit($result[0], "|")
+ 		Local $aTemp[12][3]
+ 		If $result[0] <> "" Then
+ 			For $i = 1 To $aTroopDataList[0]
+ 				Local $troopData = StringSplit($aTroopDataList[$i], "#", $STR_NOCOUNT)
+;~ 				$aTemp[Number($troopData[1])][0] = $troopData[0]
+;~ 				$aTemp[Number($troopData[1])][1] = Number($troopData[2])
+;~ 				Setlog("-" & NameOfTroop( $aTemp[$i][0]) & " pos  " & $aTemp[$i][0] & " qty " & $aTemp[$i][2])
+				Setlog("position: " & $troopData[1] & " | troop code: " & $troopData[0] & " troop name:" & NameOfTroop($troopData[0]) & " | qty: " & $troopData[2])
+ 			Next
+ 		EndIf
+		SetLog(_PadStringCenter(" Test Attack Bar end ", 54, "="), $COLOR_BLUE)
+
+		$debugOcr = $currentOCR
+		$RunState = $currentRunState
+EndFunc
+
 

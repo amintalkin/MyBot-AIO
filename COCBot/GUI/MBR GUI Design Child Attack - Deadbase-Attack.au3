@@ -31,20 +31,20 @@ Local $x = 25, $y = 40
 		$y += 25
 		$lblDBSelectSpecialTroop=GUICtrlCreateLabel(GetTranslated(624,19,"Special troops to use") & ":",$x, $y, 135, 18, $SS_LEFT)
 		$y += 18
-	    $IMGchkDBKingAttack=GUICtrlCreateIcon($pIconLib, $eIcnKing, $x , $y, 24, 24)
-			$txtTip = GetTranslated(624,20, "Use your King when Attacking...")
+		$IMGchkDBKingAttack=GUICtrlCreateIcon($pIconLib, $eIcnKing, $x , $y, 24, 24)
+			$txtTip = GetTranslated(624,20, "Use your King when Attacking...") & @CRLF & GetTranslated(624,41, "Enabled with TownHall 7 and higher")
 			GUICtrlSetTip(-1, $txtTip)
 		$chkDBKingAttack = GUICtrlCreateCheckbox("", $x + 27, $y, 17, 17)
 			GUICtrlSetTip(-1, $txtTip)
 		$x += 46
 		$IMGchkDBQueenAttack=GUICtrlCreateIcon($pIconLib, $eIcnQueen, $x, $y, 24, 24)
-			$txtTip = GetTranslated(624,21, "Use your Queen when Attacking...")
+			$txtTip = GetTranslated(624,21, "Use your Queen when Attacking...")& @CRLF & GetTranslated(624,42, "Enabled with TownHall 9 and higher")
 			GUICtrlSetTip(-1, $txtTip)
 		$chkDBQueenAttack = GUICtrlCreateCheckbox("", $x + 27, $y, 17, 17)
 			GUICtrlSetTip(-1, $txtTip)
 		$x +=46
 		$IMGchkDBWardenAttack=GUICtrlCreateIcon($pIconLib, $eIcnWarden, $x, $y, 24, 24)
-			$txtTip = GetTranslated(624,22, "Use your Warden when Attacking...")
+			$txtTip = GetTranslated(624,22, "Use your Warden when Attacking...") & @CRLF & GetTranslated(624,43, "Enabled with Townhall 11")
 			GUICtrlSetTip(-1, $txtTip)
 		$chkDBWardenAttack = GUICtrlCreateCheckbox("", $x + 27, $y, 17, 17)
 			GUICtrlSetTip(-1, $txtTip)

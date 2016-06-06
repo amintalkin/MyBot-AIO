@@ -1,4 +1,18 @@
-﻿* **V6.0**
+* **V6.1.1**
+ * Improve BlueStacks2 zoom-out over waters, replaced ADB script with AutoIt click&drag and ctrl mouse-click (same as BlueStacks now)
+ * Fixed donated troops not re-trained right before attack
+ * Fixed bot language setting when running with command line parameters
+ * Add italian language translation by davideroma94
+ * Fixed attack bar troops detection
+ * Fixed donate castle clan troops
+
+ * **V6.1**
+ * Fixed deadbase collectors default value first start
+ * Improved rage spell train window
+ * Fixed queen detection train window
+ * Fixed language translation available (at this moment only german translate it is avaiable)
+
+* **V6.0**
  * New GUI interface, more user friendly
  * Updated elixir troop training barracks positions for May 2016 update
  * Updated donation for May 2016 update
@@ -36,6 +50,8 @@
  * Add attack scheduler (hours of day AND days of week)
  * Add seperate option to remove gem box
  * Updated OCR spell detection in train window
+ * Fix Queen hero recognition
+ * Improved rage spell detection train window
 
 * **V5.3.3** (Never released)
  * Fix ADB Path problem killing all processes when empty String
@@ -53,6 +69,7 @@
  * Improve healing spell detection during training
 
 * **V5.3.2**
+>>>>>>> release/MBR_v.6.1
  * Updated Italian language file (from @davideroma)
  * Improve Troops&Spells Detection army overview
  * Fix Hero Status detection

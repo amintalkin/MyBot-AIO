@@ -1399,7 +1399,7 @@ EndFunc
 ; Returns True if KeepClicks is active or for $Really = False KeepClicks() was called even though not enabled (poor mans deploy troops detection)
 Func IsKeepClicksActive($Really = True)
    If $Really = True Then
-	  Return $AndroidAdbClick = True And $AndroidAdbClicks = True And $AndroidAdbClicks[0] > -1
+	  Return $AndroidAdbClick = True And $AndroidAdbClicksEnabled = True And $AndroidAdbClicks[0] > -1
    EndIf
    Return $AndroidAdbKeepClicksActive
 EndFunc

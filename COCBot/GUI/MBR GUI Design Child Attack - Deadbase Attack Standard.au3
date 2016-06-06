@@ -56,7 +56,7 @@ Local $x = 25, $y = 20
 			$txtTip = GetTranslated(608,20, "Select the Deploy Mode for the waves of Troops.") & @CRLF & GetTranslated(608,21, "Type 1: Drop a single wave of troops on each side then switch troops, OR") & @CRLF & GetTranslated(608,22, "Type 2: Drop a full wave of all troops (e.g. giants, barbs and archers) on each side then switch sides.")
 			GUICtrlSetTip(-1, $txtTip)
 		$cmbSmartDeployDB = GUICtrlCreateCombo("", $x + 55, $y, 120, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			GUICtrlSetData(-1, GetTranslated(608,23, "Sides, then Troops") & "|" & GetTranslated(608,24, "Troops, then Sides") , GetTranslated(608,25, "Sides, then Troops"))
+			GUICtrlSetData(-1, GetTranslated(608,23, "Sides, then Troops") & "|" & GetTranslated(608,24, "Troops, then Sides") , GetTranslated(608,23, -1))
 			GUICtrlSetTip(-1, $txtTip)
 		$y += 26
 		$chkAttackNearGoldMineDB = GUICtrlCreateCheckbox("", $x + 20, $y, 17, 17)
