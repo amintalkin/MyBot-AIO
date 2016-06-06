@@ -235,6 +235,7 @@ Global $sProfilePath = @ScriptDir & "\Profiles"
 ;Global $sTemplates = @ScriptDir & "\Templates"
 Global $sPreset = @ScriptDir & "\Strategies"
 Global $aTxtLogInitText[0][6] = [[]]
+Global $profileString
 
 Global $iMoveMouseOutBS = 0 ; If enabled moves mouse out of Android window when bot is running
 Global $SilentSetLog = False ; No logs to Log Control when enabled
@@ -1451,3 +1452,12 @@ Global $nextSleepStart = -999, $nextSleepEnd = -999
 Global $ichkLimitAttacks = 1
 Global $rangeAttacksStart = 20, $rangeAttacksEnd = 25
 Global $dailyAttacks = 0, $dailyAttackLimit = 0
+
+; Clan Hop Setting
+Global $ichkClanHop
+
+;Profile Switch
+Global $ichkGoldSwitchMax, $itxtMaxGoldAmount, $icmbGoldMaxProfile, $ichkGoldSwitchMin, $itxtMinGoldAmount, $icmbGoldMinProfile
+Global $ichkElixirSwitchMax, $itxtMaxElixirAmount, $icmbElixirMaxProfile, $ichkElixirSwitchMin, $itxtMinElixirAmount, $icmbElixirMinProfile
+Global $ichkDESwitchMax, $itxtMaxDEAmount, $icmbDEMaxProfile, $ichkDESwitchMin, $itxtMinDEAmount, $icmbDEMinProfile
+Global $ichkTrophySwitchMax, $itxtMaxTrophyAmount, $icmbTrophyMaxProfile, $ichkTrophySwitchMin, $itxtMinTrophyAmount, $icmbTrophyMinProfile

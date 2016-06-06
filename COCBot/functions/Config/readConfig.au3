@@ -1048,6 +1048,39 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 	Else
 		Return False
 	EndIf
+	
+	; Clan Hop Setting
+	$ichkClanHop = IniRead($config, "Others", "ClanHop", "0")
+
+	;Profile Switch
+	$ichkGoldSwitchMax = IniRead($config, "profiles", "chkGoldSwitchMax", "0")
+	$icmbGoldMaxProfile = IniRead($config, "profiles", "cmbGoldMaxProfile", "0")
+	$itxtMaxGoldAmount = IniRead($config, "profiles", "txtMaxGoldAmount", "6000000")
+	$ichkGoldSwitchMin = IniRead($config, "profiles", "chkGoldSwitchMin", "0")
+	$icmbGoldMinProfile = IniRead($config, "profiles", "cmbGoldMinProfile", "0")
+	$itxtMinGoldAmount = IniRead($config, "profiles", "txtMinGoldAmount", "500000")
+
+	$ichkElixirSwitchMax = IniRead($config, "profiles", "chkElixirSwitchMax", "0")
+	$icmbElixirMaxProfile = IniRead($config, "profiles", "cmbElixirMaxProfile", "0")
+	$itxtMaxElixirAmount = IniRead($config, "profiles", "txtMaxElixirAmount", "6000000")
+	$ichkElixirSwitchMin = IniRead($config, "profiles", "chkElixirSwitchMin", "0")
+	$icmbElixirMinProfile = IniRead($config, "profiles", "cmbElixirMinProfile", "0")
+	$itxtMinElixirAmount = IniRead($config, "profiles", "txtMinElixirAmount", "500000")
+
+	$ichkDESwitchMax = IniRead($config, "profiles", "chkDESwitchMax", "0")
+	$icmbDEMaxProfile = IniRead($config, "profiles", "cmbDEMaxProfile", "0")
+	$itxtMaxDEAmount = IniRead($config, "profiles", "txtMaxDEAmount", "200000")
+	$ichkDESwitchMin = IniRead($config, "profiles", "chkDESwitchMin", "0")
+	$icmbDEMinProfile = IniRead($config, "profiles", "cmbDEMinProfile", "0")
+	$itxtMinDEAmount = IniRead($config, "profiles", "txtMinDEAmount", "10000")
+
+	$ichkTrophySwitchMax = IniRead($config, "profiles", "chkTrophySwitchMax", "0")
+	$icmbTrophyMaxProfile = IniRead($config, "profiles", "cmbTrophyMaxProfile", "0")
+	$itxtMaxTrophyAmount = IniRead($config, "profiles", "txtMaxTrophyAmount", "3000")
+	$ichkTrophySwitchMin = IniRead($config, "profiles", "chkTrophySwitchMin", "0")
+	$icmbTrophyMinProfile = IniRead($config, "profiles", "cmbTrophyMinProfile", "0")
+	$itxtMinTrophyAmount = IniRead($config, "profiles", "txtMinTrophyAmount", "1000")
+
 EndFunc   ;==>readConfig
 
 
