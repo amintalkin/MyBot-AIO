@@ -176,6 +176,10 @@ Func btnStart()
 			$iPrevState[$i] = GUICtrlGetState($i)
  			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
+		For $i = $FirstControlToHideModAIO To $LastControlToHideModAIO ; Save state of all controls on tabs
+			$iPrevState[$i] = GUICtrlGetState($i)
+ 			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
 		$GUIControl_Disabled = False
 
 		$RunState = True
@@ -249,6 +253,9 @@ Func btnStop()
 			If $PushBulletEnabled And $i = $btnDeletePBmessages Then ContinueLoop ; exclude the DeleteAllMesages button when PushBullet is enabled
 			If $i = $btnMakeScreenshot Then ContinueLoop ; exclude
 			If $i = $divider Then ContinueLoop ; exclude divider
+			GUICtrlSetState($i, $iPrevState[$i])
+		Next
+		For $i = $FirstControlToHideModAIO To $LastControlToHideModAIO ; Restore previous state of controls
 			GUICtrlSetState($i, $iPrevState[$i])
 		Next
 		$GUIControl_Disabled = False

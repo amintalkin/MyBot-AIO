@@ -116,6 +116,8 @@ AtkLogHead()
 #include "GUI\MBR GUI Control Bot Options.au3"
 #include "GUI\MBR GUI Control Preset.au3"
 #include "GUI\MBR GUI Control Child Misc.au3"
+;Mod AIO
+#include "GUI\MBR GUI Control Tab DocOc.au3"
 
 ; Accelerator Key, more responsive than buttons in run-mode
 Local $aAccelKeys[1][2] = [["{ESC}", $btnStop]]
@@ -640,11 +642,11 @@ Func tabMod()
 	$tabidx = GUICtrlRead($hGUI_MOD_TAB)
 		Select
 			Case $tabidx = 0 ; Strategies tab
-				GUISetState(@SW_HIDE, $hGUI_STATS)
-				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ModAndroid)
-			Case $tabidx = 1 ; Stats tab
 				GUISetState(@SW_HIDE, $hGUI_ModAndroid)
-				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_STATS)
+				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ModDocOc)
+			Case $tabidx = 1 ; Stats tab
+				GUISetState(@SW_HIDE, $hGUI_ModDocOc)
+				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ModAndroid)
 		EndSelect
 EndFunc   ;==>tabMod
 

@@ -2249,5 +2249,61 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWriteS($config, "search", "ChkABSpellsWait", 0)
 	EndIf
 
+
+	; Close When Training Settings
+	If GUICtrlRead($chkUseTrainingClose) = $GUI_CHECKED Then
+		IniWrite($config, "Close When Training", "Enabled", 1)
+	Else
+		IniWrite($config, "Close When Training", "Enabled", 0)
+	EndIf
+	IniWrite($config, "Close When Training", "AdditionMin", GUICtrlRead($sldExtraTimeMin))
+	IniWrite($config, "Close When Training", "AdditionMax", GUICtrlRead($sldExtraTimeMax))
+
+	If GUICtrlRead($radLeaveCoCOpen) = $GUI_CHECKED Then
+		IniWrite($config, "Leave CoC Open", "Enabled", 1)
+	Else
+		IniWrite($config, "Leave CoC Open", "Enabled", 0)
+	EndIf
+
+	If GUICtrlRead($radCloseCoCGame) = $GUI_CHECKED Then
+		IniWrite($config, "Close CoC Game", "Enabled", 1)
+	Else
+		IniWrite($config, "Close CoC Game", "Enabled", 0)
+	EndIf
+
+	If GUICtrlRead($radRandomCoCOpen) = $GUI_CHECKED Then
+		IniWrite($config, "Random Leave-Close", "Enabled", 1)
+	Else
+		IniWrite($config, "Random Leave-Close", "Enabled", 0)
+	EndIf
+
+	If GUICtrlRead($chkRandomStayORClose) = $GUI_CHECKED Then
+		IniWrite($config, "Random Stay-Close Game", "Enabled", 1)
+	Else
+		IniWrite($config, "Random Stay-Close Game", "Enabled", 0)
+	EndIf
+
+	; Daily Attack Settings
+	If GUICtrlRead($chkUseAttackLimit) = $GUI_CHECKED Then
+		IniWrite($config, "Daily Attacks", "Enabled", 1)
+	Else
+		IniWrite($config, "Daily Attacks", "Enabled", 0)
+	EndIf
+	IniWrite($config, "Daily Attacks", "RangeStart", $rangeAttacksStart)
+	IniWrite($config, "Daily Attacks", "RangeEnd", $rangeAttacksEnd)
+	IniWrite($config, "Daily Attacks", "AttackLimit", $dailyAttackLimit)
+	IniWrite($config, "Daily Attacks", "Attacks", $dailyAttacks)
+
+	; Simulate Sleep Settings
+	If GUICtrlRead($chkUseSleep) = $GUI_CHECKED Then
+		IniWrite($config, "Simulate Sleep", "Enabled", 1)
+	Else
+		IniWrite($config, "Simulate Sleep", "Enabled", 0)
+	EndIf
+	IniWrite($config, "Simulate Sleep", "StartHour", $sleepStart)
+	IniWrite($config, "Simulate Sleep", "EndHour", $sleepEnd)
+	IniWrite($config, "Simulate Sleep", "SleepStart", $nextSleepStart)
+	IniWrite($config, "Simulate Sleep", "SleepEnd", $nextSleepEnd)
+
 EndFunc   ;==>saveConfig
 
