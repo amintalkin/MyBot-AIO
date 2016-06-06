@@ -49,7 +49,7 @@ Global $aTabControlsTHSnipe[4] = [$hGUI_THSNIPE_TAB, $hGUI_THSNIPE_TAB_ITEM1, $h
 Global $aTabControlsAttackOptions[5] = [$hGUI_AttackOption_TAB, $hGUI_AttackOption_TAB_ITEM1, $hGUI_AttackOption_TAB_ITEM2, $hGUI_AttackOption_TAB_ITEM3,  $hGUI_AttackOption_TAB_ITEM4]
 Global $aTabControlsStrategies[3] = [$hGUI_STRATEGIES_TAB, $hGUI_STRATEGIES_TAB_ITEM1, $hGUI_STRATEGIES_TAB_ITEM2]
 
-Global $aTabControlsBot[5] = [$hGUI_BOT_TAB, $hGUI_BOT_TAB_ITEM1, $hGUI_BOT_TAB_ITEM4, $hGUI_BOT_TAB_ITEM2, $hGUI_BOT_TAB_ITEM3]
+Global $aTabControlsBot[4] = [$hGUI_BOT_TAB, $hGUI_BOT_TAB_ITEM1, $hGUI_BOT_TAB_ITEM3, $hGUI_BOT_TAB_ITEM2]
 Global $aTabControlsMod[3] = [$hGUI_MOD_TAB, $hGUI_MOD_TAB_ITEM1, $hGUI_MOD_TAB_ITEM2]
 Global $aTabControlsStats[4] = [$hGUI_STATS_TAB, $hGUI_STATS_TAB_ITEM1, $hGUI_STATS_TAB_ITEM2, $hGUI_STATS_TAB_ITEM3]
 
@@ -119,6 +119,7 @@ AtkLogHead()
 ;Mod AIO
 #include "GUI\MBR GUI Control Tab DocOc.au3"
 #include "GUI\MBR GUI Control Tab Profiles.au3"
+#include "GUI\MBR GUI Control Tab Mod Option.au3"
 
 ; Accelerator Key, more responsive than buttons in run-mode
 Local $aAccelKeys[1][2] = [["{ESC}", $btnStop]]
@@ -449,7 +450,7 @@ Func tabMain()
 				GUISetState(@SW_HIDE, $hGUI_MOD)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_BOT)
 				tabBot()
-			Case $tabidx = 4 ; Options
+			Case $tabidx = 4 ; Mod
 				GUISetState(@SW_HIDE, $hGUI_LOG)
 				GUISetState(@SW_HIDE, $hGUI_VILLAGE)
 				GUISetState(@SW_HIDE, $hGUI_ATTACK)
@@ -616,23 +617,15 @@ EndFunc   ;==>tabSEARCH
 Func tabBot()
 	$tabidx = GUICtrlRead($hGUI_BOT_TAB)
 		Select
-			Case $tabidx = 2 ; Strategies tab
-				GUISetState(@SW_HIDE, $hGUI_STATS)
-				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_Profiles)
-				GUISetState(@SW_HIDE, $hGUI_BotOptions)
-				GUISetState(@SW_HIDE, $hGUI_BotDebug)
-			Case $tabidx = 3 ; Stats tab
-				GUISetState(@SW_HIDE, $hGUI_Profiles)
+			Case $tabidx = 2 ; Stats tab
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_STATS)
 				GUISetState(@SW_HIDE, $hGUI_BotOptions)
 				GUISetState(@SW_HIDE, $hGUI_BotDebug)
 			Case $tabidx = 0 ; Options tab
-				GUISetState(@SW_HIDE, $hGUI_Profiles)
 				GUISetState(@SW_HIDE, $hGUI_STATS)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_BotOptions)
 				GUISetState(@SW_HIDE, $hGUI_BotDebug)
 			Case $tabidx = 1 ; Options Debug
-				GUISetState(@SW_HIDE, $hGUI_Profiles)
 				GUISetState(@SW_HIDE, $hGUI_STATS)
 				GUISetState(@SW_HIDE, $hGUI_BotOptions)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_BotDebug)
@@ -642,12 +635,18 @@ EndFunc   ;==>tabBot
 Func tabMod()
 	$tabidx = GUICtrlRead($hGUI_MOD_TAB)
 		Select
-			Case $tabidx = 0 ; Strategies tab
-				GUISetState(@SW_HIDE, $hGUI_ModAndroid)
-				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ModDocOc)
-			Case $tabidx = 1 ; Stats tab
+			Case $tabidx = 0 ; Mod Option Tab
 				GUISetState(@SW_HIDE, $hGUI_ModDocOc)
-				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ModAndroid)
+				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ModOption)
+				GUISetState(@SW_HIDE, $hGUI_Profiles)
+			Case $tabidx = 1 ; Doc Oc Tab
+				GUISetState(@SW_HIDE, $hGUI_ModOption)
+				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ModDocOc)
+				GUISetState(@SW_HIDE, $hGUI_Profiles)
+			Case $tabidx = 2 ; Profiles
+				GUISetState(@SW_HIDE, $hGUI_ModOption)
+				GUISetState(@SW_HIDE, $hGUI_ModDocOc)
+				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_Profiles)
 		EndSelect
 EndFunc   ;==>tabMod
 
@@ -936,7 +935,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $hGUI_BOT_TAB
 			; the icons for Bot tab
-			Local $aIconIndex[4] = [$eIcnOptions, $eIcnProfile, $eIcnProfile, $eIcnGold]
+			Local $aIconIndex[3] = [$eIcnOptions, $eIcnProfile, $eIcnGold]
 
 		Case $hGUI_STRATEGIES_TAB
 			; the icons for strategies tab

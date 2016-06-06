@@ -48,7 +48,10 @@ EndIf
 #include "COCBot\functions\Config\ScreenCoordinates.au3"
 
 $sBotVersion = "v6.1.2.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
-$sBotTitle = "Merged My Bot " & $sBotVersion & " All In One v2.0.3 " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
+$sBotTitle = "Merged My Bot " & $sBotVersion & " All In One v2.0.4 " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
+
+Global $sBotTitleDefault = $sBotTitle
+
 
 Opt("WinTitleMatchMode", 3) ; Window Title exact match mode
 #include "COCBot\functions\Android\Android.au3"
@@ -56,43 +59,6 @@ Opt("WinTitleMatchMode", 3) ; Window Title exact match mode
 ;multilanguage
 #include "COCBot\functions\Other\Multilanguage.au3"
 DetectLanguage()
-
-If $aCmdLine[0] < 2 Then
-	DetectRunningAndroid()
-	If Not $FoundRunningAndroid Then DetectInstalledAndroid()
-EndIf
-; Update Bot title
-$sBotTitle = $sBotTitle & "(" & ($AndroidInstance <> "" ? $AndroidInstance : $Android) & ")" ;Do not change this. If you do, multiple instances will not work.
-
-If $bBotLaunchOption_Restart = True Then
-   If CloseRunningBot($sBotTitle) = True Then
-	  ; wait for Mutexes to get disposed
-	  ;Sleep(1000) ; slow systems
-   EndIf
-EndIF
-
-Local $cmdLineHelp = "By using the commandline (or a shortcut) you can start multiple Bots:" & @CRLF & _
-					 "     MyBot.run.exe [ProfileName] [EmulatorName] [InstanceName]" & @CRLF & @CRLF & _
-					 "With the first command line parameter, specify the Profilename (you can create profiles on the Misc tab, if a " & _
-					 "profilename contains a {space}, then enclose the profilename in double quotes). " & _
-					 "With the second, specify the name of the Emulator and with the third, an Android Instance (not for BlueStacks). " & @CRLF & _
-					 "Supported Emulators are MEmu, Droid4X, Nox, BlueStacks2 and BlueStacks." & @CRLF & @CRLF & _
-					 "Examples:" & @CRLF & _
-					 "     MyBot.run.exe MyVillage BlueStacks2" & @CRLF & _
-					 '     MyBot.run.exe "My Second Village" MEmu MEmu_1'
-
-$hMutex_BotTitle = _Singleton($sBotTitle, 1)
-If $hMutex_BotTitle = 0 Then
-	MsgBox($MB_OK + $MB_ICONINFORMATION, $sBotTitle, "My Bot for " & $Android & ($AndroidInstance <> "" ? " (instance " & $AndroidInstance & ")" : "") & " is already running." & @CRLF & @CRLF & $cmdLineHelp)
-	Exit
-EndIf
-
-$hMutex_Profile = _Singleton(StringReplace($sProfilePath & "\" & $sCurrProfile, "\", "-"), 1)
-If $hMutex_Profile = 0 Then
-   _WinAPI_CloseHandle($hMutex_BotTitle)
-	MsgBox($MB_OK + $MB_ICONINFORMATION, $sBotTitle, "My Bot with Profile " & $sCurrProfile & " is already running in " & $sProfilePath & "\" & $sCurrProfile & "." & @CRLF & @CRLF & $cmdLineHelp)
-	Exit
-EndIf
 
 $hMutex_MyBot = _Singleton("MyBot.run", 1)
 $OnlyInstance = $hMutex_MyBot <> 0 ; And False
@@ -129,6 +95,47 @@ FileChangeDir($LibDir)
 ;MBRfunctions.dll & debugger
 MBRFunc(True) ; start MBRFunctions dll
 debugMBRFunctions($debugSearchArea, $debugRedArea, $debugOcr) ; set debug levels
+
+If $aCmdLine[0] < 2 and $sAndroid = "" Then
+	DetectRunningAndroid()
+	If Not $FoundRunningAndroid Then DetectInstalledAndroid()
+EndIf
+; Update Bot title
+$sBotTitle = $sBotTitleDefault & "(" & ($AndroidInstance <> "" ? $AndroidInstance : $Android) & ")" ; Do not change this. If you do, multiple instances will not work.
+WinSetTitle($frmBot, "", $sBotTitle)
+
+If $bBotLaunchOption_Restart = True Then
+   If CloseRunningBot($sBotTitle) = True Then
+	  ; wait for Mutexes to get disposed
+	  ;Sleep(1000) ; slow systems
+   EndIf
+EndIF
+
+Local $cmdLineHelp = "By using the commandline (or a shortcut) you can start multiple Bots:" & @CRLF & _
+					 "     MyBot.run.exe [ProfileName] [EmulatorName] [InstanceName]" & @CRLF & @CRLF & _
+					 "With the first command line parameter, specify the Profilename (you can create profiles on the Misc tab, if a " & _
+					 "profilename contains a {space}, then enclose the profilename in double quotes). " & _
+					 "With the second, specify the name of the Emulator and with the third, an Android Instance (not for BlueStacks). " & @CRLF & _
+					 "Supported Emulators are MEmu, Droid4X, Nox, BlueStacks2 and BlueStacks." & @CRLF & @CRLF & _
+					 "Examples:" & @CRLF & _
+					 "     MyBot.run.exe MyVillage BlueStacks2" & @CRLF & _
+					 "     MyBot.run.exe ""My Second Village"" MEmu MEmu_1"
+
+; Only check the Title if a specific emulator and/or instance was specified.
+If $aCmdLine[0] > 1 Then
+	$hMutex_BotTitle = _Singleton($sBotTitle, 1)
+	If $hMutex_BotTitle = 0 Then
+		MsgBox(0, $sBotTitle, "My Bot for " & $Android & ($AndroidInstance <> "" ? " (instance " & $AndroidInstance & ")" : "") & " is already running." & @CRLF & @CRLF & $cmdLineHelp)
+		Exit
+	EndIf
+EndIF
+
+$hMutex_Profile = _Singleton(StringReplace($sProfilePath & "\" & $sCurrProfile, "\", "-"), 1)
+If $hMutex_Profile = 0 Then
+   _WinAPI_CloseHandle($hMutex_BotTitle)
+	MsgBox($MB_OK + $MB_ICONINFORMATION, $sBotTitle, "My Bot with Profile " & $sCurrProfile & " is already running in " & $sProfilePath & "\" & $sCurrProfile & "." & @CRLF & @CRLF & $cmdLineHelp)
+	Exit
+EndIf
 
 If $FoundRunningAndroid Then
 	SetLog("Found running " & $Android & " " & $AndroidVersion, $COLOR_GREEN)

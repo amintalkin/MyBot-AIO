@@ -1461,3 +1461,35 @@ Global $ichkGoldSwitchMax, $itxtMaxGoldAmount, $icmbGoldMaxProfile, $ichkGoldSwi
 Global $ichkElixirSwitchMax, $itxtMaxElixirAmount, $icmbElixirMaxProfile, $ichkElixirSwitchMin, $itxtMinElixirAmount, $icmbElixirMinProfile
 Global $ichkDESwitchMax, $itxtMaxDEAmount, $icmbDEMaxProfile, $ichkDESwitchMin, $itxtMinDEAmount, $icmbDEMinProfile
 Global $ichkTrophySwitchMax, $itxtMaxTrophyAmount, $icmbTrophyMaxProfile, $ichkTrophySwitchMin, $itxtMinTrophyAmount, $icmbTrophyMinProfile
+
+
+; SmartZap GUI variables - Added by LunaEclipse
+Global $ichkSmartZap = 1
+Global $ichkSmartZapDB = 1
+Global $ichkSmartZapSaveHeroes = 1
+Global $itxtMinDE = 250
+
+; SmartZap stats - Added by LunaEclipse
+Global $smartZapGain = 0
+Global $numLSpellsUsed = 0
+
+; SmartZap Array to hold Total Amount of DE available from Drill at each level (1-6) - Added by LunaEclipse
+Global Const $drillLevelHold[6] = [120, _
+								   225, _
+								   405, _
+								   630, _
+								   960, _
+								   1350]
+
+; SmartZap Array to hold Amount of DE available to steal from Drills at each level (1-6) - Added by LunaEclipse
+Global Const $drillLevelSteal[6] = [59, _
+                                    102, _
+								    172, _
+								    251, _
+								    343, _
+								    479]
+
+; Android Settings - Added by LunaEclipse
+Global $sAndroid = "<No Emulators>"
+Global $sAndroidInstance = ""
+Global $ichkHideTaskBar = 0

@@ -259,3 +259,16 @@
 
 #include "functions\Village\ProfileSwitch.au3"
 #include "functions\Village\ClanHop.au3"
+
+
+; Attack files - Added by LunaEclipse
+#include "functions\Attack\attackFunctions.au3"
+#include "functions\Attack\unitInfo.au3"
+
+; SmartZap files - Added by LunaEclipse
+#include "functions\SmartZap\drillSearch.au3"
+#include "functions\SmartZap\smartZap.au3"
+
+; Android files - Added by LunaEclipse
+#include "functions\Android\modifyAndroid.au3"
+#include "functions\Android\taskbarIcon.au3"
