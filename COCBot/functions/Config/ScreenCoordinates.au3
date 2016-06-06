@@ -125,7 +125,7 @@ Global $TrainPekk[4] = [474, 459 + $midOffsetY, 0x395671, 40]
 
 Global $TrainMini[4] = [220, 310 + $midOffsetY, 0x182340, 40] ;  Done
 Global $TrainHogs[4] = [301, 310 + $midOffsetY, 0x72D0E8, 40] ;  Done 71D0E8
-Global $TrainValk[4] = [442, 310 + $midOffsetY, 0xA64002, 40] ;  Done A33D08
+Global $TrainValk[4] = [404, 310 + $midOffsetY, 0xC04710, 40] ;  Done A33D08
 Global $TrainGole[4] = [546, 310 + $midOffsetY, 0xDEC3A8, 40] ;  Done D8C0A5
 Global $TrainWitc[4] = [646, 324 + $midOffsetY, 0x3D3C65, 40] ;  Fix V4.0.1?  383865
 
