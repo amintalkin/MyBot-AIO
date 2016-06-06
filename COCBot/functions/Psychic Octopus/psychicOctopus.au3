@@ -137,9 +137,9 @@ Func checkRemainingTraining()
 
 	; Get the time remaining in minutes
 	If $iTotalCountSpell = 0 Then
-		Local $iRemainingTimeTroops = getRemainingTraining(True, False) ; Not necessary "read" the Spells
+		Local $iRemainingTimeTroops = getRemainingTraining(True, True) ; Not necessary "read" the Spells
 	Else
-		Local $iRemainingTimeTroops = getRemainingTraining(True, True)
+		Local $iRemainingTimeTroops = getRemainingTraining(True, False)
 	EndIf
 
 	; Check if the Remaining time is less then 2 minutes
