@@ -302,7 +302,7 @@ Func UpgradeValue($inum, $bRepeat = False) ;function to find the value and type 
 			$aUpgrades[$inum][2] = Int($inputbox)
 			Setlog("User input value = " & $aUpgrades[$inum][2], $COLOR_PURPLE)
 			_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 500)
-			$stext = GetTranslated(640, 58, "Save copy of upgrade image for developer analysis?")
+			$stext = GetTranslated(640, 58, "Save copy of upgrade image for developer analysis ?")
 			$MsgBox = _ExtMsgBox(48, GetTranslated(640, 59, "YES|NO"), GetTranslated(640, 37, "Notice"), $stext, 60, $frmBot)
 			If $MsgBox = 1 And $debugImageSave = 1 Then DebugImageSave("UpgradeReadError_")
 		EndIf

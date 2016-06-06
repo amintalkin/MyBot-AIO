@@ -327,7 +327,7 @@ Func PushMsgToPushBullet($Message, $Source = "")
 			If _Sleep($iDelayPushMsg2) Then Return
 			Local $iDelete = FileDelete($dirTemp & $Screnshotfilename)
 			If Not ($iDelete) Then SetLog("Pushbullet: An error occurred deleting the temporary screenshot file.", $COLOR_RED)
-		Case "DeleteAllMessages"
+		Case "DeleteAllPBMessages"
 			_DeletePushOfPushBullet()
 			SetLog("PushBullet: All messages deleted.", $COLOR_GREEN)
 			$iDeleteAllPBPushesNow = False ; reset value

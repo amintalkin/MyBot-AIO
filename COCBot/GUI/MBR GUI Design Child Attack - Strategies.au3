@@ -48,6 +48,12 @@ $hGUI_STRATEGIES_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,33,"Load Str
 	  GUICtrlSetOnEvent(-1, "PresetDeleteConf")
 	  GuiCtrlSetState(-1, $GUI_HIDE+$gui_DISABLE)
 
+
+$btnStrategyFolder = GUICtrlCreateButton(GetTranslated(627,4, "Open Strategy folder"),$xStart + 40 , $y+ 40 , 120, 30)
+	  GUICtrlSetOnEvent(-1, "btnStrategyFolder")
+
+
+
 $hGUI_STRATEGIES_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,34,"Save Strategy"))
 	  $x = $xStart
 	  $y = $yStart

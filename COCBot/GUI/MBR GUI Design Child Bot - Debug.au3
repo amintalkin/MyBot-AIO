@@ -25,45 +25,42 @@ $grpDebug = GUICtrlCreateGroup(GetTranslated(636,34, "Debug"), $x - 20, $y - 20,
 		GUICtrlSetTip(-1, GetTranslated(636,36, "Debug: Enables debug SetLog messages in code for Troubleshooting."))
 		GUICtrlSetState(-1, $GUI_DISABLE)
 		GUICtrlSetState(-1, $GUI_HIDE)
-		GUICtrlSetOnEvent(-1, "chkDebugSetlog")
 	$y += 20
 	$chkDebugOcr = GUICtrlCreateCheckbox(GetTranslated(636,42, "OCR"), $x , $y-5, -1, -1)
 		GUICtrlSetTip(-1, GetTranslated(636,37, "Debug: Enables Saving OCR images for troubleshooting."))
 		GUICtrlSetState(-1, $GUI_DISABLE)
 		GUICtrlSetState(-1, $GUI_HIDE)
-		GUICtrlSetOnEvent(-1, "chkDebugOcr")
 	$y += 20
 	$chkDebugImageSave = GUICtrlCreateCheckbox(GetTranslated(636,43, "Images"), $x , $y-5, -1, -1)
 		GUICtrlSetTip(-1, GetTranslated(636,38, "Debug: Enables Saving images for troubleshooting."))
 		GUICtrlSetState(-1, $GUI_DISABLE)
 		GUICtrlSetState(-1, $GUI_HIDE)
-		GUICtrlSetOnEvent(-1, "chkDebugImageSave")
 	$y += 20
 	$chkdebugBuildingPos = GUICtrlCreateCheckbox(GetTranslated(636,44, "Buildings"), $x  , $y-5, -1, -1)
 		GUICtrlSetTip(-1, GetTranslated(636,39, "Debug: Enables showing positions of buildings in log."))
 		GUICtrlSetState(-1, $GUI_DISABLE)
 		GUICtrlSetState(-1, $GUI_HIDE)
-		GUICtrlSetOnEvent(-1, "chkdebugBuildingPos")
 	$y += 20
 	$chkdebugTrain = GUICtrlCreateCheckbox(GetTranslated(636,73, "Training"), $x , $y-5, -1, -1)
 		GUICtrlSetTip(-1, GetTranslated(636,74, "Debug: Enables showing debug during training."))
 		GUICtrlSetState(-1, $GUI_DISABLE)
 		GUICtrlSetState(-1, $GUI_HIDE)
-		GUICtrlSetOnEvent(-1, "chkdebugTrain")
+	$y += 20
+	$chkdebugOCRDonate = GUICtrlCreateCheckbox(GetTranslated(636,91, "Online debug donations"), $x , $y-5, -1, -1)
+		GUICtrlSetTip(-1, GetTranslated(636,92, "Debug: make ocr of donations and simulate only donate but no donate any troop"))
+		GUICtrlSetState(-1, $GUI_DISABLE)
+		GUICtrlSetState(-1, $GUI_HIDE)
 
 Local $x = 300, $y = 25
 	$btnTestTrain = GUICtrlCreateButton(GetTranslated(636,88, "Test Train"), $x  , $y , 120, 30)
-	GUICtrlSetOnEvent(-1, "btnTestTrain")
 
 	$y += 50
 
 	$btnTestDonateCC = GUICtrlCreateButton(GetTranslated(636,89, "Test Donate"), $x  , $y , 120, 30)
-	GUICtrlSetOnEvent(-1, "btnTestDonateCC")
 
 	$y += 50
 
 	$btnTestAttackBar = GUICtrlCreateButton(GetTranslated(636,90, "Test Attack Bar"), $x  , $y , 120, 30)
-	GUICtrlSetOnEvent(-1, "btnTestAtttackBar")
 
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 

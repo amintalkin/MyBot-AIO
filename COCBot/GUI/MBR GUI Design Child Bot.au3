@@ -14,7 +14,7 @@
 ; ===============================================================================================================================
 Global $chkVersion, $chkDeleteLogs, $chkDeleteTemp, $chkDeleteLoots
 Global $chkAutostart, $txtAutostartDelay, $chkLanguage,$chkDisposeWindows, $txtWAOffsetx, $txtWAOffsety, $cmbDisposeWindowsCond
-Global $chkDebugClick, $chkDebugSetlog, $chkDebugOcr, $chkDebugImageSave, $chkdebugBuildingPos, $chkdebugTrain
+Global $chkDebugClick, $chkDebugSetlog, $chkDebugOcr, $chkDebugImageSave, $chkdebugBuildingPos, $chkdebugTrain, $chkdebugOCRDonate
 Global $chkTotalCampForced, $txtTotalCampForced
 Global $txtDeleteLogsDays, $txtDeleteTempDays, $txtDeleteLootsDays, $cmbLanguage, $chkScreenshotType, $chkScreenshotHideName
 Global $sldVSDelay, $sldMaxVSDelay, $lblVSDelay, $lblMaxVSDelay, $lbltxtVSDelay, $lbltxtMaxVSDelay

@@ -179,6 +179,9 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 
 		IniReadS($isldTrainITDelay, $config, "other", "TrainITDelay", "20")
 
+		$ichkCloseTraining = IniRead($config, "troop", "CloseWhenTraining", "1")
+		$ichkCloseNight = IniRead($config, "troop", "CloseAtNight", "1")
+
 		;Army training - Spells Creation  -----------------------------------------------------
 		Local $tempQtaSpell
 		IniReadS($iLightningSpellComp, $config, "Spells", "LightningSpell", "0")
@@ -636,6 +639,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 			$debugresourcesoffset = BitOR($debugresourcesoffset, IniRead($config, "debug", "debugresourcesoffset", "0"))
 			$continuesearchelixirdebug = BitOR($continuesearchelixirdebug, IniRead($config, "debug", "continuesearchelixirdebug", "0"))
 			$debugMilkingIMGmake =  BitOR($debugMilkingIMGmake, IniRead($config, "debug", "debugMilkingIMGmake", "0"))
+			$debugOCRdonate = BitOr ($debugOCRdonate,  IniRead($config, "debug", "debugOCRDonate", "0"))
 			;InireadS(xxxx,$config, "attack", "xxxx", "0")
 			;InireadS(xxxx,$config, "attack", "xxxx", "0")
 			;InireadS(xxxx,$config, "attack", "xxxx", "0")
@@ -1015,6 +1019,31 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		;mikemikemikecoc - Wait For Spells
 		IniReadS($iEnableSpellsWait[$DB], $config, "search", "ChkDBSpellsWait", "0")
 		IniReadS($iEnableSpellsWait[$LB], $config, "search", "ChkABSpellsWait", "0")
+
+		; Close When Training Settings
+		$ichkCloseTraining = Number(IniRead($config, "Close When Training", "Enabled", "1"))
+		$minTrainAddition = Number(IniRead($config, "Close When Training", "AdditionMin", "10"))
+		$maxTrainAddition = Number(IniRead($config, "Close When Training", "AdditionMax", "20"))
+		$LeaveCoCOpen = IniRead($config, "Leave CoC Open", "Enabled", "0")
+		$CloseCoCGame = IniRead($config, "Close CoC Game", "Enabled", "1")
+		$RandomCoCOpen = IniRead($config, "Random Leave-Close", "Enabled", "0")
+		$RandomCloseTraining = IniRead($config, "Random Stay-Close Game", "Enabled", "0")
+
+
+		; Daily Attack Settings
+		$ichkLimitAttacks = Number(IniRead($config, "Daily Attacks", "Enabled", "1"))
+		$rangeAttacksStart = Number(IniRead($config, "Daily Attacks", "RangeStart", "20"))
+		$rangeAttacksEnd = Number(IniRead($config, "Daily Attacks", "RangeEnd", "25"))
+		$dailyAttackLimit = Number(IniRead($config, "Daily Attacks", "AttackLimit", "0"))
+		$dailyAttacks = Number(IniRead($config, "Daily Attacks", "Attacks", "0"))
+
+		; Simulate Sleep Settings
+		$ichkCloseNight = Number(IniRead($config, "Simulate Sleep", "Enabled", "1"))
+		$sleepStart = Number(IniRead($config, "Simulate Sleep", "StartHour", "0"))
+		$sleepEnd = Number(IniRead($config, "Simulate Sleep", "EndHour", "8"))
+		$nextSleepStart = IniRead($config, "Simulate Sleep", "SleepStart", "-999")
+		$nextSleepEnd = IniRead($config, "Simulate Sleep", "SleepEnd", "-999")
+		checkSleep()
 
 	Else
 		Return False

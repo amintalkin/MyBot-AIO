@@ -114,7 +114,7 @@ Local $x = 220, $y = 45
 		$y += 16
 		$lblAddTiles2 = GUICtrlCreateLabel(GetTranslated(625,43, "Border, Add Tiles") & ":" , $x+5 , $y + 4, -1, -1, $SS_LEFT)
 		$y += 21
-		$lblSWTTiles = GUICtrlCreateLabel(GetTranslated(625,44, "- While Train"), $x + 20, $y + 4, 100, -1, $SS_LEFT)
+		$lblSWTTiles = GUICtrlCreateLabel("- " & GetTranslated(625,44, "While Train"), $x, $y + 4, 100, -1, $SS_LEFT)
 			$txtTip = GetTranslated(625,45, "Add number of tiles from Base Edges")
 			GUICtrlSetTip(-1, $txtTip)
 		$txtSWTTiles = GUICtrlCreateInput("2", $x + 85, $y , 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
@@ -123,7 +123,7 @@ Local $x = 220, $y = 45
  		$picSWTiles = GUICtrlCreateIcon($pIconLib, $eIcnTiles, $x + 137, $y + 1, 16, 16)
  			GUICtrlSetTip(-1, $txtTip)
 		$y += 24
-		$lblTHadd = GUICtrlCreateLabel(GetTranslated(625,46, "- Full Troops"), $x + 20, $y + 4, -1, 17, $SS_LEFT)
+		$lblTHadd = GUICtrlCreateLabel("- " & GetTranslated(625,46, "Full Troops"), $x, $y + 4, -1, 17, $SS_LEFT)
 		    $txtTip = GetTranslated(625,47, "Enter how many 'Grass' 1x1 tiles the TH may be from the Base edges to be seen as a TH Outside.") & @CRLF & GetTranslated(625,48, "Ex: (0) tiles; TH must be exactly at the edge. (4) tiles: TH may be 4 tiles farther from edges and closer to the center of the village.") & @CRLF & GetTranslated(625,49, "If the TH is farther away then the No. of tiles set, the base will be skipped.")
 			GUICtrlSetTip(-1, $txtTip)
 		$txtTHaddtiles = GUICtrlCreateInput("2", $x + 85, $y , 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))

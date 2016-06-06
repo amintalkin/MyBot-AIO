@@ -25,8 +25,8 @@ Func Initiate()
 			SetLog(_PadStringCenter(" Search Mode Start ", 50, "="), $COLOR_GREEN)
 		EndIf
 		SetLog(_PadStringCenter("  Current Profile: " & $sCurrProfile & " ", 73, "-"), $COLOR_BLUE)
-		If $DebugSetlog = 1 Or $DebugOcr = 1 Or $debugRedArea = 1 Or $DevMode = 1 Or $debugImageSave = 1 Or $debugBuildingPos = 1 Then
-			SetLog(_PadStringCenter(" Warning Debug Mode Enabled! Setlog: " & $DebugSetlog & " OCR: " & $DebugOcr & " RedArea: " & $debugRedArea & " ImageSave: " & $debugImageSave & " BuildingPos: " & $debugBuildingPos, 55, "-"), $COLOR_RED)
+		If $DebugSetlog = 1 Or $DebugOcr = 1 Or $debugRedArea = 1 Or $DevMode = 1 Or $debugImageSave = 1 Or $debugBuildingPos = 1 Or $debugOCRdonate = 1 Then
+			SetLog(_PadStringCenter(" Warning Debug Mode Enabled! Setlog: " & $DebugSetlog & " OCR: " & $DebugOcr & " RedArea: " & $debugRedArea & " ImageSave: " & $debugImageSave & " BuildingPos: " & $debugBuildingPos & " OCRDonate: " & $debugOCRdonate, 55, "-"), $COLOR_RED)
 		EndIf
 
 		$AttackNow = False
@@ -169,10 +169,14 @@ Func btnStart()
 
 		$GUIControl_Disabled = True
 		For $i = $FirstControlToHide To $LastControlToHide ; Save state of all controls on tabs
-			If IsTab($i) Then ContinueLoop
+			If IsTab($i) Or IsDebugControl($i) Then ContinueLoop
 			If $PushBulletEnabled And $i = $btnDeletePBmessages Then ContinueLoop ; exclude the DeleteAllMesages button when PushBullet is enabled
 			If $i = $btnMakeScreenshot Then ContinueLoop ; exclude
 			If $i = $divider Then ContinueLoop ; exclude divider
+			$iPrevState[$i] = GUICtrlGetState($i)
+ 			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+		For $i = $FirstControlToHideModAIO To $LastControlToHideModAIO ; Save state of all controls on tabs
 			$iPrevState[$i] = GUICtrlGetState($i)
  			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
@@ -245,10 +249,13 @@ Func btnStop()
 
 		$GUIControl_Disabled = True
 		For $i = $FirstControlToHide To $LastControlToHide ; Restore previous state of controls
-			If IsTab($i) Then ContinueLoop
+			If IsTab($i) Or IsDebugControl($i) Then ContinueLoop
 			If $PushBulletEnabled And $i = $btnDeletePBmessages Then ContinueLoop ; exclude the DeleteAllMesages button when PushBullet is enabled
 			If $i = $btnMakeScreenshot Then ContinueLoop ; exclude
 			If $i = $divider Then ContinueLoop ; exclude divider
+			GUICtrlSetState($i, $iPrevState[$i])
+		Next
+		For $i = $FirstControlToHideModAIO To $LastControlToHideModAIO ; Restore previous state of controls
 			GUICtrlSetState($i, $iPrevState[$i])
 		Next
 		$GUIControl_Disabled = False

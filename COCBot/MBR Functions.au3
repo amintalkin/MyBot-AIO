@@ -99,6 +99,8 @@
 #include "functions\Attack\Troops\SelectDropTroop.au3"
 #include "functions\Attack\Troops\SetSleep.au3"
 
+#include "functions\BotInfo\runningBots.au3"
+
 #include "functions\CreateArmy\_TrainMoveBtn.au3"
 #include "functions\CreateArmy\BarracksStatus.au3"
 #include "functions\CreateArmy\CheckFullArmy.au3"
@@ -114,7 +116,8 @@
 #include "functions\CreateArmy\TrainClick.au3"
 #include "functions\CreateArmy\Train.au3"
 #include "functions\CreateArmy\TrainIt.au3"
-#include "functions\CreateArmy\RemainTimeTrain.au3"
+
+#include "functions\CreateArmy\GetRemainTimeTrainning.au3"
 
 #include "functions\Image Search\ImageSearch.au3"
 #include "functions\Image Search\checkDeadBase.au3"
@@ -137,6 +140,7 @@
 #include "functions\Android\AndroidMenuShortcuts.au3"
 #include "functions\Android\Close_OpenCoC.au3"
 #include "functions\Android\ZoomOut.au3"
+#include "functions\Android\BlueStacks1Shortcuts.au3"
 #include "functions\Android\checkAndroidTimeLag.au3"
 #include "functions\Android\OpenBlueStacks.au3"
 #include "functions\Android\CloseBlueStacks.au3"
@@ -197,6 +201,8 @@
 #include "functions\Pixels\_MultiPixelSearch.au3"
 #include "functions\Pixels\boolPixelSearch.au3"
 #include "functions\Pixels\isInsideDiamond.au3"
+
+#include "functions\Psychic Octopus\psychicOctopus.au3"
 
 #include "functions\Read Text\BuildingInfo.au3"
 #include "functions\Read Text\getOcr.au3"
