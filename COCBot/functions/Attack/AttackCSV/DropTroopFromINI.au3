@@ -159,7 +159,9 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 			Local $indexJump = 0
 		EndIf
 
+	  Local $SuspendMode = SuspendAndroid()
 		SelectDropTroop($troopPosition) ; select the troop...
+		KeepClicks()
 
 		Local $qty2 = $qtyxpoint
 
@@ -174,12 +176,13 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 
 		;drop
 		$TroopDropNumber += 1
+		$SuspendMode = ResumeAndroid()
 
 		Local $currentJumpIndex
 		Local $hTimer = TimerInit()
 
 		For $i = $indexStart To $indexEnd
-			If $indexJump > 0 Then
+			If $indexJump > 0 And $isIndexPercent = 1 Then
 				;check to see if we skip this index to spread out troops
 				if $i = $indexStart Then
 					$currentJumpIndex = $indexStart + $indexJump
@@ -249,9 +252,9 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 					Switch Eval("e" & $troopName)
 						Case $eBarb To $eLava ; drop normal troops
 							If $debug = True Then
-								Setlog("AttackClick( " & $pixel[0] & ", " & $pixel[1] & " , " & $qty2 & ", " & $delayPoint & ",#0666)")
+								Setlog("AndroidFastClick( " & $pixel[0] & ", " & $pixel[1] & " , " & $qty2 & ", " & $delayPoint & ")")
 							Else
-								AttackClick($pixel[0], $pixel[1], $qty2, $delayPoint, $delayDropLast, "#0666")
+								AndroidFastClick($pixel[0], $pixel[1], $qty2, $delayPoint)
 							EndIf
 						Case $eKing
 							If $debug = True Then
@@ -289,10 +292,32 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 					debugAttackCSV($troopName & " qty " & $qty2 & " in (" & $pixel[0] & "," & $pixel[1] & ") delay " & $delayPoint)
 				EndIf
 				;;;;if $j <> $numbersOfVectors Then _sleep(5) ;little delay by passing from a vector to another vector
+				If $i <> $indexEnd Then
+					;delay time between 2 drops in different point
+					If $delayDropMin <> $delayDropMax Then
+						$delayDrop = Random($delayDropMin, $delayDropMax, 1)
+					Else
+						$delayDrop = $delayDropMin
+					 EndIf
+
+
+					$delayDrop = $delayDrop / $isldSelectedCSVSpeed[$iMatchMode]
+
+					;debugAttackCSV(">> delay change drop point: " & $delayDrop)
+					If $delayDrop <> 0 Then
+					    SuspendAndroid($SuspendMode)
+						ReleaseClicks()
+						If _Sleep($delayDrop) Then
+							Return
+						EndIf
+						KeepClicks()
+					EndIf
+				EndIf
 			Next
 		Next
 
 		ReleaseClicks()
+	    SuspendAndroid($SuspendMode)
 
 		;sleep time after deploy all troops
 		Local $sleepafter = 0
