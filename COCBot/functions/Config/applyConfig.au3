@@ -99,6 +99,12 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	EndIf
 	chkDBWeakBase()
 
+	If $iChkNoLeague[$DB] = 1 Then
+		GUICtrlSetState($chkDBNoLeague, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDBNoLeague, $GUI_UNCHECKED)
+	EndIf
+	
 	If $iChkMeetOne[$DB] = 1 Then
 		GUICtrlSetState($chkDBMeetOne, $GUI_CHECKED)
 	Else
@@ -222,6 +228,12 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 		GUICtrlSetState($chkABWeakBase, $GUI_UNCHECKED)
 	EndIf
 
+	If $iChkNoLeague[$LB] = 1 Then
+		GUICtrlSetState($chkABNoLeague, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkABNoLeague, $GUI_UNCHECKED)
+	EndIf
+	
 	If $iChkMeetOne[$LB] = 1 Then
 		GUICtrlSetState($chkABMeetOne, $GUI_CHECKED)
 	Else
@@ -1414,6 +1426,20 @@ EndIf
 	ElseIf $ichkExtraAlphabets = 1 Then
 		GUICtrlSetState($chkExtraAlphabets, $GUI_CHECKED)
 	EndIf
+
+;Mod AIO
+	If $iChkDontRemove = 1 Then
+		GUICtrlSetState($chkDontRemove, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDontRemove, $GUI_UNCHECKED)
+	EndIf
+	
+	If $iChkBarrackSpell = 1 Then
+		GUICtrlSetState($chkBarrackSpell, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkBarrackSpell, $GUI_UNCHECKED)
+	EndIf
+
 	;------------------------------------------------------------------------------------
 
 

@@ -1,0 +1,19 @@
+TROOP |S1|S2|Q1|Q2|DEL1  |DEL2  |LOG_TEXT                                   |NOTES
+Text  |  |  |  |  |      |      |Now Attacking TH Outside @ BA™ ® Mod © 2016|
+Text  |  |  |  |  |      |      |Attacking TH with 1 wave of BARCH        |
+Barb  | 3| 6| 1| 1|  1500| 1900 |                                           |deploys 3-6 barbarians
+Arch  | 3| 6| 1| 1|   800| 1200 |                                           |deploys 3-6 archers
+WAIT  |  |  |  |  | 60000| 60000|⌚ Ready To Send Next Wave Of BARCH !!! (If TH Not Destroy)     |
+Text  |  |  |  |  |      |      |Attacking TH with 2 wave of BARCH        |
+Barb  | 3| 6| 1| 1|  1500| 1900 |                                           |deploys 3-6 barbarians
+Arch  | 3| 6| 1| 1|   800| 1200 |                                           |deploys 3-6 archers
+WAIT  |  |  |  |  | 60000| 60000|⌚ Ready To Send Next Wave Of BARCH !!! (If TH Not Destroy)     |
+Text  |  |  |  |  |      |      |Attacking TH with 3 wave of BARCH        |
+Barb  | 3| 6| 1| 1|  1500| 1900 |                                           |deploys 3-6 barbarians
+Arch  | 3| 6| 1| 1|   800| 1200 |                                           |deploys 3-6 archers
+WAIT  |  |  |  |  | 60000| 60000|⌚ Ready To Send Next Wave Of BARCH !!! (If TH Not Destroy)     |
+Text  |  |  |  |  |      |      |Attacking TH with 4 wave of BARCH        |
+Barb  | 3| 6| 1| 1|  1500| 1900 |                                           |deploys 3-6 barbarians
+Arch  | 3| 6| 1| 1|   800| 1200 |                                           |deploys 3-6 archers
+Text  |  |  |  |  |      |      |Finished Attacking,⌚ Waiting For 🌟💰💦✯✌|
+WAIT  |  |  |  |  | 60000| 60000|  

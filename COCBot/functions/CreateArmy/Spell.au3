@@ -20,6 +20,7 @@ Func BrewSpells()
 	Local $iLightningSpell, $iHealSpell, $iRageSpell, $iJumpSpell, $iFreezeSpell, $iPoisonSpell, $iEarthSpell, $iHasteSpell
 
 	If $iTotalCountSpell = 0 Then Return
+	If $iChkBarrackSpell = 1 Then
 
 	If $numFactorySpellAvaiables = 1 And ($iLightningSpellComp > 0 Or $iRageSpellComp > 0 Or $iHealSpellComp > 0 Or $iJumpSpellComp > 0 Or $iFreezeSpellComp > 0) Then
 		$iBarrHere = 0
@@ -44,7 +45,7 @@ Func BrewSpells()
 				EndIf
 				If $debugsetlogTrain = 1 Then SetLog("Making Lightning Spell: " & $iLightningSpell)
 				If _sleep($iDelayTrain2) Then Return
-				If $iLightningSpell > 0 Then
+				If $iLightningSpell > 0 Or $iChkBarrackSpell = 1 Then
 					If _ColorCheck(_GetPixelColor(235 + 107 * 0, 375 + $midOffsetY, True), Hex(0xFFFFFF, 6), 20) = False Then ; White into number 0
 						setlog("Not enough Elixir to create Lightning Spell", $COLOR_RED)
 						Return
@@ -52,7 +53,10 @@ Func BrewSpells()
 						setlog("Spell Factory Full", $COLOR_RED)
 						Return
 					Else
-						If $iLightningSpell > 0 Then
+							If $iChkBarrackSpell = 1 And $iLightningSpellComp > $iTempLightningSpell Then
+								GemClick(220 + 107 * 0, 354 + $midOffsetY, $iLightningSpellComp - $iTempLightningSpell, $iDelayTrain7, "#0290")
+								SetLog("Created " & $iLightningSpellComp - $iTempLightningSpell & " Lightning Spell(s) (Barrack Mode)", $COLOR_BLUE)
+							ElseIf $iLightningSpell > 0 Then
 							GemClick(220 + 107 * 0, 354 + $midOffsetY, $iLightningSpell, $iDelayTrain7, "#0290")
 							SetLog("Created " & $iLightningSpell & " Lightning Spell(s)", $COLOR_BLUE)
 						EndIf
@@ -74,7 +78,7 @@ Func BrewSpells()
 				EndIf
 				If $debugsetlogTrain = 1 Then SetLog("Making Heal Spell: " & $iHealSpell)
 				If _sleep($iDelayTrain2) Then Return
-				If $iHealSpell > 0 Then
+				If $iHealSpell > 0 Or $iChkBarrackSpell = 1 Then
 					If _ColorCheck(_GetPixelColor(235 + 107 * 1, 375 + $midOffsetY, True), Hex(0xFFFFFF, 6), 20) = False Then
 						setlog("Not enough Elixir to create Heal Spell", $COLOR_RED)
 						Return
@@ -82,7 +86,10 @@ Func BrewSpells()
 						setlog("Spell Factory Full", $COLOR_RED)
 						Return
 					Else
-						If $iHealSpell > 0 Then
+							If $iChkBarrackSpell = 1 And $iHealSpellComp > $iTempHealSpell Then
+								GemClick(220 + 107 * 1, 354 + $midOffsetY, $iHealSpellComp - $iTempHealSpell, $iDelayTrain7, "#0290")
+								SetLog("Created " & $iHealSpellComp - $iTempHealSpell & " Heal Spell(s) (Barrack Mode)", $COLOR_BLUE)
+							ElseIf $iHealSpell > 0 Then
 							GemClick(220 + 107 * 1, 354 + $midOffsetY, $iHealSpell, $iDelayTrain7, "#0290")
 							SetLog("Created " & $iHealSpell & " Heal Spell(s)", $COLOR_BLUE)
 						EndIf
@@ -104,7 +111,7 @@ Func BrewSpells()
 				EndIf
 				If $debugsetlogTrain = 1 Then SetLog("Making Rage Spell: " & $iRageSpell)
 				If _sleep($iDelayTrain2) Then Return
-				If $iRageSpell > 0 Then
+				If $iRageSpell > 0 Or $iChkBarrackSpell = 1 Then
 					If _ColorCheck(_GetPixelColor(235 + 107 * 2, 375 + $midOffsetY, True), Hex(0xFFFFFF, 6), 20) = False Then
 						setlog("Not enough Elixir to create Rage Spell", $COLOR_RED)
 						Return
@@ -112,7 +119,10 @@ Func BrewSpells()
 						setlog("Spell Factory Full", $COLOR_RED)
 						Return
 					Else
-						If $iRageSpell > 0 Then
+							If $iChkBarrackSpell = 1 And $iRageSpellComp > $iTempRageSpell Then
+								GemClick(220 + 107 * 2, 354 + $midOffsetY, $iRageSpellComp - $iTempRageSpell, $iDelayTrain7, "#0290")
+								SetLog("Created " & $iRageSpellComp - $iTempRageSpell & " Rage Spell(s) (Barrack Mode)", $COLOR_BLUE)
+							ElseIf $iRageSpell > 0 Then
 							GemClick(220 + 107 * 2, 354 + $midOffsetY, $iRageSpell, $iDelayTrain7, "#0290")
 							SetLog("Created " & $iRageSpell & " Rage Spell(s)", $COLOR_BLUE)
 						EndIf
@@ -209,7 +219,7 @@ Func BrewSpells()
 				EndIf
 				If $debugsetlogTrain = 1 Then SetLog("Making Poison Spell: " & $iPoisonSpell)
 				If _sleep($iDelayTrain2) Then Return
-				If $iPoisonSpell > 0 Then
+				If $iPoisonSpell > 0 Or $iChkBarrackSpell = 1 Then
 					If _sleep($iDelayTrain2) Then Return
 						If _ColorCheck(_GetPixelColor(233 + 107 * 0, 375 + $midOffsetY, True), Hex(0xFFFFFF, 6), 20) = False And _; White into number 0
 						   _ColorCheck(_GetPixelColor(235 + 107 * 0, 375 + $midOffsetY, True), Hex(0xFFFFFF, 6), 20) = False Then ; White into number 5
@@ -220,7 +230,10 @@ Func BrewSpells()
 						setlog("Spell Factory Full", $COLOR_RED)
 						Return
 					Else
-						If $iPoisonSpell > 0 Then
+							If $iChkBarrackSpell = 1 And $iPoisonSpellComp > $iTempPoisonSpell Then
+								GemClick(222, 354 + $midOffsetY, $iPoisonSpellComp - $iTempPoisonSpell, $iDelayTrain7, "#0290")
+								SetLog("Created " & $iPoisonSpellComp - $iTempPoisonSpell & " Poison spell(s) (Barrack Mode)", $COLOR_BLUE)
+						ElseIf $iPoisonSpell > 0 Then
 							GemClick(222, 354 + $midOffsetY, $iPoisonSpell, $iDelayTrain7, "#0290")
 							SetLog("Created " & $iPoisonSpell & " Poison Spell(s)", $COLOR_BLUE)
 						EndIf
@@ -243,7 +256,7 @@ Func BrewSpells()
 				EndIf
 				If $debugsetlogTrain = 1 Then SetLog("Making Earthquake Spell: " & $iEarthSpell)
 				If _sleep($iDelayTrain2) Then Return
-				If $iEarthSpell > 0 Then
+				If $iEarthSpell > 0 Or $iChkBarrackSpell = 1 Then
 					If _sleep($iDelayTrain2) Then Return
 						If _ColorCheck(_GetPixelColor(233 + 107 * 1, 375 + $midOffsetY, True), Hex(0xFFFFFF, 6), 20) = False And _; White into number 0
 						   _ColorCheck(_GetPixelColor(235 + 107 * 1, 375 + $midOffsetY, True), Hex(0xFFFFFF, 6), 20) = False Then ; White into number 5
@@ -253,7 +266,10 @@ Func BrewSpells()
 						setlog("Spell Factory Full", $COLOR_RED)
 						Return
 					Else
-						If $iEarthSpell > 0 Then
+							If $iChkBarrackSpell = 1 And $iEarthSpellComp > $iTempEarthSpell Then
+								GemClick(329, 354 + $midOffsetY, $iEarthSpellComp - $iTempEarthSpell, $iDelayTrain7, "#0290")
+								SetLog("Created " & $iEarthSpellComp - $iTempEarthSpell & " EarthQuake spell(s) (Barrack Mode)", $COLOR_BLUE)
+							ElseIf $iEarthSpell > 0 Then
 							GemClick(329, 354 + $midOffsetY, $iEarthSpell, $iDelayTrain7, "#0290")
 							SetLog("Created " & $iEarthSpell & " EarthQuake Spell(s)", $COLOR_BLUE)
 						EndIf
@@ -276,7 +292,7 @@ Func BrewSpells()
 				EndIf
 				If $debugsetlogTrain = 1 Then SetLog("Making Haste Spell: " & $iHasteSpell)
 				If _sleep($iDelayTrain2) Then Return
-				If $iHasteSpell > 0 Then
+				If $iHasteSpell > 0 Or $iChkBarrackSpell = 1 Then
 					If _sleep($iDelayTrain2) Then Return
 						If _ColorCheck(_GetPixelColor(233 + 107 * 2, 375 + $midOffsetY, True), Hex(0xFFFFFF, 6), 20) = False And _; White into number 0
 						   _ColorCheck(_GetPixelColor(235 + 107 * 2, 375 + $midOffsetY, True), Hex(0xFFFFFF, 6), 20) = False Then ; White into number 5
@@ -286,7 +302,10 @@ Func BrewSpells()
 						setlog("Spell Factory Full", $COLOR_RED)
 						Return
 					Else
-						If $iHasteSpell > 0 Then
+							If $iChkBarrackSpell = 1 And $iHasteSpellComp > $iTempHasteSpell Then
+								GemClick(430, 354 + $midOffsetY, $iHasteSpellComp - $iTempHasteSpell, $iDelayTrain7, "#0290")
+								SetLog("Created " & $iHasteSpellComp - $iTempHasteSpell & " Haste spell(s) (Barrack Mode)", $COLOR_BLUE)
+							ElseIf $iHasteSpell > 0 Then
 							GemClick(430, 354 + $midOffsetY, $iHasteSpell, $iDelayTrain7, "#0290")
 							SetLog("Created " & $iHasteSpell & " Haste Spell(s)", $COLOR_BLUE)
 						EndIf
@@ -298,6 +317,9 @@ Func BrewSpells()
 		Else
 			SetLog("Dark Spell Factory not found...", $COLOR_BLUE)
 		EndIf
+	EndIf
+	Else
+		SetLog("Spell Factory is full ...", $COLOR_BLUE)
 	EndIf
 
 EndFunc   ;==>BrewSpells

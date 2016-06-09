@@ -56,6 +56,12 @@ Local $x = 25, $y = 20
 
 		; CSV Deployment Speed Mod
 		$y += 134
+		
+		$btnAttNow = GUICtrlCreateButton("Attack Now", $x, $y-30, 91, 25)
+				GUISetState(@SW_SHOW)
+				GUICtrlSetOnEvent(-1, "AttackNow")
+GUICtrlCreateGroup("", -99, -99, 1, 1)
+		
 		$grpScriptSpeedAB = GUICtrlCreateGroup("CSV Deployment  Speed", $x, $y, 230, 50)
 			$lbltxtSelectedSpeedAB = GUICtrlCreateLabel("Normal speed", $x + 15, $y + 20, 75, 25)
 				GUICtrlSetTip(-1, "Increase or decrease the speed at which the CSV attack script deploys troops and waves.")
