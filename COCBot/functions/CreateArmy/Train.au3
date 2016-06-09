@@ -511,6 +511,9 @@ Func Train()
 						If $icount = 7 Then ExitLoop
 					WEnd
 				EndIf
+
+				If $iChkDontRemove = 0 Then
+
 				$icount = 0
 				While Not _ColorCheck(_GetPixelColor(599, 202 + $midOffsetY, True), Hex(0xD0D0C0, 6), 20) ; while not disappears  green arrow
 					If Not (IsTrainPage()) Then Return
@@ -518,6 +521,7 @@ Func Train()
 					$icount += 1
 					If $icount = 100 Then ExitLoop
 				WEnd
+				EndIf
 				If $debugsetlogTrain = 1 And $icount = 100 Then SetLog("Train warning 6", $COLOR_PURPLE)
 			EndIf
 			If _Sleep($iDelayTrain2) Then Return
@@ -867,6 +871,8 @@ Func Train()
 						WEnd
 					EndIf
 
+						If $iChkDontRemove = 0 Then
+
 					$icount = 0
 					While Not _ColorCheck(_GetPixelColor(599, 202 + $midOffsetY, True), Hex(0xD0D0C0, 6), 20) ; while not disappears  green arrow
 						If Not (IsTrainPage()) Then Return
@@ -876,6 +882,7 @@ Func Train()
 						If $RunState = False Then Return
 					WEnd
 					If $debugsetlogTrain = 1 And $icount = 100 Then SetLog("Train warning 6", $COLOR_PURPLE)
+				EndIf
 				EndIf
 				If _Sleep($iDelayTrain2) Then ExitLoop
 				If Not (IsTrainPage()) Then Return ; exit from train if no train page

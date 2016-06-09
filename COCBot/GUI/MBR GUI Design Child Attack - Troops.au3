@@ -277,6 +277,20 @@ Local $x = $xStart +  160 + 148, $y = $yStart +  80 + 25 - 60
 			GUICtrlSetState(-1, $GUI_DISABLE)
 			GUICtrlSetState(-1, $GUI_HIDE)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
+	$x = 25
+	$y =318
+	$grpMods = GUICtrlCreateGroup("Barrack Mode Options", $x - 20, $y + 2, 142, 40)
+		$y +=18
+		$chkDontRemove = GUICtrlCreateCheckbox("Don't Empty Barracks", $x - 10, $y, -1, -1)
+			$txtTip ="The bot will not remove existing troops in the barracks when training."
+			GUICtrlSetTip(-1, $txtTip)
+		;$y +=21
+		;$chkBarrackSpell = GUICtrlCreateCheckbox("Spell Barrack Mode", $x - 10, $y, -1, -1)
+		;	$txtTip ="Train spells continuously in barrack mode (Lightning, Heal, and Rage only)."
+		;	GUICtrlSetTip(-1, $txtTip)
+
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
 GUICtrlCreateTabItem("")
 
 $hGUI_ARMY_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,21,"Spells"))
@@ -363,6 +377,22 @@ Local $x = $xStart + 25, $y = $yStart +  80 + 25 - 60
 			GUICtrlSetOnEvent(-1, "lblTotalCountSpell")
 		$lblTimesHasteS = GUICtrlCreateLabel("x", $x + 137, $y, -1, -1)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
+	
+	$x = 30
+	$y =313
+	$grpMods = GUICtrlCreateGroup("Spells Training Options", $x - 20, $y + 2, 142, 40)
+		;$y +=18
+		;$chkDontRemove = GUICtrlCreateCheckbox("Don't Empty Barracks", $x - 10, $y, -1, -1)
+		;	$txtTip ="The bot will not remove existing troops in the barracks when training."
+		;	GUICtrlSetTip(-1, $txtTip)
+		$y +=18
+		$chkBarrackSpell = GUICtrlCreateCheckbox("Spell Barrack Mode", $x - 10, $y, -1, -1)
+			$txtTip ="Train spells continuously in barrack mode (Lightning, Heal, and Rage only)."
+			GUICtrlSetTip(-1, $txtTip)
+
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+	
 GUICtrlCreateTabItem("")
 
 $hGUI_ARMY_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,22,"Boost"))

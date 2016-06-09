@@ -213,6 +213,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($iChkMeetTH[$DB], $config, "search", "DBMeetTH", "0")
 		IniReadS($iChkMeetTHO[$DB], $config, "search", "DBMeetTHO", "0")
 		IniReadS($iChkWeakBase[$DB], $config, "search", "DBWeakBase", "0")
+		$iChkNoLeague[$DB] = IniRead($config, "search", "DBNoLeague", "0")
 		IniReadS($iChkMeetOne[$DB], $config, "search", "DBMeetOne", "0")
 
 		IniReadS($iEnableAfterCount[$DB], $config, "search", "DBEnableAfterCount", "1")
@@ -245,6 +246,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($iChkMeetTH[$LB], $config, "search", "ABMeetTH", "0")
 		IniReadS($iChkMeetTHO[$LB], $config, "search", "ABMeetTHO", "0")
 		IniReadS($iChkWeakBase[$LB], $config, "search", "ABWeakBase", "0")
+		$iChkNoLeague[$LB] = IniRead($config, "search", "ABNoLeague", "0")
 		IniReadS($iChkMeetOne[$LB], $config, "search", "ABMeetOne", "0")
 
 		IniReadS($iEnableAfterCount[$LB], $config, "search", "ABEnableAfterCount", "1")
@@ -1019,6 +1021,11 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		$AndroidAdbClicksEnabled = IniRead($config, "android", "adb.clicks.enabled", ($AndroidAdbClicksEnabled ? "1" : "0")) = "1"
 		$AndroidAdbClicksTroopDeploySize = Int(IniRead($config, "android", "adb.clicks.troop.deploy.size", $AndroidAdbClicksTroopDeploySize))
 		
+; Mod AIO
+		
+		$iChkDontRemove = IniRead($config, "troop", "DontRemove", "0")
+		$iChkBarrackSpell = IniRead($config, "Spells", "BarrackSpell", "0")
+
 		
 		;mikemikemikecoc - Wait For Spells
 		IniReadS($iEnableSpellsWait[$DB], $config, "search", "ChkDBSpellsWait", "0")

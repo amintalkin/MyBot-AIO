@@ -192,6 +192,10 @@ Local $x = 220, $y = 45
 		$picDBWeakWizTower = GUICtrlCreateIcon($pIconLib, $eIcnWizTower, $x + 140, $y - 2, 24, 24)
 			GUICtrlSetTip(-1, $txtTip)
 		$y += 21
+		$chkDBNoLeague = GUICtrlCreateCheckbox("No League", $x, $y, -1, -1)
+			$txtTip ="Search for a base that has no league."
+			GUICtrlSetTip(-1, $txtTip)
+		$y += 21
 		$chkDBMeetOne = GUICtrlCreateCheckbox(GetTranslated(625,40, "Meet One Then Attack"), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,41, "Just meet only ONE of the above conditions, then Attack.")
 			GUICtrlSetTip(-1, $txtTip)

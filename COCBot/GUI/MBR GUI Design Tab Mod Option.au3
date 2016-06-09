@@ -92,7 +92,7 @@ GUISwitch($hGUI_ModOption)
 	;Local $x = 35, $y = 450
 	;$grpDontEndBattle = GUICtrlCreateGroup("Miscellaneous Battle Settings", $x - 20, $y - 20, 440, 45)
 		$chkFastADBClicks = GUICtrlCreateCheckbox("Enable Fast ADB Clicks", $x + 120, $y + 20, -1, -1)
-			$txtTip = "Tick this to enable faster ADB deployment for MEmu and Droid4x in Multi-finger mode." & @CRLF & @CRLF & _ 
+			$txtTip = "Tick this to enable faster ADB deployment of troops for MEmu and Droid4x" & @CRLF & @CRLF & _ 
 				      "     WARNING:  This is experimental, if you have issues with deployment, disable it."
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkFastADBClicks")

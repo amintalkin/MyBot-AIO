@@ -192,6 +192,10 @@ Local $x = 220, $y = 45
 		$picABWeakWizTower = GUICtrlCreateIcon($pIconLib, $eIcnWizTower, $x + 137, $y - 2, 24, 24)
 			GUICtrlSetTip(-1, $txtTip)
 		$y += 21
+		$chkABNoLeague = GUICtrlCreateCheckbox("No League", $x, $y, -1, -1)
+			$txtTip ="Search for a base that has no league."
+			GUICtrlSetTip(-1, $txtTip)
+		$y += 21
 		$chkABMeetOne = GUICtrlCreateCheckbox(GetTranslated(625,40, -1), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,41, -1)
 			GUICtrlSetTip(-1, $txtTip)
