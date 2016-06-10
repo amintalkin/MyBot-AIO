@@ -752,8 +752,14 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 
 	If $iChkCollect = 1 Then
 		GUICtrlSetState($chkCollect, $GUI_CHECKED)
+		GUICtrlSetData($txtTRGold, $itxtTRGold)
+		GUICtrlSetData($txtTRElixir, $itxtTRElixir)
+		GUICtrlSetData($txtTRDElixir, $itxtTRDElixir)
 	Else
 		GUICtrlSetState($chkCollect, $GUI_UNCHECKED)
+		GUICtrlSetData($txtTRGold, $itxtTRGold)
+		GUICtrlSetData($txtTRElixir, $itxtTRElixir)
+		GUICtrlSetData($txtTRDElixir, $itxtTRDElixir)
 	EndIf
 
 	If $ichkTombstones = 1 Then

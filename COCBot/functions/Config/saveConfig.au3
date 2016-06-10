@@ -1925,8 +1925,14 @@ Func saveConfig() ;Saves the controls settings to the config
 	EndIf
 	If GUICtrlRead($chkCollect) = $GUI_CHECKED Then
 		IniWriteS($config, "other", "chkCollect", 1)
+		IniWriteS($config, "other","treasuryGold", GUICtrlRead($txtTRGold))
+		IniWriteS($config, "other","treasuryElixir", GUICtrlRead($txtTRElixir))
+		IniWriteS($config, "other","treasuryDark", GUICtrlRead($txtTRDElixir))
 	Else
 		IniWriteS($config, "other", "chkCollect", 0)
+		IniWriteS($config, "other","treasuryGold", GUICtrlRead($txtTRGold))
+		IniWriteS($config, "other","treasuryElixir", GUICtrlRead($txtTRElixir))
+		IniWriteS($config, "other","treasuryDark", GUICtrlRead($txtTRDElixir))
 	EndIf
 	If GUICtrlRead($chkTombstones) = $GUI_CHECKED Then
 		IniWriteS($config, "other", "chkTombstones", 1)
