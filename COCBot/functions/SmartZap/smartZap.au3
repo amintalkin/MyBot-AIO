@@ -101,11 +101,11 @@ Func smartZap($minDE = -1)
 	If Number($searchDark) = 0 Then
 		SetLog("No Dark Elixir so lets just exit!", $COLOR_FUCHSIA)
 		Return $performedZap
-	; Check to see if the DE Storage is already full
+		; Check to see if the DE Storage is already full
 	ElseIf isDarkElixirFull() Then
 		SetLog("Your Dark Elixir Storage is full, no need to zap!", $COLOR_FUCHSIA)
 		Return $performedZap
-	; Check to make sure the account is high enough level to store DE.
+		; Check to make sure the account is high enough level to store DE.
 	ElseIf $iTownHallLevel < 7 Then
 		SetLog("You do not have the ability to store Dark Elixir, time to go home!", $COLOR_FUCHSIA)
 		Return $performedZap
@@ -295,24 +295,22 @@ Func zapDrill($THSpell, $x, $y)
 
 	Local $Spell = -1
 	Local $name = ""
-	;If ($THSpell = $eHSpell And $ichkUseHSpellsTH = 1) Or ($THSpell = $eLSpell And $ichkUseLSpellsTH = 1) Or ($THSpell = $eRSpell And $ichkUseRSpellsTH = 1) Then
-		If _Sleep(10) Then Return
-		If $Restart = True Then Return
-		If CheckOneStar(0, False, True) Then Return
-		For $i = 0 To UBound($atkTroops) - 1
-			If $atkTroops[$i][0] = $THSpell Then
-				$Spell = $i
-				$name = NameOfTroop($THSpell, 0)
-			EndIf
-		Next
-		If $Spell > -1 Then
-			SetLog("Dropping " & $name)
-			SelectDropTroop($Spell)
-			If _Sleep($iDelayCastSpell1) Then Return
-			If IsAttackPage() Then Click($x, $y, 1, 0, "#0029")
-		Else
-			If $debugSetLog = 1 Then SetLog("No " & $name & " Found")
+
+	For $i = 0 To UBound($atkTroops) - 1
+		If $atkTroops[$i][0] = $THSpell Then
+			$Spell = $i
+			$name = NameOfTroop($THSpell, 0)
 		EndIf
-	;EndIf
+	Next
+
+	If $Spell > -1 Then
+		SetLog("Dropping " & $name)
+		SelectDropTroop($Spell)
+		If _Sleep($iDelayCastSpell1) Then Return
+		If IsAttackPage() Then Click($x, $y, 1, 0, "#0029")
+	Else
+		If $debugSetLog = 1 Then SetLog("No " & $name & " Found")
+	EndIf
 
 EndFunc   ;==>zapDrill
+

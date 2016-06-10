@@ -74,8 +74,8 @@ Local $x = 15, $y = 45
 			GUICtrlSetLimit(-1, 6)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-Local $x = 15, $y = 150
-	$grpMisc = GUICtrlCreateGroup(GetTranslated(610,40, "Rearm, Collect, Clear"), $x -10, $y - 20 , 440, 190)
+Local $x = 15, $y = 145
+	$grpMisc = GUICtrlCreateGroup(GetTranslated(610,40, "Rearm, Collect, Clear"), $x -10, $y - 20 , 440, 200)
 		GUICtrlCreateIcon($pIconLib, $eIcnTrap, $x + 7, $y, 24, 24)
 		GUICtrlCreateIcon($pIconLib, $eIcnXbow, $x + 32, $y, 24, 24)
 		GUICtrlCreateIcon($pIconLib, $eIcnInferno, $x + 57, $y, 24, 24)
@@ -83,29 +83,51 @@ Local $x = 15, $y = 150
 			GUICtrlSetTip(-1, GetTranslated(610,42, "Check this to automatically Rearm Traps, Reload Xbows and Infernos (if any) in your Village."))
 			GUICtrlSetOnEvent(-1, "chkTrap")
 			_ArrayConcatenate($G, $D)
-	$y += 35
+	$y += 30
 		GUICtrlCreateIcon($pIconLib, $eIcnMine, $x - 5, $y, 24, 24)
 		GUICtrlCreateIcon($pIconLib, $eIcnCollector, $x + 20, $y, 24, 24)
 		GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x + 45, $y, 24, 24)
 		GUICtrlCreateIcon($pIconLib, $eIcnLootCart, $x + 70, $y, 24, 24)
-		$chkCollect = GUICtrlCreateCheckbox(GetTranslated(610,43, "Collect Resources && Loot Cart"), $x + 100, $y + 4, -1, -1, -1)
-			$txtTip = GetTranslated(610,44, "Check this to automatically collect the Village's Resources") & @CRLF & GetTranslated(610,45, "from Gold Mines, Elixir Collectors and Dark Elixir Drills.") & @CRLF & GetTranslated(610,46, "This will also search for a Loot Cart in your village and collect it.")
+;-------- Collect Treasury
+		$chkCollect = GUICtrlCreateCheckbox(GetTranslated(610,43, "Collect Resources, Loot Cart") & " && Treasury", $x + 100, $y + 4, -1, -1, -1)
+			$txtTip = GetTranslated(610,44, "Check this to automatically collect the Village's Resources") & " And Treasury" & @CRLF & GetTranslated(610,45, "from Gold Mines, Elixir Collectors and Dark Elixir Drills.") & @CRLF & GetTranslated(610,46, "This will also search for a Loot Cart in your village and collect it.")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_CHECKED)
-	$y += 35
+	;Local $x = 15, $y = 200
+	;$y += 35
+	;GUICtrlCreateGroup("Collect Treasury",$x + 220,$y,200,90)
+	GUICtrlCreateLabel("Collect Treasury When Resources Lower:",$x + 100,$y + 25)
+	GUICtrlCreateIcon ($pIconLib, $eIcnGold, $x + 100, $y + 40, 16, 16)
+		$txtTRGold = GUICtrlCreateInput("1000", $x + 120, $y + 40, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$txtTip = "Minimum Gold value for the bot to collect treasury"
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetLimit(-1, 7)
+	GUICtrlCreateIcon ($pIconLib, $eIcnElixir, $x + 180, $y + 40, 16, 16)
+		$txtTRElixir = GUICtrlCreateInput("1500", $x + 200, $y + 40, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$txtTip = "Minimum Elixir value for the bot to collect treasury"
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetLimit(-1, 7)
+	GUICtrlCreateIcon ($pIconLib, $eIcnDark, $x + 260, $y + 40, 16, 16)
+		$txtTRDElixir = GUICtrlCreateInput("500", $x + 280, $y + 40, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$txtTip = "Minimum Dark Elixir value for the bot to collect treasury"
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetLimit(-1, 7)
+	;-------- End Collect Treasury
+
+	$y += 60
 		GUICtrlCreateIcon($pIconLib, $eIcnTombstone, $x + 32 , $y, 24, 24)
 		$chkTombstones = GUICtrlCreateCheckbox(GetTranslated(610,47, "Clear Tombstones"), $x + 100, $y + 4, -1, -1)
 			$txtTip = GetTranslated(610,48, "Check this to automatically clear tombstones after enemy attack.")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
-	$y += 35
+	$y += 30
 		GUICtrlCreateIcon($pIconLib, $eIcnTree, $x + 20, $y, 24, 24)
 		GUICtrlCreateIcon($pIconLib, $eIcnBark, $x + 45, $y, 24, 24)
 		$chkCleanYard = GUICtrlCreateCheckbox(GetTranslated(610,49, "Remove Obstacles"), $x + 100, $y + 4, -1, -1)
 			$txtTip = GetTranslated(610,50, "Check this to automatically clear Yard from Trees, Trunks, etc.")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
-	$y += 35
+	$y += 30
 		GUICtrlCreateIcon($pIconLib, $eIcnGembox, $x + 32, $y, 24, 24)
 		$chkGemsBox = GUICtrlCreateCheckbox(GetTranslated(610,51, "Remove GemBox"), $x + 100, $y + 4, -1, -1)
 			$txtTip = GetTranslated(610,52, "Check this to automatically clear GemBox.")
