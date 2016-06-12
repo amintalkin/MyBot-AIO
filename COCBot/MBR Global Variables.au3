@@ -1504,14 +1504,19 @@ Global $TroopDropNumber = 0
 Global $remainingTroops[12][2]
 
 ;CSV Deployment Speed Mod
-Global $isldSelectedCSVSpeed[$iModeCount], $iCSVSpeeds[8]
-$isldSelectedCSVSpeed[$DB] = 3
-$isldSelectedCSVSpeed[$LB] = 3
-$iCSVSpeeds[0] = .25
-$iCSVSpeeds[1] = .5
-$iCSVSpeeds[2] = .75
-$iCSVSpeeds[3] = 1
-$iCSVSpeeds[4] = 1.25
-$iCSVSpeeds[5] = 1.5
-$iCSVSpeeds[6] = 1.75
-$iCSVSpeeds[7] = 2
+Global $isldSelectedCSVSpeed[$iModeCount], $iCSVSpeeds[13]
+$isldSelectedCSVSpeed[$DB] = 4
+$isldSelectedCSVSpeed[$LB] = 4
+$iCSVSpeeds[0] = .1
+$iCSVSpeeds[1] = .25
+$iCSVSpeeds[2] = .5
+$iCSVSpeeds[3] = .75
+$iCSVSpeeds[4] = 1
+$iCSVSpeeds[5] = 1.25
+$iCSVSpeeds[6] = 1.5
+$iCSVSpeeds[7] = 1.75
+$iCSVSpeeds[8] = 2
+$iCSVSpeeds[9] = 2.25
+$iCSVSpeeds[10] = 2.5
+$iCSVSpeeds[11] = 2.75
+$iCSVSpeeds[12] = 3

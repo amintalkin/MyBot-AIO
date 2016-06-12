@@ -285,14 +285,14 @@ EndFunc   ;==>DuplicateScriptAB
 Func sldSelectedSpeedDB()
 	$isldSelectedCSVSpeed[$DB] = GUICtrlRead($sldSelectedSpeedDB)
 	Local $speedText = $iCSVSpeeds[$isldSelectedCSVSpeed[$DB]] & "x";
-	IF $isldSelectedCSVSpeed[$DB] = 3 Then $speedText = "Normal"
+	IF $isldSelectedCSVSpeed[$DB] = 4 Then $speedText = "Normal"
 	GUICtrlSetData($lbltxtSelectedSpeedDB, $speedText & " speed")
 EndFunc   ;==>sldSelectedSpeedDB
 
 Func sldSelectedSpeedAB()
 	$isldSelectedCSVSpeed[$LB] = GUICtrlRead($sldSelectedSpeedAB)
 	Local $speedText = $iCSVSpeeds[$isldSelectedCSVSpeed[$LB]] & "x";
-	IF $isldSelectedCSVSpeed[$LB] = 3 Then $speedText = "Normal"
+	IF $isldSelectedCSVSpeed[$LB] = 4 Then $speedText = "Normal"
 	GUICtrlSetData($lbltxtSelectedSpeedAB, $speedText & " speed")
 EndFunc   ;==>sldSelectedSpeedAB
 
