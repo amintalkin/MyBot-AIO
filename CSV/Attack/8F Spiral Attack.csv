@@ -46,8 +46,11 @@ MAKE  |Z          |LEFT-BACK  |1          |0          |INT-EXT    |0          |0
       |Drop original FF attack troops
       |VECTOR__________|INDEX_____|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________|
 DROP  |I-J-K-L-M-N-O-P |3-4       |12.5%      |Giant      |0          |100        |1200       |            |Drop Giant
+DROP  |I-J-K-L-M-N-O-P |3-4       |15.5%      |Giant      |0          |100        |1200       |            |Drop Giant
 DROP  |A-B-C-D-E-F-G-H |0%-100%   |12.5%      |Barb       |0          |0          |0          |            |Drop Barb
+DROP  |A-B-C-D-E-F-G-H |0%-100%   | 5.0%      |Barb       |0          |0          |0          |            |Drop Barb
 DROP  |A-B-C-D-E-F-G-H |0%-100%   |12.5%      |Arch       |0          |0          |0          |            |Drop Arch
+DROP  |A-B-C-D-E-F-G-H |0%-100%   | 5.0%      |Arch       |0          |0          |0          |            |Drop Arch
 DROP  |I-J-K-L-M-N-O-P |3-4       |12.5%      |Wall       |0          |100        |0          |            |Drop Wall
 DROP  |I-J-K-L-M-N-O-P |3-4       |12.5%      |Gobl       |0          |100        |0          |            |Drop Gobl
 

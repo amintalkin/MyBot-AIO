@@ -223,7 +223,7 @@ EndIf
 	 EndIf
   EndIf
 ElseIF (Number($tempGold) <= Number($itxtTRGold)) Or (Number($tempElixir) <= Number($itxtTRElixir)) Or (Number($tempDElixir) <= Number($itxtTRDElixir)) = False Then
-			   SetLog("Resources Don't Match With Minimum Required Resources To Collect Loot Treasury",$COLOR_RED)
+			   SetLog("Resources Don't Match With Minimum Required Resources To Collect Loot Treasury",$COLOR_ORANGE)
 EndIf
 	VillageReport(True, True)
 	$tempCounter = 0
