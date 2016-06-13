@@ -36,20 +36,67 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 	debugAttackCSV(" - delay after drop all troops : " & $sleepafterMin & "-" & $sleepAfterMax)
 	;how many vectors need to manage...
 	Local $vectorLetters = StringSplit($vectors, "-")
-	Local $numbersOfVectors, $temp
+	Local $numbersOfVectors
 	If UBound($vectorLetters) > 0 Then
 		$numbersOfVectors = $vectorLetters[0]
 	Else
 		$numbersOfVectors = 0
 	EndIf
 
-	;Qty to drop
-	If $qtaMin <> $qtaMax Then
-		Local $qty = Random($qtaMin, $qtaMax, 1)
+	;initialize vector arrays
+	Local $managedVectors[$numbersOfVectors]
+	For $i = 0 To $numbersOfVectors - 1
+		$managedVectors[$i] = Execute("$ATTACKVECTOR_" & $vectorLetters[$i + 1])
+	Next
+
+	Local $troopEnum = Eval("e" & $troopName)
+	Local $availableTroops = 0
+	Local $remainingTroopsDrop = 0
+	Local $troopsDropped = 0
+
+	For $i = 0 to Ubound($atkTroops) - 1
+		If $atkTroops[$i][0] = $troopEnum Then
+			$availableTroops = $atkTroops[$i][1]
+		EndIf
+	Next
+
+	For $i = 0 to Ubound($remainingTroops) - 1
+		If $remainingTroops[$i][0] = $troopEnum Then
+			$remainingTroopsDrop = $remainingTroops[$i][1]
+		EndIf
+	Next
+
+	If $troopEnum = $eKing Or $troopEnum = $eQueen Or $troopEnum = $eWarden Or $troopEnum = $eCastle Then
+		$availableTroops = 1
+		$remainingTroopsDrop = 1
+	EndIf
+
+	Setlog($troopName & ": " & $availableTroops & " total, " & $remainingTroopsDrop & " remaining.")
+
+	If $isQtyPercent = 1 Then
+		Local $qty = Ceiling($availableTroops * ($qtaMin / 100))
 	Else
-		Local $qty = $qtaMin
+		;Qty to drop
+		If $qtaMin <> $qtaMax Then
+			Local $qty = Random($qtaMin, $qtaMax, 1)
+		Else
+			Local $qty = $qtaMin
+		EndIf
 	EndIf
 	debugAttackCSV(">> qty to deploy: " & $qty)
+
+	;number of troop to drop in one point...
+	If $qty > 0 and $qty < $indexEnd - $indexStart Then
+		;there are less drop doints than indexes
+		;spread out the drop points along the indexes
+		Local $qtyxpoint = 1
+		Local $extraunit = 0
+		Local $indexJump = ($indexEnd - $indexStart) / ($qty - 1)
+	Else
+		Local $qtyxpoint = Int($qty / ($indexEnd - $indexStart + 1))
+		Local $extraunit = Mod($qty, ($indexEnd - $indexStart + 1))
+		Local $indexJump = 0
+	EndIf
 
 	;search slot where is the troop...
 	Local $troopPosition = -1
@@ -77,10 +124,27 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 			If $ichkEarthquakeSpell[$iMatchMode] = 0 Then $usespell = False
 		Case $eHaSpell
 			If $ichkHasteSpell[$iMatchMode] = 0 Then $usespell = False
-			EndSwitch
+	EndSwitch
 
-   If $delayPointmin = 0 Then $delayPointmin = 100
-   If $delayPointmax = 0 Then $delayPointmax = 500
+   If $delayPointmin = 0 Then $delayPointmin = 50
+   If $delayPointmax = 0 Then $delayPointmax = 50
+
+   If $delayDropMin = 0 Then $delayDropMin = 50
+   If $delayDropMax = 0 Then $delayDropMax = 50
+
+	Local $minSize = 1000
+	For $i = 0 To $numbersOfVectors - 1
+		If Ubound($managedVectors[$i]) < $minSize Then $minSize = Ubound($managedVectors[$i])
+		debugAttackCSV(">> vector " & $i & "=" & Ubound($managedVectors[$i]))
+	Next
+	debugAttackCSV(">> minSize " & "=" & $minSize)
+	If $isIndexPercent = 1 Then
+		$indexStart = Floor($minSize * ($indexStart / 100))
+		$indexEnd = Ceiling($minSize * ($indexEnd / 100))
+		if $indexStart = 0 then
+			$indexStart = 1
+		EndIf
+	EndIf
 
 	If $troopPosition = -1 Or $usespell = False Then
 		If $usespell = True Then
@@ -89,94 +153,11 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 		Else
 			If $DebugSetLog = 1 Then SetLog("discard use spell", $COLOR_PURPLE)
 		EndIf
-
 	Else
-		;initialize vector arrays
-		Local $managedVectors[$numbersOfVectors]
-		For $i = 0 To $numbersOfVectors - 1
-			$managedVectors[$i] = Execute("$ATTACKVECTOR_" & $vectorLetters[$i + 1])
-		Next
-
-		Local $troopEnum = Eval("e" & $troopName)
-		Local $availableTroops = 0
-		Local $remainingTroopsDrop = 0
-		Local $troopsDropped = 0
-
-		For $i = 0 to Ubound($atkTroops) - 1
-			If $atkTroops[$i][0] = $troopEnum Then
-				$availableTroops = $atkTroops[$i][1]
-			EndIf
-		Next
-
-		For $i = 0 to Ubound($remainingTroops) - 1
-			If $remainingTroops[$i][0] = $troopEnum Then
-				$remainingTroopsDrop = $remainingTroops[$i][1]
-			EndIf
-		Next
-
-		If $troopEnum = $eKing Or $troopEnum = $eQueen Or $troopEnum = $eWarden Or $troopEnum = $eCastle Then
-			$availableTroops = 1
-			$remainingTroopsDrop = 1
-		EndIf
-
-		Setlog($troopName & ": " & $availableTroops & " total, " & $remainingTroopsDrop & " remaining.")
-
-		If $isQtyPercent = 1 Then
-			Local $qty = Ceiling($availableTroops * ($qtaMin / 100))
-		Else
-			;Qty to drop
-			If $qtaMin <> $qtaMax Then
-				Local $qty = Random($qtaMin, $qtaMax, 1)
-			Else
-				Local $qty = $qtaMin
-			EndIf
-		EndIf
-
-		Local $minSize = 1000
-		For $i = 0 To $numbersOfVectors - 1
-			If Ubound($managedVectors[$i]) < $minSize Then $minSize = Ubound($managedVectors[$i])
-			debugAttackCSV(">> vector " & $i & "=" & Ubound($managedVectors[$i]))
-		Next
-		debugAttackCSV(">> minSize " & "=" & $minSize)
-		If $isIndexPercent = 1 Then
-			$indexStart = Floor($minSize * ($indexStart / 100))
-			$indexEnd = Ceiling($minSize * ($indexEnd / 100))
-			if $indexStart = 0 then
-				$indexStart = 1
-			EndIf
-		EndIf
-
-		;number of troop to drop in one point...
-		If $qty > 0 and $qty < $indexEnd - $indexStart Then
-			;there are less drop doints than indexes
-			;spread out the drop points along the indexes
-			Local $qtyxpoint = 1
-			Local $extraunit = 0
-			Local $indexJump = ($indexEnd - $indexStart) / ($qty - 1)
-		Else
-			Local $qtyxpoint = Int($qty / ($indexEnd - $indexStart + 1))
-			Local $extraunit = Mod($qty, ($indexEnd - $indexStart + 1))
-			Local $indexJump = 0
-		EndIf
-
-	  Local $SuspendMode = SuspendAndroid()
 		SelectDropTroop($troopPosition) ; select the troop...
-		KeepClicks()
-
-		Local $qty2 = $qtyxpoint
-
-		;delay time between 2 drops in same point
-		If $delayPointmin <> $delayPointmax Then
-			Local $delayPoint = Random($delayPointmin, $delayPointmax, 1)
-		Else
-			Local $delayPoint = $delayPointmin
-		EndIf
-
-		Local $delayDrop
 
 		;drop
 		$TroopDropNumber += 1
-		$SuspendMode = ResumeAndroid()
 
 		Local $currentJumpIndex
 		Local $hTimer = TimerInit()
@@ -223,6 +204,7 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 				If $j = $numbersOfVectors Then $delayDropLast = $delayDrop
 				If $index <= UBound($managedVectors[$j - 1]) Then
 					$pixel = ($managedVectors[$j - 1])[$index - 1]
+					Local $qty2 = $qtyxpoint
 					If $index < $indexStart + $extraunit Then $qty2 += 1
 
 					If $isIndexPercent = 1 Then
@@ -298,14 +280,12 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 						$delayDrop = Random($delayDropMin, $delayDropMax, 1)
 					Else
 						$delayDrop = $delayDropMin
-					 EndIf
-
+					EndIf
 
 					$delayDrop = $delayDrop / $isldSelectedCSVSpeed[$iMatchMode]
 
 					;debugAttackCSV(">> delay change drop point: " & $delayDrop)
 					If $delayDrop <> 0 Then
-					    SuspendAndroid($SuspendMode)
 						ReleaseClicks()
 						If _Sleep($delayDrop) Then
 							Return
@@ -315,9 +295,18 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 				EndIf
 			Next
 		Next
+		
+		Local $htimerDrop = Round(TimerDiff($hTimer) / 1000, 2)
+		Setlog("Dropped " & $troopsDropped & " " & $troopName & " in " & $htimerDrop & " seconds.  Remaining: " & $remainingTroopsDrop)
+		
+		For $i = 0 to Ubound($remainingTroops) - 1
+			If $remainingTroops[$i][0] = $troopEnum Then
+				$remainingTroops[$i][1] = $remainingTroopsDrop
+			EndIf
+		Next 
 
 		ReleaseClicks()
-	    SuspendAndroid($SuspendMode)
+	    ;~ SuspendAndroid($SuspendMode)
 
 		;sleep time after deploy all troops
 		Local $sleepafter = 0
