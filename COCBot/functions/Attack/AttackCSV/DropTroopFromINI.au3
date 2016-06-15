@@ -85,19 +85,6 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 	EndIf
 	debugAttackCSV(">> qty to deploy: " & $qty)
 
-	;number of troop to drop in one point...
-	If $qty > 0 and $qty < $indexEnd - $indexStart Then
-		;there are less drop doints than indexes
-		;spread out the drop points along the indexes
-		Local $qtyxpoint = 1
-		Local $extraunit = 0
-		Local $indexJump = ($indexEnd - $indexStart) / ($qty - 1)
-	Else
-		Local $qtyxpoint = Int($qty / ($indexEnd - $indexStart + 1))
-		Local $extraunit = Mod($qty, ($indexEnd - $indexStart + 1))
-		Local $indexJump = 0
-	EndIf
-
 	;search slot where is the troop...
 	Local $troopPosition = -1
 	For $i = 0 To UBound($atkTroops) - 1
@@ -144,6 +131,19 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 		if $indexStart = 0 then
 			$indexStart = 1
 		EndIf
+	EndIf
+
+	;number of troop to drop in one point...
+	If $qty > 0 and $qty < $indexEnd - $indexStart Then
+		;there are less drop doints than indexes
+		;spread out the drop points along the indexes
+		Local $qtyxpoint = 1
+		Local $extraunit = 0
+		Local $indexJump = ($indexEnd - $indexStart) / ($qty - 1)
+	Else
+		Local $qtyxpoint = Int($qty / ($indexEnd - $indexStart + 1))
+		Local $extraunit = Mod($qty, ($indexEnd - $indexStart + 1))
+		Local $indexJump = 0
 	EndIf
 
 	If $troopPosition = -1 Or $usespell = False Then
@@ -306,7 +306,10 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 		Next 
 
 		ReleaseClicks()
-	    ;~ SuspendAndroid($SuspendMode)
+	    ;~ SuspendAndroid($SuspendMode)   
+		
+		If $sleepafterMin = 0 Then $sleepafterMin = 50
+   		If $sleepAfterMax = 0 Then $sleepAfterMax = 50
 
 		;sleep time after deploy all troops
 		Local $sleepafter = 0
