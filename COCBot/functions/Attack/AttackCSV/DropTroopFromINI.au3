@@ -134,7 +134,7 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 	EndIf
 
 	;number of troop to drop in one point...
-	If $qty > 0 and $qty < $indexEnd - $indexStart Then
+	If $qty > 0 and $qty < $indexEnd - $indexStart And $isQtyPercent = 1 Then
 		;there are less drop doints than indexes
 		;spread out the drop points along the indexes
 		Local $qtyxpoint = 1
@@ -193,7 +193,7 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 			EndIf
 
 			For $j = 1 To $numbersOfVectors
-				If $isIndexPercent = 1 Then
+				If $isQtyPercent = 1 Then
 					If $troopsDropped >= $availableTroops Then
 						ExitLoop
 					EndIf
@@ -207,7 +207,7 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 					Local $qty2 = $qtyxpoint
 					If $index < $indexStart + $extraunit Then $qty2 += 1
 
-					If $isIndexPercent = 1 Then
+					If $isQtyPercent = 1 Then
 					   If $remainingTroopsDrop = 0 Then
 						  ExitLoop
 					   EndIf
@@ -228,8 +228,8 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 					$troopsDropped += 1 ;$qty2
 
 					; CSV Deployment Speed Mod
-					$delayPoint = $delayPoint / $isldSelectedCSVSpeed[$iMatchMode]
-					$delayDropLast = $delayDropLast / $isldSelectedCSVSpeed[$iMatchMode]
+					$delayPoint = $delayPoint / $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]]
+					$delayDropLast = $delayDropLast / $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]]
 
 					Switch Eval("e" & $troopName)
 						Case $eBarb To $eLava ; drop normal troops
@@ -282,7 +282,7 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 						$delayDrop = $delayDropMin
 					EndIf
 
-					$delayDrop = $delayDrop / $isldSelectedCSVSpeed[$iMatchMode]
+					$delayDrop = $delayDrop / $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]]
 
 					;debugAttackCSV(">> delay change drop point: " & $delayDrop)
 					If $delayDrop >= 50 Then ;Not worth sleeping if lower than 50ms
@@ -320,7 +320,7 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 		EndIf
 
 		; CSV Deployment Speed Mod
-		$sleepafter = $sleepafter / $isldSelectedCSVSpeed[$iMatchMode]
+		$sleepafter = $sleepafter / $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]]
 
 		If $sleepafter > 0 And IsKeepClicksActive() = False Then
 			debugAttackCSV(">> delay after drop all troops: " & $sleepafter)

@@ -36,6 +36,13 @@ Func ParseAttackCSV($debug = False)
 	EndIf
 	Setlog("execute " & $filename)
 
+	Local $speedText = $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]] & "x"
+	If $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]] = 1 Then 
+		$speedText = "Normal"
+	EndIf 
+
+	Setlog(" - at " & $speedText & " speed")
+
 	Local $f, $line, $acommand, $command
 	Local $value1, $value2, $value3, $value4, $value5, $value6, $value7, $value8, $value9
 	If FileExists($dirAttacksCSV & "\" & $filename & ".csv") Then
