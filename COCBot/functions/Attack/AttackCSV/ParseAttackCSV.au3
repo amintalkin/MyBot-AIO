@@ -544,6 +544,15 @@ Func ParseAttackCSV($debug = False)
 			EndIf
 			CheckHeroesHealth()
 		WEnd
+
+		SetLog("Dropping left over troops", $COLOR_BLUE)
+		PrepareAttack($iMatchMode, True)
+		For $i = $eBarb To $eLava ; lauch all remaining troops
+			LauchTroop($i, 4, 0, 1)
+			CheckHeroesHealth()
+			If _Sleep(50) Then Return
+		Next
+
 		ReleaseClicks()
 		FileClose($f)
 	Else

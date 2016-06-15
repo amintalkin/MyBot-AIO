@@ -285,7 +285,7 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 					$delayDrop = $delayDrop / $isldSelectedCSVSpeed[$iMatchMode]
 
 					;debugAttackCSV(">> delay change drop point: " & $delayDrop)
-					If $delayDrop <> 0 Then
+					If $delayDrop >= 50 Then ;Not worth sleeping if lower than 50ms
 						ReleaseClicks()
 						If _Sleep($delayDrop) Then
 							Return
