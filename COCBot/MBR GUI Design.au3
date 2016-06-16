@@ -175,7 +175,9 @@ GUICtrlSetState($hGUI_LOG, $GUI_SHOW)
 ;~ -------------------------------------------------------------
 ;~ Bottom status bar
 ;~ -------------------------------------------------------------
-GUIDelete($hSplash) ; Delete the splash screen since we don't need it anymore
+If $hSplash <> "" Then
+	GUIDelete($hSplash) ; Delete the splash screen since we don't need it anymore
+EndIf
 GUISetState(@SW_SHOW, $frmBot)
 $frmBotMinimized = False
 
