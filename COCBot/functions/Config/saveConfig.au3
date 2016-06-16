@@ -503,6 +503,11 @@ Func saveConfig() ;Saves the controls settings to the config
 	$itxtRestartDark = GUICtrlRead($txtRestartDark)
 
 	; bot options gui -> variables ----------------------------------------------------
+	If GUICtrlRead($chkDisableSplash) = $GUI_CHECKED Then
+		$ichkDisableSplash = 1
+	Else
+		$ichkDisableSplash = 0
+	EndIf
 	If GUICtrlRead($chkVersion) = $GUI_CHECKED Then
 		$ichkVersion = 1
 	Else
@@ -2169,6 +2174,7 @@ Func saveConfig() ;Saves the controls settings to the config
 
 	IniWriteS($config, "General", "ChkLanguage", $ichkLanguage)
 
+	IniWriteS($config, "General", "ChkDisableSplash", $ichkDisableSplash)
 	IniWriteS($config, "General", "ChkVersion", $ichkVersion)
 
 

@@ -1715,6 +1715,11 @@ EndIf
 
 	; apply bot options -----------------------------------------------------------------
 
+	If $ichkDisableSplash = 1 Then
+		GUICtrlSetState($chkDisableSplash, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDisableSplash, $GUI_UNCHECKED)
+	EndIf
 	If $ichkVersion = 1 Then
 		GUICtrlSetState($chkVersion, $GUI_CHECKED)
 	Else

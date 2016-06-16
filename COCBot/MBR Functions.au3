@@ -14,6 +14,7 @@
 ; ===============================================================================================================================
 
 #include "functions\GUI\GUI_State.au3"
+#include "functions\GUI\SplashStep.au3"
 #include "functions\Other\UpdateStatsWall.au3"
 #include "functions\Config\profileFunctions.au3"
 
