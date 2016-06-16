@@ -25,7 +25,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $qtaMax, $troopName, $delayPointmin, $delayPointmax, $delayDropMin, $delayDropMax, $sleepafterMin, $sleepAfterMax, $isQtyPercent, $isIndexPercent, $debug = False)
+Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $qtaMax, $troopName, $delayPointmin, $delayPointmax, $delayDropMin, $delayDropMax, $sleepafterMin, $sleepAfterMax, $sleepBeforeMin, $sleepBeforeMax, $isQtyPercent, $isIndexPercent, $debug = False)
 	If IsArray($indexArray) = 0 Then
 		debugAttackCSV("drop using vectors " & $vectors & " index " & $indexStart & "-" & $indexEnd & " and using " & $qtaMin & "-" & $qtaMax & " of " & $troopName)
 	Else
@@ -155,6 +155,35 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 		EndIf
 	Else
 		SelectDropTroop($troopPosition) ; select the troop...
+		
+		If $sleepBeforeMin = 0 Then $sleepBeforeMin = 50
+   		If $sleepBeforeMax = 0 Then $sleepBeforeMax = 50
+
+		;sleep time Before deploy all troops
+		Local $sleepBefore = 0
+		If $sleepBeforeMin <> $sleepBeforeMax Then
+			$sleepBefore = Random($sleepBeforeMin, $sleepBeforeMax, 1)
+		Else
+			$sleepBefore = Int($sleepBeforeMin)
+		EndIf
+
+		; CSV Deployment Speed Mod
+		$sleepBefore = $sleepBefore / $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]]
+
+		If $sleepBefore > 0 And IsKeepClicksActive() = False Then
+			debugAttackCSV(">> delay Before drop all troops: " & $sleepBefore)
+			If $sleepBefore <= 1000 Then  ; check SLEEPBefore value is less than 1 second?
+				If _Sleep($sleepBefore) Then Return
+				CheckHeroesHealth()  ; check hero health == does nothing if hero not dropped
+			Else  ; $sleepBefore is More than 1 second, then improve pause/stop button response with max 1 second delays
+				For $z = 1 To Int($sleepBefore/1000) ; Check hero health every second while while sleeping
+					If _Sleep(980) Then Return  ; sleep 1 second minus estimated herohealthcheck time when heroes not activiated
+					CheckHeroesHealth()  ; check hero health == does nothing if hero not dropped
+				Next
+				If _Sleep(Mod($sleepBefore,1000)) Then Return  ; $sleepBefore must be integer for MOD function return correct value!
+				CheckHeroesHealth() ; check hero health == does nothing if hero not dropped
+			EndIf
+		EndIf
 
 		;drop
 		$TroopDropNumber += 1

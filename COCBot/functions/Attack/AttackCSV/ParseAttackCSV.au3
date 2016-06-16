@@ -275,7 +275,7 @@ Func ParseAttackCSV($debug = False)
 								$sleepdrop1 = Int($sleepdroppvect[0])
 								$sleepdrop2 = Int($sleepdroppvect[1])
 							Else
-								$index1 = 1
+								$sleepdrop1 = 1
 								$sleepdrop2 = 1
 							EndIf
 						Else
@@ -287,7 +287,27 @@ Func ParseAttackCSV($debug = False)
 								$sleepdrop2 = 1
 							EndIf
 						EndIf
-						DropTroopFromINI($value1, $index1, $index2, $indexArray, $qty1, $qty2, $value4, $delaypoints1, $delaypoints2, $delaydrop1, $delaydrop2, $sleepdrop1, $sleepdrop2, $isQtyPercent, $isIndexPercent, $debug)
+						;sleep time before drop
+						Local $sleepbeforedrop1, $sleepbeforedrop2, $sleepbeforedroppvect
+						$sleepbeforedroppvect = StringSplit($value8, "-", 2)
+						If UBound($sleepbeforedroppvect) > 1 Then
+							If Int($sleepbeforedroppvect[0]) > 0 And Int($sleepbeforedroppvect[1]) > 0 Then
+								$sleepbeforedrop1 = Int($sleepbeforedroppvect[0])
+								$sleepbeforedrop2 = Int($sleepbeforedroppvect[1])
+							Else
+								$sleepbeforedrop1 = 0
+								$sleepbeforedrop2 = 0
+							EndIf
+						Else
+							If Int($value3) > 0 Then
+								$sleepbeforedrop1 = Int($value8)
+								$sleepbeforedrop2 = Int($value8)
+							Else
+								$sleepbeforedrop1 = 0
+								$sleepbeforedrop2 = 0
+							EndIf
+						EndIf
+						DropTroopFromINI($value1, $index1, $index2, $indexArray, $qty1, $qty2, $value4, $delaypoints1, $delaypoints2, $delaydrop1, $delaydrop2, $sleepdrop1, $sleepdrop2, $sleepbeforedrop1, $sleepbeforedrop2, $isQtyPercent, $isIndexPercent, $debug)
 						ReleaseClicks($AndroidAdbClicksTroopDeploySize)
 					Case "WAIT"
 						ReleaseClicks()
