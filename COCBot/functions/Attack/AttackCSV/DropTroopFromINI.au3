@@ -170,7 +170,7 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 		; CSV Deployment Speed Mod
 		$sleepBefore = $sleepBefore / $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]]
 
-		If $sleepBefore > 0 And IsKeepClicksActive() = False Then
+		If $sleepBefore > 50 And IsKeepClicksActive() = False Then
 			debugAttackCSV(">> delay Before drop all troops: " & $sleepBefore)
 			If $sleepBefore <= 1000 Then  ; check SLEEPBefore value is less than 1 second?
 				If _Sleep($sleepBefore) Then Return
@@ -351,7 +351,7 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 		; CSV Deployment Speed Mod
 		$sleepafter = $sleepafter / $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]]
 
-		If $sleepafter > 0 And IsKeepClicksActive() = False Then
+		If $sleepafter > 50 And IsKeepClicksActive() = False Then
 			debugAttackCSV(">> delay after drop all troops: " & $sleepafter)
 			If $sleepafter <= 1000 Then  ; check SLEEPAFTER value is less than 1 second?
 				If _Sleep($sleepafter) Then Return
