@@ -147,13 +147,96 @@ Func Collect()
 	EndIf
 
 	UpdateStats()
-
+If $ichkTRFull = 1 Then
+	If ($aCCPos[0] = "-1" Or $aCCPos[1] = "-1") Then
+   SetLog("Clan Castle Not Located To Collect Loot Treasury, Please Locate Clan Castle.",$COLOR_RED)
+LocateClanCastle()
+EndIf
+	SetLog("Checking for full Treasury",$COLOR_BLUE)
+	ClickP($aAway, 1, 0, "#04004") ; Click away
+	Sleep(100)
+	click($aCCPos[0], $aCCPos[1], 1, 0, "#04005")
+	Sleep(300)
+		;Click Treasury Button To Open Treasury Page
+		_CaptureRegion2(125, 610, 740, 715)
+		$res = DllCall($hImgLib, "str", "SearchTile", "handle", $hHBitmap2, "str", $ImagesToUse[0], "float", $ToleranceImgLoc, "str", "FV", "int", 1)
+			If IsArray($res) Then
+			   If $DebugSetlog = 1 Then SetLog("DLL Call succeeded " & $res[0], $COLOR_RED)
+				  If $res[0] = "0" Or $res[0] = "" Then
+					; failed to find Treasury Button
+					 If $DebugSetlog then SetLog("No Button found")
+					 SetLog("No Treasury Button Found",$COLOR_RED)
+				  ElseIf $res[0] = "-1" Then
+					SetLog("DLL Error", $COLOR_RED)
+				  ElseIf $res[0] = "-2" Then
+					SetLog("Invalid Resolution", $COLOR_RED)
+				  Else
+					$expRet = StringSplit($res[0], "|", $STR_NOCOUNT)
+					$posPoint = StringSplit($expRet[1], ",", $STR_NOCOUNT)
+					$ButtonX = 125 + Int($posPoint[0])
+					$ButtonY = 610 + Int($posPoint[1])
+					 Click($ButtonX, $ButtonY, 1, 0, "#04006")
+				 Sleep(1000)
+				 EndIf
+			EndIf	;EndIf for: If IsArray($res)
+		;End Click Treasury Button To Open Treasury Page
+	$slps = _PixelSearch(688, 296, 691, 355,Hex(0x50BD10, 6),20)
+	If IsArray($slps) Then
+		SetLog("Found full Treasury, Collecting Treasury loot due to full Treasury...",$COLOR_BLUE)
+		_CaptureRegion2()
+	  $res = DllCall($hImgLib, "str", "SearchTile", "handle", $hHBitmap2, "str", $ImagesToUse[1], "float", $ToleranceImgLoc, "str", "FV", "int", 1)
+		 If IsArray($res) Then
+			   If $DebugSetlog = 1 Then SetLog("DLL Call succeeded " & $res[0], $COLOR_RED)
+				  If $res[0] = "0" Or $res[0] = "" Then
+					; failed to find Treasury Button
+					If $DebugSetlog then SetLog("No Button found")
+					SetLog("No Treasury Button Found",$COLOR_RED)
+				  ElseIf $res[0] = "-1" Then
+					SetLog("DLL Error", $COLOR_RED)
+				  ElseIf $res[0] = "-2" Then
+					SetLog("Invalid Resolution", $COLOR_RED)
+				  Else
+					$expRet = StringSplit($res[0], "|", $STR_NOCOUNT)
+					$posPoint = StringSplit($expRet[1], ",", $STR_NOCOUNT)
+					$ButtonX = Int($posPoint[0])
+					$ButtonY = Int($posPoint[1])
+					Click($ButtonX, $ButtonY, 1, 0, "#04007")
+			    Sleep(1000)
+		_CaptureRegion2()
+	  $res = DllCall($hImgLib, "str", "SearchTile", "handle", $hHBitmap2, "str", $ImagesToUse[2], "float", $ToleranceImgLoc, "str", "FV", "int", 1)
+			   If IsArray($res) Then
+				  If $DebugSetlog = 1 Then SetLog("DLL Call succeeded " & $res[0], $COLOR_RED)
+					 If $res[0] = "0" Or $res[0] = "" Then
+						; failed to find Treasury Button
+						If $DebugSetlog then SetLog("No Button found")
+						SetLog("No Treasury Button Found",$COLOR_RED)
+					 ElseIf $res[0] = "-1" Then
+					 SetLog("DLL Error", $COLOR_RED)
+					 ElseIf $res[0] = "-2" Then
+					 SetLog("Invalid Resolution", $COLOR_RED)
+					 Else
+					$expRet = StringSplit($res[0], "|", $STR_NOCOUNT)
+					$posPoint = StringSplit($expRet[1], ",", $STR_NOCOUNT)
+					$ButtonX = Int($posPoint[0])
+					$ButtonY = Int($posPoint[1])
+					Click($ButtonX, $ButtonY, 1, 0, "#04008")
+					SetLog("Loot Treasury Collected Successfully.",$COLOR_BLUE)
+					ClickP($aAway, 1, 0, "#04004") ; Click away
+				 EndIf
+			  EndIf
+		   EndIf
+		 EndIf
+	Else
+		 SetLog("Treasury not full, Skipping collecting treasury",$COLOR_ORANGE)
+		 ClickP($aAway, 1, 0, "#04004") ; Click away
+	EndIf
+EndIf
 If (Number($tempGold) <= Number($itxtTRGold)) Or (Number($tempElixir) <= Number($itxtTRElixir)) Or (Number($tempDElixir) <= Number($itxtTRDElixir)) Then
 If ($aCCPos[0] = "-1" Or $aCCPos[1] = "-1") Then
    SetLog("Clan Castle Not Located To Collect Loot Treasury, Please Locate Clan Castle.",$COLOR_RED)
 LocateClanCastle()
 EndIf
-	SetLog("Collecting Treasury Loot...",$COLOR_BLUE)
+	SetLog("Collecting Treasury Loot Due to Low Resources...",$COLOR_BLUE)
 		ClickP($aAway, 1, 0, "#04004") ; Click away
 		Sleep(100)
 		click($aCCPos[0], $aCCPos[1], 1, 0, "#04005")
@@ -224,6 +307,7 @@ EndIf
   EndIf
 ElseIF (Number($tempGold) <= Number($itxtTRGold)) Or (Number($tempElixir) <= Number($itxtTRElixir)) Or (Number($tempDElixir) <= Number($itxtTRDElixir)) = False Then
 			   SetLog("Resources Don't Match With Minimum Required Resources To Collect Loot Treasury",$COLOR_ORANGE)
+			   ClickP($aAway, 1, 0, "#04004") ; Click away
 EndIf
 	VillageReport(True, True)
 	$tempCounter = 0

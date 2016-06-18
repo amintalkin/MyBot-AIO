@@ -834,7 +834,7 @@ Global $itxtWallMinElixir = 250000
 Global $iVSDelay = 0
 Global $iMaxVSDelay = 0
 Global $isldTrainITDelay = 10
-Global $itxtTRGold, $itxtTRElixir, $itxtTRDElixir
+Global $itxtTRGold, $itxtTRElixir, $itxtTRDElixir, $ichkTRFull
 Global $ichkTrap, $iChkCollect, $ichkTombstones, $ichkCleanYard
 ;Boju Only clear GemBox
 Global $ichkGemsBox
