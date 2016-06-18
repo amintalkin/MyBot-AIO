@@ -112,6 +112,11 @@ Local $x = 15, $y = 145
 			$txtTip = "Minimum Dark Elixir value for the bot to collect treasury"
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetLimit(-1, 7)
+
+		$chkTRFull = GUICtrlCreateCheckbox("When Full",$x + 340,$y + 40,80,18)
+			$txtTip = "Check if you want it to collect treasury when Gold Or Elixir Or DElixir is Full in Treasury"
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetLimit(-1, 7)
 	;-------- End Collect Treasury
 
 	$y += 60

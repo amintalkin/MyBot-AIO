@@ -760,6 +760,12 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 		GUICtrlSetData($txtTRGold, $itxtTRGold)
 		GUICtrlSetData($txtTRElixir, $itxtTRElixir)
 		GUICtrlSetData($txtTRDElixir, $itxtTRDElixir)
+EndIf
+
+	If $ichkTRFull = 1 Then
+		GUICtrlSetState($chkTRFull,$GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkTRFull,$GUI_UNCHECKED)
 	EndIf
 
 	If $ichkTombstones = 1 Then
@@ -1715,6 +1721,11 @@ EndIf
 
 	; apply bot options -----------------------------------------------------------------
 
+	If $ichkDisableSplash = 1 Then
+		GUICtrlSetState($chkDisableSplash, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDisableSplash, $GUI_UNCHECKED)
+	EndIf
 	If $ichkVersion = 1 Then
 		GUICtrlSetState($chkVersion, $GUI_CHECKED)
 	Else

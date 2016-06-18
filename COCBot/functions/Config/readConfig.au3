@@ -596,7 +596,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($itxtTRGold,$config,"other","treasuryGold","0000")
 		IniReadS($itxtTRElixir,$config,"other","treasuryElixir","0000")
 		IniReadS($itxtTRDElixir,$config,"other","treasuryDark","0000")
-
+		IniReadS($ichkTRFull, $config, "other", "chkTRFull", "0")
 		IniReadS($ichkTombstones, $config, "other", "chkTombstones", "0")
 		IniReadS($ichkCleanYard, $config, "other", "chkCleanYard", "0")
 		;Boju Only clear GemBox
@@ -714,6 +714,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		$iValuePBTimeForcedExit = IniRead($config, "other", "ValuePBTimeForcedExit", "15")
 
 		$ichkLanguage = IniRead($config, "General", "ChkLanguage", "1")
+		$ichkDisableSplash = IniRead($config, "General", "ChkDisableSplash", "1")
 		$ichkVersion = IniRead($config, "General", "ChkVersion", "1")
 		;InireadS(xxxx,$config, "attack", "xxxx", "0")
 		;InireadS(xxxx,$config, "attack", "xxxx", "0")

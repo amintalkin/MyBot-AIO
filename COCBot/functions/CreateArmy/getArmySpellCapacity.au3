@@ -65,7 +65,8 @@ Func getArmySpellCapacity($bOpenArmyWindow = False, $bCloseArmyWindow = False)
 
 		SetLog("Total Spell(s) Capacity: " & $CurSFactory & "/" & $TotalSFactory)
 
-		If $CurSFactory >= $TotalSFactory Then
+		;If $CurSFactory >= $TotalSFactory Then
+		If $CurSFactory >- $iTotalCountSpell Then
 			$bFullSpell = True
 		Else
 			$bFullSpell = False

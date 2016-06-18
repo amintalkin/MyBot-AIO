@@ -36,6 +36,13 @@ Func ParseAttackCSV($debug = False)
 	EndIf
 	Setlog("execute " & $filename)
 
+	Local $speedText = $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]] & "x"
+	If $iCSVSpeeds[$isldSelectedCSVSpeed[$iMatchMode]] = 1 Then 
+		$speedText = "Normal"
+	EndIf 
+
+	Setlog(" - at " & $speedText & " speed")
+
 	Local $f, $line, $acommand, $command
 	Local $value1, $value2, $value3, $value4, $value5, $value6, $value7, $value8, $value9
 	If FileExists($dirAttacksCSV & "\" & $filename & ".csv") Then
@@ -64,7 +71,7 @@ Func ParseAttackCSV($debug = False)
 					Case ""
 						debugAttackCSV("comment line")
 					Case "MAKE"
-						;ReleaseClicks()
+						ReleaseClicks()
 						If CheckCsvValues("MAKE", 2, $value2) Then
 							Local $sidex = StringReplace($value2, "-", "_")
 							If $sidex = "RANDOM" Then
@@ -142,7 +149,7 @@ Func ParseAttackCSV($debug = False)
 							debugAttackCSV("Discard row, bad value2 parameter:row " & $rownum)
 						EndIf
 					Case "DROP"
-						;KeepClicks()
+						KeepClicks()
 						;index...
 						Local $index1, $index2, $indexArray, $indexvect, $isIndexPercent
 						$indexvect = StringSplit($value2, "-", 2)
@@ -268,7 +275,7 @@ Func ParseAttackCSV($debug = False)
 								$sleepdrop1 = Int($sleepdroppvect[0])
 								$sleepdrop2 = Int($sleepdroppvect[1])
 							Else
-								$index1 = 1
+								$sleepdrop1 = 1
 								$sleepdrop2 = 1
 							EndIf
 						Else
@@ -280,8 +287,28 @@ Func ParseAttackCSV($debug = False)
 								$sleepdrop2 = 1
 							EndIf
 						EndIf
-						DropTroopFromINI($value1, $index1, $index2, $indexArray, $qty1, $qty2, $value4, $delaypoints1, $delaypoints2, $delaydrop1, $delaydrop2, $sleepdrop1, $sleepdrop2, $isQtyPercent, $isIndexPercent, $debug)
-						;ReleaseClicks($AndroidAdbClicksTroopDeploySize)
+						;sleep time before drop
+						Local $sleepbeforedrop1, $sleepbeforedrop2, $sleepbeforedroppvect
+						$sleepbeforedroppvect = StringSplit($value8, "-", 2)
+						If UBound($sleepbeforedroppvect) > 1 Then
+							If Int($sleepbeforedroppvect[0]) > 0 And Int($sleepbeforedroppvect[1]) > 0 Then
+								$sleepbeforedrop1 = Int($sleepbeforedroppvect[0])
+								$sleepbeforedrop2 = Int($sleepbeforedroppvect[1])
+							Else
+								$sleepbeforedrop1 = 0
+								$sleepbeforedrop2 = 0
+							EndIf
+						Else
+							If Int($value3) > 0 Then
+								$sleepbeforedrop1 = Int($value8)
+								$sleepbeforedrop2 = Int($value8)
+							Else
+								$sleepbeforedrop1 = 0
+								$sleepbeforedrop2 = 0
+							EndIf
+						EndIf
+						DropTroopFromINI($value1, $index1, $index2, $indexArray, $qty1, $qty2, $value4, $delaypoints1, $delaypoints2, $delaydrop1, $delaydrop2, $sleepdrop1, $sleepdrop2, $sleepbeforedrop1, $sleepbeforedrop2, $isQtyPercent, $isIndexPercent, $debug)
+						ReleaseClicks($AndroidAdbClicksTroopDeploySize)
 					Case "WAIT"
 						ReleaseClicks()
 						;sleep time
@@ -355,10 +382,10 @@ Func ParseAttackCSV($debug = False)
 						If $exitOneStar = 1 Or $exitTwoStars = 1 Or $exitNoResources = 1 Then ExitLoop ;stop parse CSV file, start exit battle procedure
 
 					Case "RECALC"
-						;ReleaseClicks()
+						ReleaseClicks()
 						PrepareAttack($iMatchMode, True)
 					Case "SIDE"
-						;ReleaseClicks()
+						ReleaseClicks()
 						Setlog("Calculate main side... ")
 						If StringUpper($value8) = "TOP-LEFT" Or StringUpper($value8) = "TOP-RIGHT" Or StringUpper($value8) = "BOTTOM-LEFT" Or StringUpper($value8) = "BOTTOM-RIGHT" Then
 							$MAINSIDEMAINSIDE = StringUpper($value8)
@@ -544,7 +571,19 @@ Func ParseAttackCSV($debug = False)
 			EndIf
 			CheckHeroesHealth()
 		WEnd
-		;ReleaseClicks()
+
+		SetLog("Dropping left over troops", $COLOR_BLUE)
+		For $x = 0 To 1
+			IF PrepareAttack($iMatchMode, True) > 0 Then
+				For $i = $eBarb To $eLava ; lauch all remaining troops
+					LauchTroop($i, 4, 0, 1)
+					CheckHeroesHealth()
+					If _Sleep(50) Then Return
+				Next
+			EndIf
+		Next
+
+		ReleaseClicks()
 		FileClose($f)
 	Else
 		SetLog("Cannot find attack file " & $dirAttacksCSV & "\" & $filename & ".csv", $color_red)

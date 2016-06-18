@@ -47,6 +47,7 @@
 #include <Process.au3>
 #include <GuiListView.au3>
 #include <GUIToolTip.au3>
+#include <ProgressConstants.au3> ; Added for Splash
 
 Global Const $DEFAULT_HEIGHT = 780
 Global Const $DEFAULT_WIDTH = 860
@@ -833,7 +834,7 @@ Global $itxtWallMinElixir = 250000
 Global $iVSDelay = 0
 Global $iMaxVSDelay = 0
 Global $isldTrainITDelay = 10
-Global $itxtTRGold, $itxtTRElixir, $itxtTRDElixir
+Global $itxtTRGold, $itxtTRElixir, $itxtTRDElixir, $ichkTRFull
 Global $ichkTrap, $iChkCollect, $ichkTombstones, $ichkCleanYard
 ;Boju Only clear GemBox
 Global $ichkGemsBox
@@ -1438,6 +1439,9 @@ Global $THSnipeBeforeDBScript = 0 , $THSnipeBeforeLBScript = 0
 ;mikemikemikecoc - Wait For Spells
 Global $iEnableSpellsWait[$iModeCount], $iTotalSpellSpace = 0, $bFullArmySpells = False
 
+; Splash Variables
+Global $hSplash, $hSplashProgress, $lSplashStatus, $lSplashTitle, $iTotalSteps = 12, $iCurrentStep = 0
+
 ; Close while training variables
 Global $ichkCloseTraining = 1
 Global $minTrainAddition = 10, $maxTrainAddition = 20
@@ -1505,8 +1509,8 @@ Global $remainingTroops[12][2]
 
 ;CSV Deployment Speed Mod
 Global $isldSelectedCSVSpeed[$iModeCount], $iCSVSpeeds[13]
-$isldSelectedCSVSpeed[$DB] = 4
-$isldSelectedCSVSpeed[$LB] = 4
+$isldSelectedCSVSpeed[$DB] = 5
+$isldSelectedCSVSpeed[$LB] = 5
 $iCSVSpeeds[0] = .1
 $iCSVSpeeds[1] = .25
 $iCSVSpeeds[2] = .5

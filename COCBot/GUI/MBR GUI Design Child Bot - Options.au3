@@ -16,9 +16,14 @@ $hGUI_BotOptions = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 
 ;GUISetBkColor($COLOR_WHITE, $hGUI_BotOptions)
 
 GUISwitch($hGUI_BotOptions)
-Local $x = 20, $y = 95
-$grpOnLoadBot = GUICtrlCreateGroup(GetTranslated(636,2, "When Bot Loads"), $x - 20, $y - 20, 210, 100)
+Local $x = 20, $y = 75
+$grpOnLoadBot = GUICtrlCreateGroup(GetTranslated(636,2, "When Bot Loads"), $x - 20, $y - 20, 210, 120)
 	$y -= 4
+	$chkDisableSplash = GUICtrlCreateCheckbox("Disable Splash Screen", $x, $y, -1, -1)
+		$txtTip = GetTranslated(636,93, "Disables the splash screen on startup.")
+		GUICtrlSetTip(-1, $txtTip)
+		GUICtrlSetState(-1, $GUI_UNCHECKED)
+	$y += 20
 	$chkVersion = GUICtrlCreateCheckbox(GetTranslated(636,3, "Check for Updates"), $x, $y, -1, -1)
 		$txtTip = GetTranslated(636,4, "Check if you are running the latest version of the bot.")
 		GUICtrlSetTip(-1, $txtTip)
