@@ -134,7 +134,7 @@ Func ParseAttackCSV($debug = False)
 									EndSwitch
 									Assign("ATTACKVECTOR_" & $value1, $Vector)
 								Else
-									Assign("ATTACKVECTOR_" & $value1, MakeDropPoints(Eval($sidex), $value3, $value4, $value5, $value6, $value7))
+								Assign("ATTACKVECTOR_" & $value1, MakeDropPoints(Eval($sidex), $value3, $value4, $value5, $value6, $value7))
 								EndIf
 								For $i = 0 To UBound(Execute("$ATTACKVECTOR_" & $value1)) - 1
 									$pixel = Execute("$ATTACKVECTOR_" & $value1 & "[" & $i & "]")
@@ -166,31 +166,31 @@ Func ParseAttackCSV($debug = False)
 							EndIf
 						Else
 							$isIndexPercent = 0
-							If UBound($indexvect) > 1 Then
+						If UBound($indexvect) > 1 Then
+							$indexArray = 0
+							If Int($indexvect[0]) > 0 And Int($indexvect[1]) > 0 Then
+								$index1 = Int($indexvect[0])
+								$index2 = Int($indexvect[1])
+							Else
+								$index1 = 1
+								$index2 = 1
+							EndIf
+						Else
+							$indexArray = StringSplit($value2, ",", 2)
+							If UBound($indexArray) > 1 Then
+								$index1 = 0
+								$index2 = UBound($indexArray) - 1
+							Else
 								$indexArray = 0
-								If Int($indexvect[0]) > 0 And Int($indexvect[1]) > 0 Then
-									$index1 = Int($indexvect[0])
-									$index2 = Int($indexvect[1])
+								If Int($value2) > 0 Then
+									$index1 = Int($value2)
+									$index2 = Int($value2)
 								Else
 									$index1 = 1
 									$index2 = 1
 								EndIf
-							Else
-								$indexArray = StringSplit($value2, ",", 2)
-								If UBound($indexArray) > 1 Then
-									$index1 = 0
-									$index2 = UBound($indexArray) - 1
-								Else
-									$indexArray = 0
-									If Int($value2) > 0 Then
-										$index1 = Int($value2)
-										$index2 = Int($value2)
-									Else
-										$index1 = 1
-										$index2 = 1
-									EndIf
-								EndIf
 							EndIf
+						EndIf
 						EndIf
 						
 						;qty...
@@ -208,23 +208,23 @@ Func ParseAttackCSV($debug = False)
 							EndIf
 						Else
 							$isQtyPercent = 0
-							If UBound($qtyvect) > 1 Then
-								If Int($qtyvect[0]) > 0 And Int($qtyvect[1]) > 0 Then
-									$qty1 = Int($qtyvect[0])
-									$qty2 = Int($qtyvect[1])
-								Else
-									$index1 = 1
-									$qty2 = 1
-								EndIf
+						If UBound($qtyvect) > 1 Then
+							If Int($qtyvect[0]) > 0 And Int($qtyvect[1]) > 0 Then
+								$qty1 = Int($qtyvect[0])
+								$qty2 = Int($qtyvect[1])
 							Else
-								If Int($value3) > 0 Then
-									$qty1 = Int($value3)
-									$qty2 = Int($value3)
-								Else
-									$qty1 = 1
-									$qty2 = 1
-								EndIf
+								$index1 = 1
+								$qty2 = 1
 							EndIf
+						Else
+							If Int($value3) > 0 Then
+								$qty1 = Int($value3)
+								$qty2 = Int($value3)
+							Else
+								$qty1 = 1
+								$qty2 = 1
+							EndIf
+						EndIf
 						EndIf
 						
 						;delay between points

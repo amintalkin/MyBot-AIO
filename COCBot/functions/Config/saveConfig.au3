@@ -2276,8 +2276,18 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWriteS($config, "collectors", "tolerance", $toleranceOffset)
 
 	; Android Configuration
+	IniWriteS($config, "android", "game.package", $AndroidGamePackage)
+	IniWriteS($config, "android", "game.class", $AndroidGameClass)
+	IniWriteS($config, "android", "check.time.lag.enabled", ($AndroidCheckTimeLagEnabled ? "1" : "0"))
+	IniWriteS($config, "android", "adb.screencap.timeout.min", $AndroidAdbScreencapTimeoutMin)
+	IniWriteS($config, "android", "adb.screencap.timeout.max", $AndroidAdbScreencapTimeoutMax)
+	IniWriteS($config, "android", "adb.screencap.timeout.dynamic", $AndroidAdbScreencapTimeoutDynamic)
+	IniWriteS($config, "android", "adb.input.enabled", ($AndroidAdbInputEnabled ? "1" : "0"))
+	IniWriteS($config, "android", "adb.click.enabled", ($AndroidAdbClickEnabled ? "1" : "0"))
+	IniWriteS($config, "android", "adb.click.group", $AndroidAdbClickGroup)
 	IniWriteS($config, "android", "adb.clicks.enabled", ($AndroidAdbClicksEnabled ? "1" : "0"))
 	IniWriteS($config, "android", "adb.clicks.troop.deploy.size", $AndroidAdbClicksTroopDeploySize)
+	IniWriteS($config, "android", "no.focus.tampering", ($NoFocusTampering ? "1" : "0"))
 
 	; SmartZap Settings - Added by LunaEclipse
 	If GUICtrlRead($chkSmartLightSpell) = $GUI_CHECKED Then
@@ -2312,6 +2322,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		IniWrite($config, "Fast Clicks", "UseADBFastClicks", 0)
 	EndIf
+
 
 	If $hFile <> -1 Then FileClose($hFile)
 	

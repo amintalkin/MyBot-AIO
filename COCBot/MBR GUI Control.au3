@@ -623,15 +623,23 @@ EndFunc   ;==>tabSEARCH
 Func tabBot()
 	$tabidx = GUICtrlRead($hGUI_BOT_TAB)
 		Select
-			Case $tabidx = 2 ; Stats tab
+			Case $tabidx = 2 ; Strategies tab
+				GUISetState(@SW_HIDE, $hGUI_STATS)
+				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_Profiles)
+				GUISetState(@SW_HIDE, $hGUI_BotOptions)
+				GUISetState(@SW_HIDE, $hGUI_BotDebug)
+			Case $tabidx = 3 ; Stats tab
+				GUISetState(@SW_HIDE, $hGUI_Profiles)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_STATS)
 				GUISetState(@SW_HIDE, $hGUI_BotOptions)
 				GUISetState(@SW_HIDE, $hGUI_BotDebug)
 			Case $tabidx = 0 ; Options tab
+				GUISetState(@SW_HIDE, $hGUI_Profiles)
 				GUISetState(@SW_HIDE, $hGUI_STATS)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_BotOptions)
 				GUISetState(@SW_HIDE, $hGUI_BotDebug)
 			Case $tabidx = 1 ; Options Debug
+				GUISetState(@SW_HIDE, $hGUI_Profiles)
 				GUISetState(@SW_HIDE, $hGUI_STATS)
 				GUISetState(@SW_HIDE, $hGUI_BotOptions)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_BotDebug)
