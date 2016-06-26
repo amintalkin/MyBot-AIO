@@ -25,7 +25,7 @@ Func clanHop()
     EndIf
     Local $boostInterval = 2400           ; Change this to change how often to boost.                                  Unit is seconds ( 2400  =  40mn )
     Local $trainInterval = 120            ; Change this to change how often to train troops.                           Unit is seconds ( 900   =  15mn )
-    Local $collectInterval = 900          ; Change this to change how often the bot collects your resources.           Unit is seconds ( 900   =  15mn )
+    Local $collectInterval = 600          ; Change this to change how often the bot collects your resources.           Unit is seconds ( 600   =  10mn )
 	Local $checkCampInterval = 300        ; Change this to change how often the bot check the army inside your camps.  Unit is seconds ( 300   =  5mn  )
     Local $checkTombInterval = 3600       ; Change this to change how often the bot check tombs inside your camps.     Unit is seconds ( 3600  =  1h   )
     Local $checkReArmInterval = 18000     ; Change this to change how often the bot Rearm defense inside your camps.   Unit is seconds ( 18000 =  5h   )
@@ -40,23 +40,23 @@ Func clanHop()
 ;	Local $checkShieldTimer = TimerInit()
 	
     While 1
-        If (TimerDiff($boostTimer)/1000)>= $boostInterval Then
-            SetLog("Time for boosting!", $COLOR_GREEN)
-            BoostBarracks()
-            SetLog("Done boosting. Returning to hopping", $COLOR_BLUE)
-            $boostTimer = TimerInit()                       ; Reset boost timer
-        EndIf
-        If (TimerDiff($trainTimer)/1000)>=$trainInterval Then
-            $FirstStart = False
-            SetLog("Time to train some troops")
-			Train()
-			$trainTimer = TimerInit()                       ; Reset Train timer
-        EndIf
-        If (TimerDiff($collectTimer)/1000)>= $collectInterval Then
-            Collect()
-			SetLog("Time to collect ressources")
-            $collectTimer = TimerInit()                     ; Reset collect timer
-		EndIf
+        If (TimerDiff($boostTimer)/1000)>= $boostInterval Then                                   ; Check Boost Timer
+            SetLog("Time for boosting!", $COLOR_GREEN)                                           ; 
+            BoostBarracks()                                                                      ; 
+            SetLog("Done boosting. Returning to hopping", $COLOR_BLUE)                           ; 
+            $boostTimer = TimerInit()                       ; Reset boost timer                  ; 
+        EndIf                                                                                    ; 
+        If (TimerDiff($trainTimer)/1000)>=$trainInterval Then                                    ; Check Train interval
+            $FirstStart = False                                                                  ; 
+            SetLog("Time to train some troops")                                                  ; 
+			Train()                                                                              ; 
+			$trainTimer = TimerInit()                       ; Reset Train timer                  ; 
+        EndIf                                                                                    ; 
+        If (TimerDiff($collectTimer)/1000)>= $collectInterval Then                               ; Check Collect interval
+            Collect()                                                                            ; 
+			SetLog("Time to collect ressources")                                                 ; 
+            $collectTimer = TimerInit()                     ; Reset collect timer                ; 
+		EndIf                                                                                    ; 
 		If (TimerDiff($checkCampTimer)/1000)>= $checkCampInterval Then                           ; Check Army Camps
             SetLog("Check troops")                                                               ;
 			If _Sleep(600) Then Return                                                           ; 
@@ -67,12 +67,12 @@ Func clanHop()
 			   SetLog("NEED TROOPS NOW !!! Waiting for troops to train...", $COLOR_RED)          ; 
 		       Train()                                                                           ; 
 			   SetLog("Waiting 2 x 4 minutes to have enough troops in camps...", $COLOR_RED)     ; Wait 8 minutes while training troops
-			   SetLog("Waiting state 1/2 ...")                                                   ; (in 2 times to prevent disconnection)
-			   If _SleepStatus(240000) Then Return                                               ;
+			   SetLog("Waiting state 1/2 ...")                                                   ; in 2 times to prevent disconnection
+			   If _SleepStatus(240000) Then Return                                               ; 240 000 = 4 minutes
 			   ClickP($aaway)                                                                    ;
 			   ClickP($aaway)                                                                    ;
 			   SetLog("Waiting state 2/2 ...")                                                   ;
-			   If _SleepStatus(240000) Then Return                                               ;
+			   If _SleepStatus(240000) Then Return                                               ; 240 000 = 4 minutes
 			   SetLog("Done !", $COLOR_GREEN)                                                    ;
 			   SetLog("... Troops trained, resume hopping")                                      ; 
 		       $checkCampTimer = TimerInit()                ; Reset Check Camp timer             ;  
@@ -139,18 +139,19 @@ Func clanHop()
             Local $sCount = 0
             While $sCount < 1
                 If _Sleep(300) Then Return
-                _PostMessage_ClickDrag(500, 650, 500, 316, "left", 600)                          ; Replace 300 with 600 for slow computers
+;                _PostMessage_ClickDrag(500, 650, 500, 316, "left", 300)                         ; Replace 300 with 600 for slow computers (not used anymore)
+                ClickDrag(500, 650, 500, 316, 600)  		        	                         ; Replace 300 with 600 for slow computers
 				If _Sleep(300) Then Return
                 $sCount += 1
             WEnd
         Next
-        SetLog("... Clan found !", $COLOR_BLUE)
 		If _Sleep(600) Then Return
         Click(113, Random(285,650,1))                                                            ; Click random clan
 		If _Sleep(800) THen Return
         If _ColorCheck(_GetPixelColor(720,335,True), Hex(0xC0E158,6), 20) Then                   ; Is join button there
-		    SetLog("Entering clan", $COLOR_BLUE)
+			SetLog("... Clan found !", $COLOR_BLUE)
             Click(720,335)
+			SetLog("Entering clan", $COLOR_BLUE)
         Else
             SetLog("Oh oh ! I did something wrong, restarting...", $COLOR_RED)
             ContinueLoop
