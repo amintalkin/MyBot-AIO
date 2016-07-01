@@ -263,6 +263,11 @@
 #include "functions\Village\ProfileSwitch.au3"
 #include "functions\Village\ClanHop.au3"
 
+; Multy Farming - Added by TheRevenor
+#include "functions\Mod\Multy\MultyFarmingRevenor.au3"
+
+; DonateStats - Added by Cutidudz
+#include "functions\Mod\DonateStats\DonateStats.au3"
 
 ; Attack files - Added by LunaEclipse
 #include "functions\Attack\attackFunctions.au3"

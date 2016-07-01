@@ -50,7 +50,7 @@ Global $aTabControlsAttackOptions[5] = [$hGUI_AttackOption_TAB, $hGUI_AttackOpti
 Global $aTabControlsStrategies[3] = [$hGUI_STRATEGIES_TAB, $hGUI_STRATEGIES_TAB_ITEM1, $hGUI_STRATEGIES_TAB_ITEM2]
 
 Global $aTabControlsBot[4] = [$hGUI_BOT_TAB, $hGUI_BOT_TAB_ITEM1, $hGUI_BOT_TAB_ITEM3, $hGUI_BOT_TAB_ITEM2]
-Global $aTabControlsMod[3] = [$hGUI_MOD_TAB, $hGUI_MOD_TAB_ITEM1, $hGUI_MOD_TAB_ITEM2]
+Global $aTabControlsMod[4] = [$hGUI_MOD_TAB, $hGUI_MOD_TAB_ITEM1, $hGUI_MOD_TAB_ITEM2, $hGUI_MOD_TAB_ITEM3]
 Global $aTabControlsStats[4] = [$hGUI_STATS_TAB, $hGUI_STATS_TAB_ITEM1, $hGUI_STATS_TAB_ITEM2, $hGUI_STATS_TAB_ITEM3]
 
 Global $aDebugControlItems[10] = [$chkDebugClick, $chkDebugSetlog, $chkDebugOcr, $chkDebugImageSave, $chkdebugBuildingPos, $chkdebugTrain, $chkdebugOCRDonate,$btnTestTrain, $btnTestDonateCC, $btnTestAttackBar]
@@ -645,14 +645,22 @@ Func tabMod()
 				GUISetState(@SW_HIDE, $hGUI_ModDocOc)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ModOption)
 				GUISetState(@SW_HIDE, $hGUI_Profiles)
+				GUISetState(@SW_HIDE, $hGUI_DonateStats)
 			Case $tabidx = 1 ; Doc Oc Tab
 				GUISetState(@SW_HIDE, $hGUI_ModOption)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_ModDocOc)
 				GUISetState(@SW_HIDE, $hGUI_Profiles)
+				GUISetState(@SW_HIDE, $hGUI_DonateStats)
 			Case $tabidx = 2 ; Profiles
 				GUISetState(@SW_HIDE, $hGUI_ModOption)
 				GUISetState(@SW_HIDE, $hGUI_ModDocOc)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_Profiles)
+				GUISetState(@SW_HIDE, $hGUI_DonateStats)
+			Case $tabidx = 3 ; Donate Stats Tab
+				GUISetState(@SW_HIDE, $hGUI_Profiles)
+				GUISetState(@SW_HIDE, $hGUI_ModDocOc)
+				GUISetState(@SW_HIDE, $hGUI_ModOption)
+				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_DonateStats)
 		EndSelect
 EndFunc   ;==>tabMod
 

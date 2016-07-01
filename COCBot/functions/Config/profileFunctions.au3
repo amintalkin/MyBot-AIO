@@ -71,6 +71,8 @@ Func createProfile()
 	IniWrite($sProfilePath & "\profile.ini", "general", "defaultprofile", $sCurrProfile)
 	; Store the location of the profile's config.ini file
 	$config = $sProfilePath & "\" & $sCurrProfile & "\config.ini"
+	; Store the location of the MOD's configuration file
+	$multyConfig = $sProfilePath & "\" & $sCurrProfile & "\MultySettings.ini"
 	; Store the other profile files
 	$building = $sProfilePath & "\" & $sCurrProfile & "\building.ini"
 	$dirLogs = $sProfilePath & "\" & $sCurrProfile & "\Logs\"
