@@ -1472,6 +1472,13 @@ Global $ichkElixirSwitchMax, $itxtMaxElixirAmount, $icmbElixirMaxProfile, $ichkE
 Global $ichkDESwitchMax, $itxtMaxDEAmount, $icmbDEMaxProfile, $ichkDESwitchMin, $itxtMinDEAmount, $icmbDEMinProfile
 Global $ichkTrophySwitchMax, $itxtMaxTrophyAmount, $icmbTrophyMaxProfile, $ichkTrophySwitchMin, $itxtMinTrophyAmount, $icmbTrophyMinProfile
 
+; Multy-Farming
+Global $iSwCount
+Global $ichkSwitchDonate
+Global $ichkMultyFarming
+Global $iAccount, $OkLoc, $AccountLoc
+Global $iconfirm
+Global $bAccount[6] = ["Main", "Second", "Third", "Fourth", "Fifth", "Sixth"]
 
 ; SmartZap GUI variables - Added by LunaEclipse
 Global $ichkSmartZap = 1
