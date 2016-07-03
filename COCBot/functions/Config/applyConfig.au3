@@ -853,7 +853,7 @@ EndIf
 		EndIf
 	Next
 
-	For $i = 0 To 7
+	For $i = 0 To 6
 		If $iPlannedAttackWeekDays[$i] = 1 Then
 			GUICtrlSetState(Eval("chkAttackWeekdays" & $i), $GUI_CHECKED)
 		Else

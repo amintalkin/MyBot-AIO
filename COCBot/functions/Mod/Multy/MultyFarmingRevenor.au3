@@ -597,7 +597,7 @@ Func LockGUI()
 			$iPrevState[$i] = GUICtrlGetState($i)
  			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
-		For $i = $FirstControlToHideMOD To $LastControlToHideMOD ; Save state of all controls on tabs
+		For $i = $FirstControlToHideModAIO To $LastControlToHideModAIO ; Save state of all controls on tabs
 			$iPrevState[$i] = GUICtrlGetState($i)
  			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
@@ -636,7 +636,7 @@ Func UnLockGUI()
 			If $i = $divider Then ContinueLoop ; exclude divider
 			GUICtrlSetState($i, $iPrevState[$i])
 		Next
-		For $i = $FirstControlToHideMOD To $LastControlToHideMOD ; Restore previous state of controls
+		For $i = $FirstControlToHideModAIO To $LastControlToHideModAIO ; Restore previous state of controls
 			GUICtrlSetState($i, $iPrevState[$i])
 		Next
 		$GUIControl_Disabled = False

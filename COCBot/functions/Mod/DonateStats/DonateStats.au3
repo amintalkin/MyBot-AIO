@@ -43,7 +43,7 @@ Func InitDonateStats()
 	FileDelete($dirTemp & "DonateStats\*.bmp")
 
 	;_GUIImageList_Destroy($hImage)
-	$ImageList = _GUIImageList_Create(139, 25)
+	$ImageList = _GUIImageList_Create(139, 20) ;25
 	_GUIImageList_AddBitmap($ImageList, @ScriptDir & "\images\Totals.bmp")
 	_GUICtrlListView_AddItem($lvDonatedTroops, "Totals", 0)
 

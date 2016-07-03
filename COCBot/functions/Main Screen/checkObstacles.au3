@@ -122,6 +122,8 @@ Func checkObstacles() ;Checks if something is in the way for mainscreen
 	EndIf
 	If _CheckPixel($aIsMainGrayed, $bNoCapturePixel) Then
 		PureClickP($aAway, 1, 0, "#0133") ;Click away If things are open
+		If _Sleep(1000) Then Return
+		PureClick(354, 435) ;Click Cancel If Window Msg Load Account
 		$MinorObstacle = True
 		If _Sleep($iDelaycheckObstacles1) Then Return
 		Return False
