@@ -422,7 +422,7 @@ Func CheckDonateString($String, $ClanString) ;Checks if exact
 EndFunc   ;==>CheckDonateString
 
 Func DonateTroopType($Type, $Quant = 0, $Custom = False, $bDonateAll = False)
-Setlog ($debugOCRdonate,$color_aqua)
+;Setlog ($debugOCRdonate,$color_purple)
 
 	If $debugSetlog = 1 Then Setlog("$DonateTroopType Start: " & NameOfTroop($Type), $COLOR_PURPLE)
 
@@ -704,8 +704,8 @@ Func DonateWindow($Open = True)
 		;===================================== DonateStats =====================================;
 		FileDelete($dirTemp & "*.bmp")
 
-		$iPosY = $DonatePixel[1] - 52
-		_CaptureRegion(5, $iPosY, 170, $iPosY + 25, True)
+		$iPosY = $DonatePixel[1] - 53
+		_CaptureRegion(20, $iPosY, 150, $iPosY + 20, True)
 
 		Local $Date = @YEAR & "-" & @MON & "-" & @MDAY
 		Local $Time = @HOUR & "." & @MIN & "." & @SEC
@@ -744,7 +744,7 @@ Func DonateWindow($Open = True)
 
 			Else
 				If @error = 1 Then
-					SetLog("DonateStats: Clan Castle troops are full Or No existing images to compare", $COLOR_ORANGE)
+					SetLog("Clan Castle troops are full Or No existing images to compare", $COLOR_ORANGE)
 				EndIf
 			EndIf
 
