@@ -49,7 +49,7 @@ EndIf
 
 Global $sGitHubModOwner = "amintalkin"
 Global $sGitHubModRepo = "MyBot-AIO"
-Global $sGitHubModLatestReleaseTag = "v2.1.3"
+Global $sGitHubModLatestReleaseTag = "v2.1.4"
 Global $sModSupportUrl = "https://mybot.run/forums/index.php?/topic/19937-new-merged-mybot-6121-all-mods-in-one-v204-05-06-16/"
 
 $sBotVersion = "v6.1.4" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
@@ -154,6 +154,14 @@ SetLog("Android Emulator Configuration: " & $Android & ($AndroidInstance <> "" ?
 
 AdlibRegister("PushBulletRemoteControl", $PBRemoteControlInterval)
 AdlibRegister("PushBulletDeleteOldPushes", $PBDeleteOldPushesInterval)
+
+
+; Add Telegram extension by CDudz
+$lastmessage = GetLastMsg()
+If $FirstRun = 1 Then
+	$lastremote = $lastuid
+	Getchatid(GetTranslated(620, 92, "select your remote")) ; receive Telegram chat id and send keyboard
+EndIf
 
 
 CheckDisplay() ; verify display size and DPI (Dots Per Inch) setting
@@ -344,6 +352,7 @@ EndIf
 			   UpgradeWall()
 			   If _Sleep($iDelayRunBot3) Then Return
 			   If $Restart = True Then ContinueLoop
+			   PushMsgToPushBullet("CheckBuilderIdle")
 			   Idle()
 			   ;$fullArmy1 = $fullArmy
 			   If _Sleep($iDelayRunBot3) Then Return

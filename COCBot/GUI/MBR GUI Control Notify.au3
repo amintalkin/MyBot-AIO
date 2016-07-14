@@ -13,12 +13,13 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
+;Modified by CDudz
 Func PushBulletRemoteControl()
-	If $PushBulletEnabled And $pRemote Then _RemoteControl()
+	If ($PushBulletEnabled Or $TelegramEnabled) And $pRemote Then _RemoteControl()
 EndFunc   ;==>PushBulletRemoteControl
 
 Func PushBulletDeleteOldPushes()
-	If $PushBulletEnabled = 1 And $ichkDeleteOldPBPushes = 1 Then _DeleteOldPushes() ; check every 30 min if must to delete old pushbullet messages, increase delay time for anti ban pushbullet
+	If ($PushBulletEnabled = 1 Or $TelegramEnabled = 1) And $ichkDeleteOldPBPushes = 1 Then _DeleteOldPushes() ; check every 30 min if must to delete old pushbullet messages, increase delay time for anti ban pushbullet
 EndFunc   ;==>PushBulletDeleteOldPushes
 
 Func chkPBenabled()
@@ -40,33 +41,130 @@ Func chkPBenabled()
 		GUICtrlSetState($chkDeleteOldPBPushes, $GUI_ENABLE)
 		GUICtrlSetState($btnDeletePBmessages, $GUI_ENABLE)
 		GUICtrlSetState($chkAlertPBCampFull, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertBuilderIdle, $GUI_ENABLE)
 
 		If $ichkDeleteOldPBPushes = 1 Then
 			GUICtrlSetState($cmbHoursPushBullet, $GUI_ENABLE)
 		EndIf
 	Else
-		$PushBulletEnabled = 0
-		GUICtrlSetState($chkPBRemote, $GUI_DISABLE)
-		GUICtrlSetState($PushBulletTokenValue, $GUI_DISABLE)
-		GUICtrlSetState($OrigPushBullet, $GUI_DISABLE)
-		GUICtrlSetState($chkAlertPBVMFound, $GUI_DISABLE)
-		GUICtrlSetState($chkAlertPBLastRaid, $GUI_DISABLE)
-		GUICtrlSetState($chkAlertPBWallUpgrade, $GUI_DISABLE)
-		GUICtrlSetState($chkAlertPBLastRaidTxt, $GUI_DISABLE)
-		GUICtrlSetState($chkAlertPBOOS, $GUI_DISABLE)
-		GUICtrlSetState($chkAlertPBVBreak, $GUI_DISABLE)
-		GUICtrlSetState($chkAlertPBVillage, $GUI_DISABLE)
-		GUICtrlSetState($chkAlertPBLastAttack, $GUI_DISABLE)
-		GUICtrlSetState($chkAlertPBOtherDevice, $GUI_DISABLE)
-		GUICtrlSetState($chkDeleteAllPBPushes, $GUI_DISABLE)
-		GUICtrlSetState($chkDeleteOldPBPushes, $GUI_DISABLE)
-		GUICtrlSetState($btnDeletePBmessages, $GUI_DISABLE)
-		GUICtrlSetState($chkAlertPBCampFull, $GUI_DISABLE)
+		If GUICtrlRead($chkPBenabled2) = $GUI_CHECKED Then
+		GUICtrlSetState($chkAlertBuilderIdle, $GUI_ENABLE)
+			GUICtrlSetState($PushBulletTokenValue, $GUI_DISABLE)
+		ElseIf GUICtrlRead($chkPBenabled) = $GUI_UNCHECKED Then
+			GUICtrlSetState($PushBulletTokenValue, $GUI_DISABLE)
+			$PushBulletEnabled = 0
+			GUICtrlSetState($chkPBRemote, $GUI_DISABLE)
+			GUICtrlSetState($OrigPushBullet, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVMFound, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastRaid, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBWallUpgrade, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastRaidTxt, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBOOS, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVBreak, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVillage, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastAttack, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBOtherDevice, $GUI_DISABLE)
+			GUICtrlSetState($chkDeleteAllPBPushes, $GUI_DISABLE)
+			GUICtrlSetState($chkDeleteOldPBPushes, $GUI_DISABLE)
+			GUICtrlSetState($btnDeletePBmessages, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBCampFull, $GUI_DISABLE)
+		GUICtrlSetState($chkAlertBuilderIdle, $GUI_DISABLE)
 
-		GUICtrlSetState($cmbHoursPushBullet, $GUI_DISABLE)
+			GUICtrlSetState($cmbHoursPushBullet, $GUI_DISABLE)
+		Else
+			GUICtrlSetState($chkPBRemote, $GUI_DISABLE)
+			GUICtrlSetState($OrigPushBullet, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVMFound, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastRaid, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBWallUpgrade, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastRaidTxt, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBOOS, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVBreak, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVillage, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastAttack, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBOtherDevice, $GUI_DISABLE)
+			GUICtrlSetState($chkDeleteAllPBPushes, $GUI_DISABLE)
+			GUICtrlSetState($chkDeleteOldPBPushes, $GUI_DISABLE)
+			GUICtrlSetState($btnDeletePBmessages, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBCampFull, $GUI_DISABLE)
 
+			GUICtrlSetState($cmbHoursPushBullet, $GUI_DISABLE)
+		GUICtrlSetState($chkAlertBuilderIdle, $GUI_DISABLE)
+		EndIf
 	EndIf
 EndFunc   ;==>chkPBenabled
+
+Func chkPBenabled2()
+	If GUICtrlRead($chkPBenabled2) = $GUI_CHECKED Then
+		$TelegramEnabled = 1
+		GUICtrlSetState($chkPBRemote, $GUI_ENABLE)
+		GUICtrlSetState($TelegramTokenValue, $GUI_ENABLE)
+		GUICtrlSetState($OrigPushBullet, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertPBVMFound, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertPBLastRaid, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertPBWallUpgrade, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertPBLastRaidTxt, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertPBOOS, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertPBVBreak, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertPBVillage, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertPBLastAttack, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertPBOtherDevice, $GUI_ENABLE)
+		GUICtrlSetState($chkDeleteAllPBPushes, $GUI_ENABLE)
+		GUICtrlSetState($chkDeleteOldPBPushes, $GUI_ENABLE)
+		GUICtrlSetState($btnDeletePBmessages, $GUI_ENABLE)
+		GUICtrlSetState($chkAlertPBCampFull, $GUI_ENABLE)
+
+		If $ichkDeleteOldPBPushes = 1 Then
+			GUICtrlSetState($cmbHoursPushBullet, $GUI_ENABLE)
+		EndIf
+
+	Else
+		If GUICtrlRead($chkPBenabled) = $GUI_CHECKED Then
+			GUICtrlSetState($TelegramTokenValue, $GUI_DISABLE)
+		ElseIf GUICtrlRead($chkPBenabled2) = $GUI_UNCHECKED Then
+		GUICtrlSetState($chkAlertBuilderIdle, $GUI_DISABLE)
+			GUICtrlSetState($TelegramTokenValue, $GUI_DISABLE)
+			$TelegramEnabled = 0
+			GUICtrlSetState($chkPBRemote, $GUI_DISABLE)
+			GUICtrlSetState($OrigPushBullet, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVMFound, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastRaid, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBWallUpgrade, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastRaidTxt, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBOOS, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVBreak, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVillage, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastAttack, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBOtherDevice, $GUI_DISABLE)
+			GUICtrlSetState($chkDeleteAllPBPushes, $GUI_DISABLE)
+			GUICtrlSetState($chkDeleteOldPBPushes, $GUI_DISABLE)
+			GUICtrlSetState($btnDeletePBmessages, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBCampFull, $GUI_DISABLE)
+
+			GUICtrlSetState($cmbHoursPushBullet, $GUI_DISABLE)
+		Else
+			$TelegramEnabled = 0
+			GUICtrlSetState($chkPBRemote, $GUI_DISABLE)
+			GUICtrlSetState($OrigPushBullet, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVMFound, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastRaid, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBWallUpgrade, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastRaidTxt, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBOOS, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVBreak, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBVillage, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBLastAttack, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBOtherDevice, $GUI_DISABLE)
+			GUICtrlSetState($chkDeleteAllPBPushes, $GUI_DISABLE)
+			GUICtrlSetState($chkDeleteOldPBPushes, $GUI_DISABLE)
+			GUICtrlSetState($btnDeletePBmessages, $GUI_DISABLE)
+			GUICtrlSetState($chkAlertPBCampFull, $GUI_DISABLE)
+
+			GUICtrlSetState($cmbHoursPushBullet, $GUI_DISABLE)
+		GUICtrlSetState($chkAlertBuilderIdle, $GUI_DISABLE)
+		EndIf
+	EndIf
+EndFunc   ;==>chkPBenabled2
 
 Func chkDeleteOldPBPushes()
 	If GUICtrlRead($chkDeleteOldPBPushes) = $GUI_CHECKED Then
@@ -128,6 +226,3 @@ Func _Restart()
 
 	Return SetError(2, 0, 0)
 EndFunc   ;==>_Restart
-
-
-

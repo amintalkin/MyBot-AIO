@@ -6,7 +6,7 @@
 ; Parameters ....: None
 ; Return values .: None
 ; Author ........: Cutidudz (2016)
-; Modified ......:
+; Modified ......: TheRevenor (2016)
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015-2016
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:
@@ -43,7 +43,7 @@ Func InitDonateStats()
 	FileDelete($dirTemp & "DonateStats\*.bmp")
 
 	;_GUIImageList_Destroy($hImage)
-	$ImageList = _GUIImageList_Create(139, 20) ;25
+	$ImageList = _GUIImageList_Create(139, 25) ;20
 	_GUIImageList_AddBitmap($ImageList, @ScriptDir & "\images\Totals.bmp")
 	_GUICtrlListView_AddItem($lvDonatedTroops, "Totals", 0)
 

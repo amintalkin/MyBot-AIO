@@ -612,6 +612,8 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 
 		;PushBullet Settings ---------------------------------------------
 		IniReadS($PushBulletToken, $config, "pushbullet", "AccountToken", "")
+		;Added by CDudz
+		IniReadS($TelegramToken, $config, "pushbullet", "AccountToken2", "")
 		IniReadS($iOrigPushBullet, $config, "pushbullet", "OrigPushBullet", $sCurrProfile)
 
 		IniReadS($iAlertPBVillage, $config, "pushbullet", "AlertPBVillage", "0")
@@ -619,6 +621,8 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($iAlertPBLastRaidTxt, $config, "pushbullet", "AlertPBLastRaidTxt", "0")
 
 		IniReadS($PushBulletEnabled, $config, "pushbullet", "PBEnabled", "0")
+		;Added by CDudz
+		IniReadS($TelegramEnabled, $config, "pushbullet", "PBEnabled2", "0")	
 		IniReadS($pRemote, $config, "pushbullet", "PBRemote", "0")
 		IniReadS($iDeleteAllPBPushes, $config, "pushbullet", "DeleteAllPBPushes", "0")
 		IniReadS($pMatchFound, $config, "pushbullet", "AlertPBVMFound", "0")
@@ -630,6 +634,8 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($icmbHoursPushBullet, $config, "pushbullet", "HoursPushBullet", "4")
 		IniReadS($ichkDeleteOldPBPushes, $config, "pushbullet", "DeleteOldPBPushes", "0")
 		IniReadS($ichkAlertPBCampFull, $config, "pushbullet", "AlertPBCampFull", "0")
+		$ichkAlertBuilderIdle = IniRead($config, "pushbullet", "AlertBuilderIdle", "0")
+		
 		IniReadS($iAlertPBVillage, $config, "pushbullet", "AlertPBVillage", "0")
 		IniReadS($iLastAttackPB, $config, "pushbullet", "AlertPBLastAttack", "0")
 

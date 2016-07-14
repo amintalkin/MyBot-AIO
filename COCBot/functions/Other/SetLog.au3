@@ -76,7 +76,7 @@ Func _ColorConvert($nColor);RGB to BGR or BGR to RGB
 			BitShift(BitAND($nColor, 0x00FF0000), 16))
 EndFunc   ;==>_ColorConvert
 
-Func SetAtkLog($String1, $String2 = "", $Color = $COLOR_BLACK, $Font = "Lucida Console", $FontSize = 7.5) ;Sets the text for the log
+Func SetAtkLog($String1, $String2 = "", $Color = $COLOR_BLACK, $Font = "Lucida Console", $FontSize = 7.3) ;Sets the text for the log
 	If $hAttackLogFileHandle = "" Then CreateAttackLogFile()
 	;string1 see in video, string1&string2 put in file
 	_GUICtrlRichEdit_SetFont($txtAtkLog, $FontSize, $Font)
@@ -86,8 +86,8 @@ EndFunc   ;==>SetAtkLog
 
 Func AtkLogHead()
 	SetAtkLog(_PadStringCenter(" " & GetTranslated(601, 15, "ATTACK LOG") & " ", 71, "="), "", $COLOR_BLACK, "MS Shell Dlg", 8.5)
-	SetAtkLog(GetTranslated(601, 16, "                   --------  LOOT --------       ----- BONUS ------"), "")
-	SetAtkLog(GetTranslated(601, 17, " TIME|TROP.|SEARCH|   GOLD| ELIXIR|DARK EL|TR.|S|  GOLD|ELIXIR|  DE|L."), "")
+	SetAtkLog(GetTranslated(601, 16, "                     --------  LOOT --------       ------ BONUS -----"), "")
+	SetAtkLog("A|" & GetTranslated(601, 17, " TIME|TROP.|SEARCH|   GOLD| ELIXIR|DARK EL|TR.|S|  GOLD|ELIXIR|  DE|L."), "")
 EndFunc   ;==>AtkLogHead
 
 Func __FileWriteLog($handle, $text)

@@ -40,8 +40,27 @@ Func DonateCC($Check = False)
 	Global $bSkipDonTroops = False, $bSkipDonSpells = False
 
 	If $bDonate = False Or $bDonationEnabled = False Then
-		If $debugsetlog = 1 Then Setlog("Donate Clan Castle troops skip", $COLOR_PURPLE)
-		Return ; exit func if no donate checkmarks
+		;DonateStats by CDudz ==========================================================
+		If $debugSetlog = 1 Then SetLog("Current Donation=" & GuiCtrlRead($lblCurDonate) & " Donation Limit=" & GuiCtrlRead($iLimitDStats), $COLOR_PURPLE)
+		If GuiCtrlRead($chkLimitDStats) = $GUI_CHECKED Then
+			If Int(GuiCtrlRead($lblCurDonate)) < Int(GuiCtrlRead($iLimitDStats)) Then
+				SetLog("Donations re-activated!", $COLOR_PURPLE)
+				$bDonationEnabled = True
+			ElseIf Int(GuiCtrlRead($lblCurDonate)) > Int(GuiCtrlRead($iLimitDStats)) Then
+				SetLog("Donation Disabled, Current Donation= " & GuiCtrlRead($lblCurDonate) & " > Donation Limit= " & GuiCtrlRead($iLimitDStats), $COLOR_ORANGE)
+				Return
+			EndIf
+		Else
+			If $debugsetlog = 1 Then Setlog("Donate Clan Castle troops skip", $COLOR_PURPLE)
+			Return ; exit func if no donate checkmarks
+		EndIf
+	ElseIf $bDonationEnabled = True And GuiCtrlRead($chkLimitDStats) = $GUI_CHECKED Then
+		If $debugSetlog = 1 Then SetLog("Current Donation=" & GuiCtrlRead($lblCurDonate) & " Donation Limit=" & GuiCtrlRead($iLimitDStats), $COLOR_PURPLE)
+		If Int(GuiCtrlRead($lblCurDonate)) > Int(GuiCtrlRead($iLimitDStats)) Then
+			$bDonationEnabled = False
+			SetLog("Donations de-activated! Donate maximum has reached!", $COLOR_PURPLE)
+			Return
+		EndIf
 	EndIf
 
 	Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
@@ -132,8 +151,10 @@ Func DonateCC($Check = False)
 					If $ichkExtraAlphabets = 1 Then
 						ClipPut($ClanString)
 						Local $tempClip = ClipGet()
+						SetLog("----------------------------------")
 						SetLog("Chat Request: " & $tempClip)
 					Else
+						SetLog("----------------------------------")
 						SetLog("Chat Request: " & $ClanString)
 					EndIf
 				EndIf
@@ -172,6 +193,7 @@ Func DonateCC($Check = False)
 				DonateWindowCap($bSkipDonTroops, $bSkipDonSpells)
 				If $bSkipDonTroops And $bSkipDonSpells Then
 					DonateWindow($bClose)
+			FileDelete($dirTemp & "*.bmp")
 					$bDonate = True
 					$y = $DonatePixel[1] + 50
 					If _Sleep($iDelayDonateCC2) Then ExitLoop
@@ -364,6 +386,7 @@ Func DonateCC($Check = False)
 		EndIf
 	WEnd
 
+	SetLog("-----------End Donate-----------", $COLOR_BLUE)
 	If _Sleep($iDelayDonateCC2) Then Return
 
 EndFunc   ;==>DonateCC
@@ -422,6 +445,7 @@ Func CheckDonateString($String, $ClanString) ;Checks if exact
 EndFunc   ;==>CheckDonateString
 
 Func DonateTroopType($Type, $Quant = 0, $Custom = False, $bDonateAll = False)
+;Setlog ($debugOCRdonate,$color_green) ; aqua
 ;Setlog ($debugOCRdonate,$color_purple)
 
 	If $debugSetlog = 1 Then Setlog("$DonateTroopType Start: " & NameOfTroop($Type), $COLOR_PURPLE)
@@ -598,10 +622,10 @@ Func DonateTroopType($Type, $Quant = 0, $Custom = False, $bDonateAll = False)
 			If $debugOCRdonate = 0 Then Click(365 + ($Slot * 68), $DonationWindowY + 100 + $YComp, $iDonSpellsQuantity, $iDelayDonateCC3, "#0600")
 
 			$bDonate = True
-
+			
 			;DonateStats=======================
 			$DonatedValue = $iDonSpellsQuantity
-			
+
 			; Assign the donated quantity Spells to train : $Don $SpellName
 			; need to implement assign $DonPoison etc later
 
@@ -663,11 +687,20 @@ Func DonateTroopType($Type, $Quant = 0, $Custom = False, $bDonateAll = False)
 		If $iSearch <> -1 Then
 			Local $GetLastValue = _GUICtrlListView_GetItemText($lvDonatedTroops, 0, $TroopCol)
 			_GUICtrlListView_SetItem($lvDonatedTroops, $DonatedValue + $GetLastValue, 0, $TroopCol)
-			SetLog("Totals Donation Updated: " & $DonatedValue + $GetLastValue & " Troops", $COLOR_BLUE)
+			SetLog("Totals Donation Updated: " & $DonatedValue + $GetLastValue & " Troops Or Spell", $COLOR_BLUE)
 		Else
 			SetLog("DonateStats: There were errors, donated '" & NameOfTroop($Type, 1) & "' counts/totals skipped.", $COLOR_RED)
 		EndIf
+		
+		;Get Total current donations
+		Local $CurDonated = 0
+		$aResult = _GUICtrlListView_GetItemTextArray($lvDonatedTroops, 0)
 
+		For $x = 1 To $aResult[0]
+			$CurDonated += $aResult[$x]
+		Next
+		SetLog("Total Donations: " & $CurDonated)
+		GUICtrlSetData($lblCurDonate, $CurDonated)
 
 	EndIf
 	;===================================== End DonateStats =====================================;
@@ -700,12 +733,12 @@ Func DonateWindow($Open = True)
 	ForceCaptureRegion()
 	Local $DonatePixelCheck = _MultiPixelSearch($iLeft, $iTop, $iRight, $iBottom, 50, 1, Hex(0x98D057, 6), $aChatDonateBtnColors, 15)
 	If IsArray($DonatePixelCheck) Then
-	
+		
 		;===================================== DonateStats =====================================;
 		FileDelete($dirTemp & "*.bmp")
 
-		$iPosY = $DonatePixel[1] - 53
-		_CaptureRegion(20, $iPosY, 150, $iPosY + 20, True)
+		$iPosY = $DonatePixel[1] - 49
+		_CaptureRegion(31, $iPosY, 170, $iPosY + 25, True)
 
 		Local $Date = @YEAR & "-" & @MON & "-" & @MDAY
 		Local $Time = @HOUR & "." & @MIN & "." & @SEC
@@ -751,7 +784,7 @@ Func DonateWindow($Open = True)
 		EndIf
 
 		;===================================== End DonateStats =====================================;
-	
+		
 		Click($DonatePixel[0] + 50, $DonatePixel[1] + 10, 1, 0, "#0174")
 	Else
 		If $debugSetlog = 1 Then SetLog("Could not find the Donate Button!", $COLOR_PURPLE)
@@ -1225,4 +1258,3 @@ Func DetectSlotTroop($Type)
 ;	EndIf
 
 EndFunc   ;==>DetectSlotTroop
-
