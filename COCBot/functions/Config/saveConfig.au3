@@ -480,6 +480,12 @@ Func saveConfig() ;Saves the controls settings to the config
 	$iUnBrkMaxGold = GUICtrlRead($txtUnBrkMaxGold)
 	$iUnBrkMaxElixir = GUICtrlRead($txtUnBrkMaxElixir)
 	$iUnBrkMaxDark = GUICtrlRead($txtUnBrkMaxDark)
+	If GUICtrlRead($chkAlertBuilderIdle) = $GUI_CHECKED Then
+		IniWrite($config, "pushbullet", "AlertBuilderIdle", 1)
+	Else
+		IniWrite($config, "pushbullet", "AlertBuilderIdle", 0)
+	EndIf
+	
 	If GUICtrlRead($chkUnbreakable) = $GUI_CHECKED Then
 		$iUnbreakableMode = 1
 	Else
@@ -2032,6 +2038,17 @@ Func saveConfig() ;Saves the controls settings to the config
 
 
 	;PushBullet Settings----------------------------------------
+	; Added by CDudz
+	$TelegramToken = GUICtrlRead($TelegramTokenValue)
+	IniWriteS($config, "pushbullet", "AccountToken2", $TelegramToken)
+	IniWriteS($config, "pushbullet", "PBEnabled2", $TelegramEnabled)	
+	
+	If GUICtrlRead($chkPBenabled2) = $GUI_CHECKED Then
+		$TelegramEnabled = 1
+	Else
+		$TelegramEnabled = 0
+	EndIf
+	
 	IniWriteS($config, "pushbullet", "AccountToken", $PushBulletToken)
 	IniWriteS($config, "pushbullet", "OrigPushBullet", $iOrigPushBullet)
 	IniWriteS($config, "pushbullet", "PBEnabled", $PushBulletEnabled)

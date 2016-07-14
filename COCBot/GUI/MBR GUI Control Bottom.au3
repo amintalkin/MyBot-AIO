@@ -178,7 +178,7 @@ Func btnStart()
 		$GUIControl_Disabled = True
 		For $i = $FirstControlToHide To $LastControlToHide ; Save state of all controls on tabs
 			If IsTab($i) Or IsDebugControl($i) Then ContinueLoop
-			If $PushBulletEnabled And $i = $btnDeletePBmessages Then ContinueLoop ; exclude the DeleteAllMesages button when PushBullet is enabled
+			If $PushBulletEnabled And $i = $btnDeletePBmessages Or $TelegramEnabled Then ContinueLoop ; Modified by CDudz
 			If $i = $btnMakeScreenshot Then ContinueLoop ; exclude
 			If $i = $divider Then ContinueLoop ; exclude divider
 			$iPrevState[$i] = GUICtrlGetState($i)

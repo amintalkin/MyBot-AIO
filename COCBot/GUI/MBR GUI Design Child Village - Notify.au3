@@ -21,8 +21,8 @@ $hGUI_NOTIFY_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 30, $_GUI_MAIN_HEIG
 ;	Local $x = 25, $y = 45
 ;GUICtrlCreateTabItem("")
 
-$hGUI_NOTIFY_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,18,"PushBullet"))
-	Global $grpPushBullet, $chkPBenabled,$chkPBRemote,$chkDeleteAllPBPushes,$btnDeletePBmessages,$chkDeleteOldPBPushes,$cmbHoursPushBullet
+$hGUI_NOTIFY_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,18,"PushBullet/Telegram"))
+	Global $grpPushBullet, $chkPBenabled,$chkPBenabled2,$TelegramTokenValue,$chat_id2,$TelegramEnabled,$chkPBRemote,$chkDeleteAllPBPushes,$btnDeletePBmessages,$chkDeleteOldPBPushes,$cmbHoursPushBullet
 	Global $PushBulletTokenValue, $OrigPushBullet, $chkAlertPBVMFound, $chkAlertPBLastRaid, $chkAlertPBLastRaidTxt, $chkAlertPBCampFull
 	Global $chkAlertPBWallUpgrade, $chkAlertPBOOS, $chkAlertPBVBreak, $chkAlertPBVillage, $chkAlertPBLastAttack
 	Global $chkAlertPBOtherDevice
@@ -30,11 +30,19 @@ $hGUI_NOTIFY_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,18,"PushBullet")
 	Local $x = 25, $y = 45
 		$grpPushBullet = GUICtrlCreateGroup(GetTranslated(619,2, "PushBullet Alert"), $x - 20, $y - 20, 430, 334)
 		$x -= 10
-		$picPushBullet = GUICtrlCreateIcon ($pIconLib, $eIcnPushBullet, $x + 3, $y, 32, 32)
-		$chkPBenabled = GUICtrlCreateCheckbox(GetTranslated(619,3, "Enable"), $x + 40, $y)
+		;Modified by CDudz
+		;$picPushBullet = GUICtrlCreateIcon ($pIconLib, $eIcnPushBullet, $x - 8, $y, 22, 22)
+		;$picTelegram = GUICtrlCreateIcon ($pIconLib, $eIcnTelegram, $x + 14, $y, 22, 22)
+			$picPushBullet = GUICtrlCreatePic(@ScriptDir & "\Images\PTNIcon75.jpg", $x - 8, $y, 47, 23)
+
+		$chkPBenabled = GUICtrlCreateCheckbox(GetTranslated(619,3, "Enable Pushbullet"), $x + 40, $y - 8)
 			GUICtrlSetOnEvent(-1, "chkPBenabled")
 			GUICtrlSetTip(-1, GetTranslated(619,4, "Enable PushBullet notifications"))
-		$y += 22
+
+		$chkPBenabled2 = GUICtrlCreateCheckbox("Enable Telegram", $x + 40, $y +11)
+	    GUICtrlSetOnEvent(-1, "chkPBenabled2")
+	    GUICtrlSetTip(-1, "Enable Telegram notifications")
+		$y += 31
 		$chkPBRemote = GUICtrlCreateCheckbox(GetTranslated(619,5, "Remote Control"), $x + 40, $y)
 			GUICtrlSetTip(-1, GetTranslated(619,6, "Enables PushBullet Remote function"))
 			GUICtrlSetState(-1, $GUI_DISABLE)
@@ -58,16 +66,22 @@ $hGUI_NOTIFY_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,18,"PushBullet")
 			GUICtrlSetData(-1, "1 " & GetTranslated(603,15, "Hour") &"|2 " & $sTxtHours & "|3 " & $sTxtHours & "|4 " & $sTxtHours & "|5 " & $sTxtHours & "|6 " & $sTxtHours & "|7 " & $sTxtHours & "|8 " &$sTxtHours & "|9 " & $sTxtHours & "|10 " & $sTxtHours & "|11 " & $sTxtHours & "|12 " & $sTxtHours & "|13 " & $sTxtHours & "|14 " & $sTxtHours & "|15 " & $sTxtHours & "|16 " & $sTxtHours & "|17 " & $sTxtHours & "|18 " & $sTxtHours & "|19 " & $sTxtHours & "|20 " & $sTxtHours & "|21 " & $sTxtHours & "|22 " & $sTxtHours & "|23 " & $sTxtHours & "|24 " & $sTxtHours )
 			_GUICtrlComboBox_SetCurSel(-1,0)
 			GUICtrlSetState (-1, $GUI_DISABLE)
-		$y += 30
-		$lblPushBulletTokenValue = GUICtrlCreateLabel(GetTranslated(619,14, "Access Token") & ":", $x, $y, -1, -1, $SS_RIGHT)
+		$y += 35
+		$lblPushBulletTokenValue = GUICtrlCreateLabel(GetTranslated(619,14, "PushBullet Token") & ":", $x, $y, -1, -1, $SS_RIGHT)
 		$PushBulletTokenValue = GUICtrlCreateInput("", $x + 120, $y - 3, 280, 19)
 			GUICtrlSetTip(-1, GetTranslated(619,15, "You need a Token to use PushBullet notifications. Get a token from PushBullet.com"))
 			GUICtrlSetState(-1, $GUI_DISABLE)
+		;Modified by CDudz
+		$lblTelegramTokenValue = GUICtrlCreateLabel(GetTranslated(619,39, "Telegram Token") & ":", $x, $y+23, -1, -1, $SS_RIGHT)
+		$TelegramTokenValue = GUICtrlCreateInput("", $x + 120, $y +22, 280, 19)
+		GUICtrlSetState(-1, $GUI_DISABLE)
+		
 		$y += 25
-		$lblOrigPushBullet = GUICtrlCreateLabel(GetTranslated(619,16, "Origin") & ":", $x, $y, -1, -1, $SS_RIGHT)
-			$txtTip = GetTranslated(619,17, "Origin - Village name.")
+		
+		$lblOrigPushBullet = GUICtrlCreateLabel(GetTranslated(619,16, "Origin") & ":", $x+220, $y+25, -1, -1, $SS_RIGHT)
+			$txtTip = GetTranslated(619,17, "Your Profile/Village name - Set this on the Misc Tab under Profiles.")
 			GUICtrlSetTip(-1, $txtTip)
-		$OrigPushBullet = GUICtrlCreateInput("", $x + 120, $y - 3, 280, 19)
+		$OrigPushBullet = GUICtrlCreateInput("", $x + 260, $y + 20, 140, 19)
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$y += 25
@@ -95,6 +109,10 @@ $hGUI_NOTIFY_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,18,"PushBullet")
 		$chkAlertPBVBreak = GUICtrlCreateCheckbox(GetTranslated(619,31, "Take a break"), $x + 210, $y, -1, -1)
 			GUICtrlSetTip(-1, GetTranslated(619,32, "Send an Alert when you have been playing for too long and your villagers need to rest."))
 			GUICtrlSetState(-1, $GUI_DISABLE)
+		; Added by CDudz
+		$chkAlertBuilderIdle = GUICtrlCreateCheckbox("Builder Idle", $x + 315, $y, -1, -1)
+		GUICtrlSetTip(-1, "Send an Alert when at least one builder is idle.")
+		GUICtrlSetState(-1, $GUI_DISABLE)
 		$y += 20
 		$chkAlertPBVillage = GUICtrlCreateCheckbox(GetTranslated(619,33, "Village Report"), $x + 10, $y, -1, -1)
 			GUICtrlSetTip(-1, GetTranslated(619,34, "Send a Village Report."))

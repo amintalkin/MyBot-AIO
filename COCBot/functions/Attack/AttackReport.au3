@@ -143,6 +143,8 @@ Func AttackReport()
 	SetLog("Stars earned: " & $starsearned)
 
 	Local $AtkLogTxt
+	$iLastAtkTime = _NowTime(4) ;loot hour:mins last raid Added by CDudz Modified by CDudz
+	$AtkLogTxt = StringFormat("%1d", _GUICtrlComboBox_GetCurSel($cmbProfile) + 1) & "|" ;<== New
 	$AtkLogTxt = "" & _NowTime(4) & "|"
 	$AtkLogTxt &= StringFormat("%5d", $iTrophyCurrent) & "|"
 	$AtkLogTxt &= StringFormat("%6d", $SearchCount) & "|"
