@@ -351,7 +351,7 @@ Func btnHide()
 	If $Hide = False Then
 		GUICtrlSetData($btnHide, GetTranslated(602, 26, "Show"))
 		; Hide the taskbar icon now as Bluestacks has been moved off the screen
-		hideTaskBarIcon($HWnD)
+		;hideTaskBarIcon($HWnD)
 		Local $a = WinGetPos($HWnD)
 		$botPos[0] = $a[0]
 		$botPos[1] = $a[1]
@@ -360,7 +360,7 @@ Func btnHide()
 	Else
 		GUICtrlSetData($btnHide, GetTranslated(602, 11, "Hide"))
 		; Show the taskbar icon now while Bluestack is still off the screen
-		showTaskBarIcon($HWnD)
+		;showTaskBarIcon($HWnD)
 		If $botPos[0] = -32000 Then
 			WinMove2($HWnD, "", 0, 0)
 		Else

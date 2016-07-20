@@ -2361,6 +2361,9 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "Fast Clicks", "UseADBFastClicks", 0)
 	EndIf
 
+    
+	;modification Chat by rulesss
+	IniWrite($config, "global", "chdelay",  GUICtrlRead($chkchatdelay))
 
 	If $hFile <> -1 Then FileClose($hFile)
 	
