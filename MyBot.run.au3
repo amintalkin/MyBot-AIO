@@ -46,10 +46,11 @@ EndIf
 ;~ ProcessSetPriority(@AutoItPID, $PROCESS_ABOVENORMAL)
 #include "COCBot\MBR Global Variables.au3"
 #include "COCBot\functions\Config\ScreenCoordinates.au3"
+#include "COCBot\functions\Chatbot\Chatbot.au3"
 
 Global $sGitHubModOwner = "amintalkin"
 Global $sGitHubModRepo = "MyBot-AIO"
-Global $sGitHubModLatestReleaseTag = "v2.1.4"
+Global $sGitHubModLatestReleaseTag = "v2.1.5"
 Global $sModSupportUrl = "https://mybot.run/forums/index.php?/topic/19937-new-merged-mybot-6121-all-mods-in-one-v204-05-06-16/"
 
 $sBotVersion = "v6.1.4" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
@@ -568,6 +569,11 @@ Func Idle() ;Sequence that runs until Full Army
 		While $iReHere < 7
 			$iReHere += 1
 			DonateCC(True)
+			;modification Chat by rulesss
+			If $iReHere = 6 Then 
+			   ChatbotMessage()  
+			EndIf
+            ;End Chat
 			If _Sleep($iDelayIdle2) Then ExitLoop
 			If $Restart = True Then ExitLoop
 		WEnd

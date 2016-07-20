@@ -21,6 +21,7 @@ $hGUI_MOD = GUICreate("", $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, $_GUI_
 #include "MBR GUI Design Tab DocOc.au3"
 #include "MBR GUI Design Tab Profiles.au3"
 #include "MBR GUI Design Tab DonateStats.au3"
+#include "MBR GUI Design Tab Chat.au3"
 
 GUISwitch($hGUI_MOD)
 
@@ -33,5 +34,8 @@ $hGUI_MOD_TAB_ITEM3 = GUICtrlCreateTabItem("Profiles")
 ; this tab will be empty because it is only used to display a child GUI
 $hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem("Donate Stats")
 ; this tab will be empty because it is only used to display a child GUI
+$hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("Chat")
+; this tab will be empty because it is only used to display a child GUI
+
 
 GUICtrlCreateTabItem("")

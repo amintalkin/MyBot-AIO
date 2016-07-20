@@ -2489,6 +2489,9 @@ _GUICtrlComboBox_SetCurSel($cmbTHSnipeBeforeLBScript, _GUICtrlComboBox_FindStrin
 		$AndroidAdbClicksEnabled = False
 	EndIf
 
+    ;modification Chat by rulesss
+	GUICtrlSetData($chkchatdelay, $ichkchatdelay)
+
 	; Reenabling window redraw
 	If $bRedrawAtExit Then SetRedrawBotWindow(True)
 

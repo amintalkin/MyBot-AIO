@@ -1,0 +1,327 @@
+D [2016-07-19 03:53:11.015] @AutoItExe: C:\Program Files (x86)\AutoIt3\AutoIt3.exe
+D [2016-07-19 03:53:11.015] @ScriptFullPath: C:\Users\Amin\Desktop\MyBot.Run\MOD AIO\MyBot-AIO-2.1.4\MyBot.run.au3
+D [2016-07-19 03:53:11.015] @WorkingDir: C:\Users\Amin\Desktop\MyBot.Run\MOD AIO\MyBot-AIO-2.1.4
+D [2016-07-19 03:53:11.015] @AutoItPID: 5156
+D [2016-07-19 03:53:11.046] DetectRunningAndroid()
+D [2016-07-19 03:53:11.046] UpdateAndroidConfig("MEmu")
+D [2016-07-19 03:53:11.047] InitAndroid(False): MEmu
+D [2016-07-19 03:53:12.058] Cannot read MEmu guestproperty phone_layout!
+D [2016-07-19 03:53:12.058] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:12.063] MEmu Window not found
+D [2016-07-19 03:53:12.063] Android: MEmu
+D [2016-07-19 03:53:12.063] Android Config: 0
+D [2016-07-19 03:53:12.064] Android Version: 2.5.0
+D [2016-07-19 03:53:12.064] Android Instance: MEmu
+D [2016-07-19 03:53:12.064] Android Window Title: MEmu 2.
+D [2016-07-19 03:53:12.064] Android Program Path: C:\Program Files\Microvirt\MEmu\MEmu.exe
+D [2016-07-19 03:53:12.064] Android Program Parameter: MEmu
+D [2016-07-19 03:53:12.065] Android ADB Path: C:\Program Files\Microvirt\MEmu\adb.exe
+D [2016-07-19 03:53:12.065] Android ADB Device: 127.0.0.1:21503
+D [2016-07-19 03:53:12.065] Android ADB Shared Folder: /mnt/shell/emulated/0/Pictures/
+D [2016-07-19 03:53:12.065] Android ADB Shared Folder on Host: C:\Users\Amin\Pictures\MEmu Photo\
+D [2016-07-19 03:53:12.065] Android ADB Shared SubFolder: mybot.run\
+D [2016-07-19 03:53:12.066] Android Mouse Device: Microvirt Virtual Input
+D [2016-07-19 03:53:12.066] Android ADB screencap command enabled: True
+D [2016-07-19 03:53:12.066] Android ADB input command enabled: False
+D [2016-07-19 03:53:12.066] Android ADB Mouse Click enabled: False
+D [2016-07-19 03:53:12.066] Android ADB Click Drag enabled: True
+D [2016-07-19 03:53:12.067] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:12.070] MEmu Window not found
+D [2016-07-19 03:53:12.070] InitAndroid(False): MEmu END, initialization successful = True
+D [2016-07-19 03:53:12.071] UpdateAndroidConfig("MEmu") END
+D [2016-07-19 03:53:12.071] GetAndroidRunningInstance: Try to find "C:\Program Files\Microvirt\MEmu\MEmu.exe"
+D [2016-07-19 03:53:12.078] ObjGet("winmgmts:\\.\root\cimv2")
+D [2016-07-19 03:53:12.078] WMI Query: Select * from Win32_Process where ExecutablePath like "%C:\\Program Files\\Microvirt\\MEmu\\MEmu.exe%"
+D [2016-07-19 03:53:12.121] Process by CommandLine not found: C:\Program Files\Microvirt\MEmu\MEmu.exe
+D [2016-07-19 03:53:12.122] UpdateAndroidConfig("droid4x")
+D [2016-07-19 03:53:12.122] InitAndroid(False): Droid4X
+L [2016-07-19 03:53:12.123] Serious error has occurred: Cannot find Droid4X:
+L [2016-07-19 03:53:12.123] C:\Program Files (x86)\Droid4X\Droid4X.exe
+D [2016-07-19 03:53:12.123] InitAndroid(False): Droid4X END, initialization successful = False
+D [2016-07-19 03:53:12.124] UpdateAndroidConfig("droid4x") END
+D [2016-07-19 03:53:12.124] UpdateAndroidConfig("nox")
+D [2016-07-19 03:53:12.124] InitAndroid(False): Nox
+D [2016-07-19 03:53:12.810] Android: Nox
+D [2016-07-19 03:53:12.810] Android Config: 2
+D [2016-07-19 03:53:12.810] Android Version: 3.1.0.0
+D [2016-07-19 03:53:12.810] Android Instance: nox
+D [2016-07-19 03:53:12.810] Android Window Title: No
+D [2016-07-19 03:53:12.811] Android Program Path: C:\Users\Amin\AppData\Roaming\Nox\bin\Nox.exe
+D [2016-07-19 03:53:12.811] Android Program Parameter: -resolution:860x732 -dpi:160 "-clone:nox"
+D [2016-07-19 03:53:12.811] Android ADB Path: C:\Program Files\Microvirt\MEmu\adb.exe
+D [2016-07-19 03:53:12.811] Android ADB Device: 127.0.0.1:62001
+D [2016-07-19 03:53:12.811] Android ADB Shared Folder: /mnt/shared/Other/
+D [2016-07-19 03:53:12.812] Android ADB Shared Folder on Host: C:\Users\Amin\Documents\Nox_share\Other\
+D [2016-07-19 03:53:12.812] Android ADB Shared SubFolder: mybot.run\
+D [2016-07-19 03:53:12.812] Android Mouse Device: nox Virtual Input
+D [2016-07-19 03:53:12.812] Android ADB screencap command enabled: True
+D [2016-07-19 03:53:12.812] Android ADB input command enabled: False
+D [2016-07-19 03:53:12.813] Android ADB Mouse Click enabled: False
+D [2016-07-19 03:53:12.813] Android ADB Click Drag enabled: True
+D [2016-07-19 03:53:12.813] Searching Nox Window: Title = 'No', Class = '[CLASS:Qt5QWindowIcon;INSTANCE:4]', Text = ''
+D [2016-07-19 03:53:12.818] Nox Window not found
+D [2016-07-19 03:53:12.818] InitAndroid(False): Nox END, initialization successful = True
+D [2016-07-19 03:53:12.818] UpdateAndroidConfig("nox") END
+D [2016-07-19 03:53:12.818] GetAndroidRunningInstance: Try to find "C:\Users\Amin\AppData\Roaming\Nox\bin\Nox.exe"
+D [2016-07-19 03:53:12.820] ObjGet("winmgmts:\\.\root\cimv2")
+D [2016-07-19 03:53:12.820] WMI Query: Select * from Win32_Process where ExecutablePath like "%C:\\Users\\Amin\\AppData\\Roaming\\Nox\\bin\\Nox.exe%"
+D [2016-07-19 03:53:12.861] No process found by CommandLine: C:\Users\Amin\AppData\Roaming\Nox\bin\Nox.exe
+D [2016-07-19 03:53:12.862] UpdateAndroidConfig("")
+D [2016-07-19 03:53:12.862] InitAndroid(False): BlueStacks2
+D [2016-07-19 03:53:12.863] BlueStacks2 Engine 'Plus'-Mode: False
+D [2016-07-19 03:53:12.863] BlueStacks2 OEM Features: 2754561
+D [2016-07-19 03:53:12.863] BlueStacks2 System Bar is not available
+D [2016-07-19 03:53:12.863] Searching BlueStacks2 Window: Title = 'BlueStacks ', Class = '[CLASS:BlueStacksApp; INSTANCE:1]', Text = '_ctl.Window'
+D [2016-07-19 03:53:12.868] BlueStacks2 Window not found
+D [2016-07-19 03:53:12.869] Android: BlueStacks2
+D [2016-07-19 03:53:12.869] Android Config: 3
+D [2016-07-19 03:53:12.869] Android Version: 2.0.2.5623
+D [2016-07-19 03:53:12.869] Android Instance: 
+D [2016-07-19 03:53:12.869] Android Window Title: BlueStacks 
+D [2016-07-19 03:53:12.870] Android Program Path: C:\Program Files (x86)\BlueStacks\HD-Frontend.exe
+D [2016-07-19 03:53:12.870] Android Program Parameter: Android
+D [2016-07-19 03:53:12.870] Android ADB Path: C:\Program Files\Microvirt\MEmu\adb.exe
+D [2016-07-19 03:53:12.870] Android ADB Device: emulator-5554
+D [2016-07-19 03:53:12.870] Android ADB Shared Folder: /storage/sdcard/windows/BstSharedFolder/
+D [2016-07-19 03:53:12.871] Android ADB Shared Folder on Host: C:\ProgramData\BlueStacks\UserData\SharedFolder\
+D [2016-07-19 03:53:12.871] Android ADB Shared SubFolder: mybot.run\
+D [2016-07-19 03:53:12.871] Android Mouse Device: BlueStacks Virtual Touch
+D [2016-07-19 03:53:12.871] Android ADB screencap command enabled: False
+D [2016-07-19 03:53:12.871] Android ADB input command enabled: False
+D [2016-07-19 03:53:12.872] Android ADB Mouse Click enabled: False
+D [2016-07-19 03:53:12.872] Android ADB Click Drag enabled: False
+D [2016-07-19 03:53:12.872] Searching BlueStacks2 Window: Title = 'BlueStacks ', Class = '[CLASS:BlueStacksApp; INSTANCE:1]', Text = '_ctl.Window'
+D [2016-07-19 03:53:12.876] BlueStacks2 Window not found
+D [2016-07-19 03:53:12.876] InitAndroid(False): BlueStacks2 END, initialization successful = True
+D [2016-07-19 03:53:12.877] UpdateAndroidConfig("") END
+D [2016-07-19 03:53:12.877] Searching BlueStacks2 Window: Title = 'BlueStacks ', Class = '[CLASS:BlueStacksApp; INSTANCE:1]', Text = '_ctl.Window'
+D [2016-07-19 03:53:12.881] BlueStacks2 Window not found
+D [2016-07-19 03:53:12.882] UpdateAndroidConfig("")
+D [2016-07-19 03:53:12.882] InitAndroid(False): BlueStacks
+D [2016-07-19 03:53:12.883] BlueStacks Engine 'Plus'-Mode: False
+D [2016-07-19 03:53:12.883] BlueStacks OEM Features: 2754561
+D [2016-07-19 03:53:12.883] BlueStacks System Bar is not available
+D [2016-07-19 03:53:12.884] Searching BlueStacks Window: Title = 'BlueStacks App Player', Class = '[CLASS:BlueStacksApp; INSTANCE:1]', Text = '_ctl.Window'
+D [2016-07-19 03:53:12.888] BlueStacks Window not found
+L [2016-07-19 03:53:12.889] BlueStacks supported version 0.8.x - 0.11.x not found
+D [2016-07-19 03:53:12.889] InitAndroid(False): BlueStacks END, initialization successful = False
+D [2016-07-19 03:53:12.889] UpdateAndroidConfig("") END
+D [2016-07-19 03:53:12.890] UpdateAndroidConfig("MEmu")
+D [2016-07-19 03:53:12.890] InitAndroid(False): MEmu
+D [2016-07-19 03:53:13.824] Cannot read MEmu guestproperty phone_layout!
+D [2016-07-19 03:53:13.824] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:13.829] MEmu Window not found
+D [2016-07-19 03:53:13.829] Android: MEmu
+D [2016-07-19 03:53:13.829] Android Config: 0
+D [2016-07-19 03:53:13.829] Android Version: 2.5.0
+D [2016-07-19 03:53:13.830] Android Instance: MEmu
+D [2016-07-19 03:53:13.830] Android Window Title: MEmu 2.
+D [2016-07-19 03:53:13.830] Android Program Path: C:\Program Files\Microvirt\MEmu\MEmu.exe
+D [2016-07-19 03:53:13.830] Android Program Parameter: MEmu
+D [2016-07-19 03:53:13.830] Android ADB Path: C:\Program Files\Microvirt\MEmu\adb.exe
+D [2016-07-19 03:53:13.831] Android ADB Device: 127.0.0.1:21503
+D [2016-07-19 03:53:13.831] Android ADB Shared Folder: /mnt/shell/emulated/0/Pictures/
+D [2016-07-19 03:53:13.831] Android ADB Shared Folder on Host: C:\Users\Amin\Pictures\MEmu Photo\
+D [2016-07-19 03:53:13.831] Android ADB Shared SubFolder: mybot.run\
+D [2016-07-19 03:53:13.832] Android Mouse Device: Microvirt Virtual Input
+D [2016-07-19 03:53:13.832] Android ADB screencap command enabled: True
+D [2016-07-19 03:53:13.832] Android ADB input command enabled: False
+D [2016-07-19 03:53:13.832] Android ADB Mouse Click enabled: False
+D [2016-07-19 03:53:13.832] Android ADB Click Drag enabled: True
+D [2016-07-19 03:53:13.833] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:13.836] MEmu Window not found
+D [2016-07-19 03:53:13.836] InitAndroid(False): MEmu END, initialization successful = True
+D [2016-07-19 03:53:13.837] UpdateAndroidConfig("MEmu") END
+D [2016-07-19 03:53:13.837] Found no running Android Emulator
+D [2016-07-19 03:53:13.837] DetectInstalledAndroid()
+D [2016-07-19 03:53:13.837] UpdateAndroidConfig("MEmu")
+D [2016-07-19 03:53:13.837] InitAndroid(False): MEmu
+D [2016-07-19 03:53:14.771] Cannot read MEmu guestproperty phone_layout!
+D [2016-07-19 03:53:14.771] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:14.775] MEmu Window not found
+D [2016-07-19 03:53:14.775] Android: MEmu
+D [2016-07-19 03:53:14.775] Android Config: 0
+D [2016-07-19 03:53:14.775] Android Version: 2.5.0
+D [2016-07-19 03:53:14.775] Android Instance: MEmu
+D [2016-07-19 03:53:14.776] Android Window Title: MEmu 2.
+D [2016-07-19 03:53:14.776] Android Program Path: C:\Program Files\Microvirt\MEmu\MEmu.exe
+D [2016-07-19 03:53:14.776] Android Program Parameter: MEmu
+D [2016-07-19 03:53:14.776] Android ADB Path: C:\Program Files\Microvirt\MEmu\adb.exe
+D [2016-07-19 03:53:14.776] Android ADB Device: 127.0.0.1:21503
+D [2016-07-19 03:53:14.777] Android ADB Shared Folder: /mnt/shell/emulated/0/Pictures/
+D [2016-07-19 03:53:14.777] Android ADB Shared Folder on Host: C:\Users\Amin\Pictures\MEmu Photo\
+D [2016-07-19 03:53:14.777] Android ADB Shared SubFolder: mybot.run\
+D [2016-07-19 03:53:14.777] Android Mouse Device: Microvirt Virtual Input
+D [2016-07-19 03:53:14.777] Android ADB screencap command enabled: True
+D [2016-07-19 03:53:14.778] Android ADB input command enabled: False
+D [2016-07-19 03:53:14.778] Android ADB Mouse Click enabled: False
+D [2016-07-19 03:53:14.778] Android ADB Click Drag enabled: True
+D [2016-07-19 03:53:14.778] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:14.782] MEmu Window not found
+D [2016-07-19 03:53:14.782] InitAndroid(False): MEmu END, initialization successful = True
+D [2016-07-19 03:53:14.782] UpdateAndroidConfig("MEmu") END
+D [2016-07-19 03:53:14.782] Found installed MEmu 2.5.0
+D [2016-07-19 03:53:14.783] My Bot is the only running instance
+D [2016-07-19 03:53:19.003] UpdateAndroidConfig("MEmu")
+D [2016-07-19 03:53:19.003] InitAndroid(False): MEmu
+D [2016-07-19 03:53:19.941] Cannot read MEmu guestproperty phone_layout!
+D [2016-07-19 03:53:19.942] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:19.947] MEmu Window not found
+D [2016-07-19 03:53:19.947] Android: MEmu
+D [2016-07-19 03:53:19.947] Android Config: 0
+D [2016-07-19 03:53:19.948] Android Version: 2.5.0
+D [2016-07-19 03:53:19.948] Android Instance: MEmu
+D [2016-07-19 03:53:19.948] Android Window Title: MEmu 2.
+D [2016-07-19 03:53:19.948] Android Program Path: C:\Program Files\Microvirt\MEmu\MEmu.exe
+D [2016-07-19 03:53:19.948] Android Program Parameter: MEmu
+D [2016-07-19 03:53:19.949] Android ADB Path: C:\Program Files\Microvirt\MEmu\adb.exe
+D [2016-07-19 03:53:19.949] Android ADB Device: 127.0.0.1:21503
+D [2016-07-19 03:53:19.949] Android ADB Shared Folder: /mnt/shell/emulated/0/Pictures/
+D [2016-07-19 03:53:19.949] Android ADB Shared Folder on Host: C:\Users\Amin\Pictures\MEmu Photo\
+D [2016-07-19 03:53:19.950] Android ADB Shared SubFolder: mybot.run\
+D [2016-07-19 03:53:19.950] Android Mouse Device: Microvirt Virtual Input
+D [2016-07-19 03:53:19.950] Android ADB screencap command enabled: True
+D [2016-07-19 03:53:19.950] Android ADB input command enabled: False
+D [2016-07-19 03:53:19.950] Android ADB Mouse Click enabled: False
+D [2016-07-19 03:53:19.951] Android ADB Click Drag enabled: True
+D [2016-07-19 03:53:19.951] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:19.957] MEmu Window not found
+D [2016-07-19 03:53:19.957] InitAndroid(False): MEmu END, initialization successful = True
+D [2016-07-19 03:53:19.958] UpdateAndroidConfig("MEmu") END
+D [2016-07-19 03:53:19.958] UpdateAndroidConfig("droid4x")
+D [2016-07-19 03:53:19.958] InitAndroid(False): Droid4X
+L [2016-07-19 03:53:19.959] Serious error has occurred: Cannot find Droid4X:
+L [2016-07-19 03:53:19.959] C:\Program Files (x86)\Droid4X\Droid4X.exe
+D [2016-07-19 03:53:19.959] InitAndroid(False): Droid4X END, initialization successful = False
+D [2016-07-19 03:53:19.959] UpdateAndroidConfig("droid4x") END
+D [2016-07-19 03:53:19.960] UpdateAndroidConfig("nox")
+D [2016-07-19 03:53:19.960] InitAndroid(False): Nox
+D [2016-07-19 03:53:20.650] Android: Nox
+D [2016-07-19 03:53:20.650] Android Config: 2
+D [2016-07-19 03:53:20.650] Android Version: 3.1.0.0
+D [2016-07-19 03:53:20.651] Android Instance: nox
+D [2016-07-19 03:53:20.651] Android Window Title: No
+D [2016-07-19 03:53:20.651] Android Program Path: C:\Users\Amin\AppData\Roaming\Nox\bin\Nox.exe
+D [2016-07-19 03:53:20.651] Android Program Parameter: -resolution:860x732 -dpi:160 "-clone:nox"
+D [2016-07-19 03:53:20.651] Android ADB Path: C:\Program Files\Microvirt\MEmu\adb.exe
+D [2016-07-19 03:53:20.652] Android ADB Device: 127.0.0.1:62001
+D [2016-07-19 03:53:20.652] Android ADB Shared Folder: /mnt/shared/Other/
+D [2016-07-19 03:53:20.652] Android ADB Shared Folder on Host: C:\Users\Amin\Documents\Nox_share\Other\
+D [2016-07-19 03:53:20.652] Android ADB Shared SubFolder: mybot.run\
+D [2016-07-19 03:53:20.653] Android Mouse Device: nox Virtual Input
+D [2016-07-19 03:53:20.653] Android ADB screencap command enabled: True
+D [2016-07-19 03:53:20.653] Android ADB input command enabled: False
+D [2016-07-19 03:53:20.653] Android ADB Mouse Click enabled: False
+D [2016-07-19 03:53:20.653] Android ADB Click Drag enabled: True
+D [2016-07-19 03:53:20.654] Searching Nox Window: Title = 'No', Class = '[CLASS:Qt5QWindowIcon;INSTANCE:4]', Text = ''
+D [2016-07-19 03:53:20.660] Nox Window not found
+D [2016-07-19 03:53:20.660] InitAndroid(False): Nox END, initialization successful = True
+D [2016-07-19 03:53:20.660] UpdateAndroidConfig("nox") END
+D [2016-07-19 03:53:20.660] UpdateAndroidConfig("")
+D [2016-07-19 03:53:20.660] InitAndroid(False): BlueStacks2
+D [2016-07-19 03:53:20.661] BlueStacks2 Engine 'Plus'-Mode: False
+D [2016-07-19 03:53:20.661] BlueStacks2 OEM Features: 2754561
+D [2016-07-19 03:53:20.662] BlueStacks2 System Bar is not available
+D [2016-07-19 03:53:20.662] Searching BlueStacks2 Window: Title = 'BlueStacks ', Class = '[CLASS:BlueStacksApp; INSTANCE:1]', Text = '_ctl.Window'
+D [2016-07-19 03:53:20.667] BlueStacks2 Window not found
+D [2016-07-19 03:53:20.667] Android: BlueStacks2
+D [2016-07-19 03:53:20.667] Android Config: 3
+D [2016-07-19 03:53:20.667] Android Version: 2.0.2.5623
+D [2016-07-19 03:53:20.668] Android Instance: 
+D [2016-07-19 03:53:20.668] Android Window Title: BlueStacks 
+D [2016-07-19 03:53:20.668] Android Program Path: C:\Program Files (x86)\BlueStacks\HD-Frontend.exe
+D [2016-07-19 03:53:20.668] Android Program Parameter: Android
+D [2016-07-19 03:53:20.668] Android ADB Path: C:\Program Files\Microvirt\MEmu\adb.exe
+D [2016-07-19 03:53:20.668] Android ADB Device: emulator-5554
+D [2016-07-19 03:53:20.669] Android ADB Shared Folder: /storage/sdcard/windows/BstSharedFolder/
+D [2016-07-19 03:53:20.669] Android ADB Shared Folder on Host: C:\ProgramData\BlueStacks\UserData\SharedFolder\
+D [2016-07-19 03:53:20.669] Android ADB Shared SubFolder: mybot.run\
+D [2016-07-19 03:53:20.669] Android Mouse Device: BlueStacks Virtual Touch
+D [2016-07-19 03:53:20.669] Android ADB screencap command enabled: False
+D [2016-07-19 03:53:20.670] Android ADB input command enabled: False
+D [2016-07-19 03:53:20.670] Android ADB Mouse Click enabled: False
+D [2016-07-19 03:53:20.670] Android ADB Click Drag enabled: False
+D [2016-07-19 03:53:20.670] Searching BlueStacks2 Window: Title = 'BlueStacks ', Class = '[CLASS:BlueStacksApp; INSTANCE:1]', Text = '_ctl.Window'
+D [2016-07-19 03:53:20.676] BlueStacks2 Window not found
+D [2016-07-19 03:53:20.676] InitAndroid(False): BlueStacks2 END, initialization successful = True
+D [2016-07-19 03:53:20.677] UpdateAndroidConfig("") END
+D [2016-07-19 03:53:20.677] UpdateAndroidConfig("")
+D [2016-07-19 03:53:20.677] InitAndroid(False): BlueStacks
+D [2016-07-19 03:53:20.678] BlueStacks Engine 'Plus'-Mode: False
+D [2016-07-19 03:53:20.678] BlueStacks OEM Features: 2754561
+D [2016-07-19 03:53:20.678] BlueStacks System Bar is not available
+D [2016-07-19 03:53:20.678] Searching BlueStacks Window: Title = 'BlueStacks App Player', Class = '[CLASS:BlueStacksApp; INSTANCE:1]', Text = '_ctl.Window'
+D [2016-07-19 03:53:20.683] BlueStacks Window not found
+L [2016-07-19 03:53:20.683] BlueStacks supported version 0.8.x - 0.11.x not found
+D [2016-07-19 03:53:20.684] InitAndroid(False): BlueStacks END, initialization successful = False
+D [2016-07-19 03:53:20.684] UpdateAndroidConfig("") END
+D [2016-07-19 03:53:20.684] UpdateAndroidConfig("MEmu")
+D [2016-07-19 03:53:20.684] InitAndroid(False): MEmu
+D [2016-07-19 03:53:21.621] Cannot read MEmu guestproperty phone_layout!
+D [2016-07-19 03:53:21.621] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:21.628] MEmu Window not found
+D [2016-07-19 03:53:21.628] Android: MEmu
+D [2016-07-19 03:53:21.628] Android Config: 0
+D [2016-07-19 03:53:21.628] Android Version: 2.5.0
+D [2016-07-19 03:53:21.628] Android Instance: MEmu
+D [2016-07-19 03:53:21.628] Android Window Title: MEmu 2.
+D [2016-07-19 03:53:21.629] Android Program Path: C:\Program Files\Microvirt\MEmu\MEmu.exe
+D [2016-07-19 03:53:21.629] Android Program Parameter: MEmu
+D [2016-07-19 03:53:21.629] Android ADB Path: C:\Program Files\Microvirt\MEmu\adb.exe
+D [2016-07-19 03:53:21.629] Android ADB Device: 127.0.0.1:21503
+D [2016-07-19 03:53:21.629] Android ADB Shared Folder: /mnt/shell/emulated/0/Pictures/
+D [2016-07-19 03:53:21.630] Android ADB Shared Folder on Host: C:\Users\Amin\Pictures\MEmu Photo\
+D [2016-07-19 03:53:21.630] Android ADB Shared SubFolder: mybot.run\
+D [2016-07-19 03:53:21.630] Android Mouse Device: Microvirt Virtual Input
+D [2016-07-19 03:53:21.630] Android ADB screencap command enabled: True
+D [2016-07-19 03:53:21.630] Android ADB input command enabled: False
+D [2016-07-19 03:53:21.631] Android ADB Mouse Click enabled: False
+D [2016-07-19 03:53:21.631] Android ADB Click Drag enabled: True
+D [2016-07-19 03:53:21.631] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:21.637] MEmu Window not found
+D [2016-07-19 03:53:21.638] InitAndroid(False): MEmu END, initialization successful = True
+D [2016-07-19 03:53:21.638] UpdateAndroidConfig("MEmu") END
+D [2016-07-19 03:53:22.311] Read Building Config C:\Users\Amin\Desktop\MyBot.Run\MOD AIO\MyBot-AIO-2.1.4\Profiles\MyVillage\building.ini
+D [2016-07-19 03:53:22.322] Read Config C:\Users\Amin\Desktop\MyBot.Run\MOD AIO\MyBot-AIO-2.1.4\Profiles\MyVillage\config.ini
+D [2016-07-19 03:53:22.378] Apply Config
+D [2016-07-19 03:53:22.511] UpdateAndroidConfig("MEmu_1")
+D [2016-07-19 03:53:22.512] InitAndroid(False): MEmu
+D [2016-07-19 03:53:23.448] Cannot read MEmu guestproperty phone_layout!
+D [2016-07-19 03:53:23.448] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:23.455] MEmu Window not found
+D [2016-07-19 03:53:23.455] Android: MEmu
+D [2016-07-19 03:53:23.455] Android Config: 0
+D [2016-07-19 03:53:23.456] Android Version: 2.5.0
+D [2016-07-19 03:53:23.456] Android Instance: MEmu_1
+D [2016-07-19 03:53:23.456] Android Window Title: MEmu 2.
+D [2016-07-19 03:53:23.456] Android Program Path: C:\Program Files\Microvirt\MEmu\MEmu.exe
+D [2016-07-19 03:53:23.456] Android Program Parameter: MEmu_1
+D [2016-07-19 03:53:23.457] Android ADB Path: C:\Program Files\Microvirt\MEmu\adb.exe
+D [2016-07-19 03:53:23.457] Android ADB Device: 127.0.0.1:21513
+D [2016-07-19 03:53:23.457] Android ADB Shared Folder: /mnt/shell/emulated/0/Pictures/
+D [2016-07-19 03:53:23.457] Android ADB Shared Folder on Host: C:\Users\Amin\Pictures\MEmu Photo\
+D [2016-07-19 03:53:23.457] Android ADB Shared SubFolder: mybot.run\
+D [2016-07-19 03:53:23.458] Android Mouse Device: Microvirt Virtual Input
+D [2016-07-19 03:53:23.458] Android ADB screencap command enabled: True
+D [2016-07-19 03:53:23.458] Android ADB input command enabled: False
+D [2016-07-19 03:53:23.458] Android ADB Mouse Click enabled: False
+D [2016-07-19 03:53:23.458] Android ADB Click Drag enabled: True
+D [2016-07-19 03:53:23.459] Searching MEmu Window: Title = 'MEmu 2.', Class = '[CLASS:subWin; INSTANCE:1]', Text = ''
+D [2016-07-19 03:53:23.465] MEmu Window not found
+D [2016-07-19 03:53:23.465] InitAndroid(False): MEmu END, initialization successful = True
+D [2016-07-19 03:53:23.465] UpdateAndroidConfig("MEmu_1") END
+D [2016-07-19 03:53:23.495] Redraw MyBot Window
+L [2016-07-19 03:53:24.257] Found installed MEmu 2.5.0
+L [2016-07-19 03:53:24.261] Android Emulator Configuration: MEmu (instance MEmu_1)
+L [2016-07-19 03:53:26.998] WELCOME CHIEF, YOU HAVE THE LATEST VERSION OF THE BOT
+L [2016-07-19 03:53:27.002]  
+L [2016-07-19 03:53:27.004] Fully working with May update
+L [2016-07-19 03:53:27.007] New GUI and lots of new features
+L [2016-07-19 03:53:27.009] For more information, go to 
+L [2016-07-19 03:53:27.012] https://mybot.run
+L [2016-07-19 03:53:27.015] 
+L [2016-07-19 03:53:27.018]  Always free and open source.
+D [2016-07-19 03:53:28.320] MyBot.run launch time 17313 ms.
+L [2016-07-19 03:53:47.543] Closing Merged My Bot v6.1.4 All In One v2.1.4 (MEmu_1) ...
+D [2016-07-19 03:53:47.551] Save Config C:\Users\Amin\Desktop\MyBot.Run\MOD AIO\MyBot-AIO-2.1.4\Profiles\MyVillage\config.ini
+D [2016-07-19 03:53:48.010] Save Building Config C:\Users\Amin\Desktop\MyBot.Run\MOD AIO\MyBot-AIO-2.1.4\Profiles\MyVillage\building.ini

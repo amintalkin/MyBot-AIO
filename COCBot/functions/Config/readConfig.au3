@@ -1101,6 +1101,9 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		; Misc Battle Settings - Added by LunaEclipse
 		$AndroidAdbClicksEnabled = IniRead($config, "Fast Clicks", "UseADBFastClicks", "0")
 
+		;modification Chat by rulesss
+		$ichkchatdelay = IniRead($config, "global", "chdelay", "0")
+
 	Else
 		Return False
 	EndIf
